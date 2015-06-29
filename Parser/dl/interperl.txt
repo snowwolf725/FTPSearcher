@@ -1,0 +1,2878 @@
+=head1 NAME
+
+interperl - Intermediate Perl for Sysadmins
+
+=head1 DESCRIPTION
+
+This is an intermediate level training document on Perl that describes
+perl constructs and algorithms to improve programmer efficiency.
+
+=head1 Introduction
+
+Perl is a free programming language created by Larry Wall and maintained 
+by a global group of thousands of open source volunteers.
+
+Perl has been called I<the duct tape of the Internet> and will likely
+forever be so. In the words of it's creator, perl 
+makes I<easy things easy, and hard things possible>. It is a rich
+language that helps you program all manners of sysadmin tasks quickly,
+scale/grow them and maintain them well though their lifetime.
+
+=head2 Objective
+
+The goal of this document is to introduce some intermediate level concepts
+in perl for working system administrators. By practicing the concepts
+described in this document, you will be able to B<start thinking in perl>,
+and would be I<able to design the right datastructures and algorithms to
+get the maximum programming simplicity>.
+
+NOTE: B<this is not a document about efficiency of programs. It is a
+document about how to write programs that are easily maintained>.
+
+
+=head2 Organization of this document
+
+This material assumes the reader is familiar with I<basics of perl> which
+is available in the companion document B<Perl Basics for Sysadmins>.
+
+Readers are I<assumed to have a basic understanding of perl datastructures,
+basic unix system calls, and rudimentary exposure to regular expressions>.
+
+Writers are assumed to have atleast 1 year of programming experience in
+atleast 2 different languages, one of which is an intrepreted language
+like B<perl> or B<shell>.
+
+=head2 Additional pointers for learning
+
+This document is not a substitute for programming, nor does it
+substitute the documentation that comes with perl! The more you code, 
+the better you can program. What is not obvious is that the more 
+you read, the smaller your programs need to be to get the same work done.
+
+It is B<mandatory> that you read the perl documentation
+available on your system. At the very least, you should try to read all
+the manual pages mentioned in this document. Reasonably competent system
+administrators can implement 90% of their regular tasks with minor
+modifications to the program snippets available in the core documentation
+that comes with perl.  L<"Resources"> section gives you details on 
+where to look for complete and authoritative information.
+
+=head2 Why Perl?
+
+Perl is designed to be like C: flexible and powerful enough
+to manipulate the machine's capabilities directly. Perl is also designed
+to be like B<sh, sed, awk>: I<creating complex datastructures with ease,
+and prototyping solutions very quickly>.
+
+=head2 TMTOWTDI
+
+Most programming languages have a minimalist set of constructs 
+(succumbing to I<orthogonality> of design). There is usually
+I<one way> to do a particular task in such languages.
+Perl differs from such languages. It has been designed with 
+redundancy in mind: multiple constructs abound that do almost 
+similar things. 
+
+If programming in other languages can be equated to a walk through
+a maze with orthogonal turns, programming in perl feels more like a walk 
+through the grass in a park. This has led to the
+perl motto B<There's more than one way to do it>, abbreviated to
+TMTOWTDI or I<Tim Toady>. 
+
+=head2 Extensible
+
+The most current version of perl is version 5.8.3. Version 5 has been 
+built with extensibility in mind. This has resulted in the largest
+collection of perl extensions (called Modules) and a 
+worldwide group of volunteers who actively maintain the comprehensive
+perl archive of networks CPAN (http://www.cpan.org/).
+
+=head2 History
+
+The first version of perl was released in 1987. After successive
+refinements version 4 of perl was released in 1991, which also coincided
+with the first release of I<The Camel> book, I<Programming Perl>.
+
+Perl version 4 quickly became very popular. As many people started
+using perl for more than a few simple tasks, the limitations of the language
+made it difficult for people to add new features. To prevent perl from
+forking into many versions, a complete rewrite of perl was done and
+released as version 5. Perl version 5 was more extensible than 
+version 4. It contained large-scale-programming features, 
+added completely new features like lexical variables and closures,
+re-hauled regular expression engine, references, and made it possible
+to pretty much extend perl infinitely. Version 5 supports more 
+operating systems; the standard distribution comes with a
+clean abstraction for database support (DBI), a Tk port to perl (Perl/Tk)
+and boasts a Win32 port for PCs running Microsoft operating systems
+(this port has since been integrated into the core perl distribution in
+source form).
+
+For the most current updates and feature list for perl, you should
+see the distribution, which is always available at 
+http://www.perl.com/CPAN-local/
+
+=head1 Perl Data Types
+
+Perl provides you with three basic, but powerful data types. Unlike most
+languages, perl allows you to grow/shrink them dynamically
+without you ever having to worry about memory allocation/de-allocation. Perl
+does it all for you. The three fundamental data types in perl are called
+I<Scalars>, I<Lists> and I<Hashes>.
+
+=head2 Scalars
+
+A scalar is the fundamental data type in perl. A scalar can hold a
+single value. This value may be a string, number, a file-handle,
+a typeglob, or a reference to another perl data type. 
+
+Here is a translation table from C to perl:
+
+	int,float,double => scalar (numeric interpolation)
+	char *           => scalar (string interpolation)
+	file *fp         => filehandle (*STDIN)
+	symbol table     => typeglob (*FOO{THING} )
+	&(struct foo)ptr => reference to ANY{THING}
+
+
+Here are some examples:
+
+	$a = 'this';   print "String   = $a\n"; #stores 'this' in $a
+	$answer = 42;  print "Number   = $answer\n"; 
+	$ref = \$a;    print "Reference= ",ref($ref)," => $ref \n";
+	$r = *STDIN;   print "Typeglob = $r\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# String   = this
+	# Number   = 42
+	# Reference= SCALAR => SCALAR(0x90c8170) 
+	# Typeglob = *main::STDIN
+	#
+	#------------------- output end  ---
+
+You can build a scalar from other scalars through numeric and string
+operations. The following examples show interpolation at work:
+
+	$x = "2.00"; $y = 4; $z = "abc";
+	print "Numeric interpolation: $x+$y gives =>", ($x+$y), "\n";
+	print "String interpolation : \$z gives $z\n";
+	print "Concatenation of $x . $y gives ", ($x . $y ) , "\n";
+	print "String multiplication \$z x $y, gives [", $z x $y, "]\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Numeric interpolation: 2.00+4 gives =>6
+	# String interpolation : $z gives abc
+	# Concatenation of 2.00 . 4 gives 2.004
+	# String multiplication $z x 4, gives [abcabcabcabc]
+	#
+	#------------------- output end  ---
+
+The `+' operator is the familiar numeric addition. The `.' operator is the
+string I<concatenation> operator that concatenates it's left and right
+operands and returns the result.
+
+As you can see, scalar values can be built dynamically, and can grow
+or shrink at programmer's will.
+
+=head2 Lists and Arrays
+
+B<A literal list is a collection of scalar values>. 
+
+When a list of values need to be stored somewhere, you will usually use
+B<arrays>. Thus, an array is a list each of whose element really contains a
+B<scalar> value. This is the most important thing you need to know about lists.
+
+As with scalars, lists can be built dynamically, and their size can
+be increased or decreased by adding, deleting or splicing elements at
+will. Arrays act like the English word `these'. You prefix an array with
+the B<@> character. However, to get the I<scalar> element of an array,
+you need to derefence the array with the B<type of the result value you
+are expecting to be stored at the location>. Typically, you will store
+scalar B<VALUES> in an array, so you would want to do something like this:
+
+	#
+	#direct definition, literal list
+	#
+	#
+	$"=", ";
+	@replicators = ('rna-strand', 'dna-strand', 'exon', 'intron', 'prion');
+	print "Replicators: @replicators\n";
+	#
+	#
+	#Assign to an element
+	#
+	$description[0] = 'Kingdom'; print "Description[0] = $description[0]\n";
+	#
+	#Push multiple elements dynamically (runtime)
+	#
+	push @description, split(/:/, 'Phylum:Order:Class:Family:Genus:Species');
+	print "Description now: @description\n";
+	#
+	#Split words using the quoting operator 'qw'
+	#
+	@woman = qw(Animalia Chordata Mammalia Primates Hominidae Homo Sapiens);
+	#
+	#PRINT in 3 ways:
+	#
+	#
+	print "using a 'for' block and 'print'\n";
+	print "$_\n" for @replicators;
+	#
+	print "\nusing a 'for' iterator and 'printf':\n";
+	for (0..$#description) {
+		printf "Linneaus says, %-20s => %s\n", $description[$_], $woman[$_];
+	}
+	#
+	print "\nUsing 'map', 'sprintf' to transform a list:\n";
+	print map { sprintf("%02d %s\n", $_, $woman[$_]) } 0..$#woman;
+
+
+	#prints:
+	#
+	#------------------- output start---
+	# Replicators: rna-strand, dna-strand, exon, intron, prion
+	# Description[0] = Kingdom
+	# Description now: Kingdom, Phylum, Order, Class, Family, Genus, Species
+	# using a 'for' block and 'print'
+	# rna-strand
+	# dna-strand
+	# exon
+	# intron
+	# prion
+	# 
+	# using a 'for' iterator and 'printf':
+	# Linneaus says, Kingdom              => Animalia
+	# Linneaus says, Phylum               => Chordata
+	# Linneaus says, Order                => Mammalia
+	# Linneaus says, Class                => Primates
+	# Linneaus says, Family               => Hominidae
+	# Linneaus says, Genus                => Homo
+	# Linneaus says, Species              => Sapiens
+	# 
+	# Using 'map', 'sprintf' to transform a list:
+	# 00 Animalia
+	# 01 Chordata
+	# 02 Mammalia
+	# 03 Primates
+	# 04 Hominidae
+	# 05 Homo
+	# 06 Sapiens
+	#
+	#------------------- output end  ---
+
+
+There are various other operations you can perform on arrays. here are some
+examples:
+
+	#
+	$"=", ";
+	#
+	push @a, 1, 'two'; print "A = (@a)\n";
+	pop @a; print "A is now popped to: (@a)\n";
+	unshift @a, 'two'; print "A unshifted to: (@a)\n";
+	shift @a; print "after a Shift, A is: (@a)\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# A = (1, two)
+	# A is now popped to: (1)
+	# A unshifted to: (two, 1)
+	# after a Shift, A is: (1)
+	#
+	#------------------- output end  ---
+
+=head2 Hashes
+
+The final perl data structure we will see is a hash. A hash is very much
+like a list, but it is indexed by strings (a list is indexed by
+number). A hash is like a database indexed by a single key field. Hashes
+are initialized by specifying the key and value in pairs. For example:
+
+	%colors = ( 'red' => '#FF0000',   'green' => '#00FF00');
+	%passwd = ( 'root' => 'ez2Krack', 'mysql' => 'se1ect!');
+
+Hash keys are strings and hash values are scalars, so you can
+refer to them in any place where you would need a scalar value. The
+individual key is enclosed within curly braces to specify that we
+are referring to a hash.
+
+Here is an example of adding another element to one of the above hashes
+by using a value stored in it: 
+
+	$colors{'blue'} = $colors{'red'};
+
+
+Here is how it works. C<%colors> is the hash. It's name is I<colors>. The 
+key for which we want to create a value is I<blue>. So the actual value is 
+at key 'blue', which is a scalar:
+
+	Key          => 'blue'       =>         'blue'
+	hash         => curly braces =>        {'blue'}
+	Scalar value => $            => $colors{'blue'}
+
+Here's another:
+
+	print("Root password is too $passwd{root}\n");
+
+
+=head1 Refresher on Operations on perl variables
+
+Perl provides many basic operations to manipulate variables. However
+these operations are I<more powerful> than in most other languages,
+there are groups of operations that do I<similar things>, so you
+have a choice of programming styles.
+
+=head2 Scalar Ops: length, substr, tr, s, chomp, lc, uc, int, sprintf
+
+Try each of the below statements and see if the result matches with the
+comments (You can ignore anything followed by a '#' because those are
+comments):
+
+	$dozens = int( 97/12 );	# gets 8
+	print "97/12 = $dozens\n";
+	
+	$_ = 'A single sentence.';
+	$l = length($_);
+	print "Length of '$_' = ($l)\n";
+	
+	$is = substr($_, 9, 4);	#$is is now 'is'
+	print "Substr('$_',9,4) = $is\n";
+	
+	print "\$_ is now: '$_'\n";
+	$_ =~ tr/st/tp/;	#$_ is now 'A tingle tenpence.';
+	
+	
+	print "\$_ after tr/st/tp/: '$_'\n";
+	$_ =~ s/t/s/;		#$_ is now 'A single tenpence.';
+
+	print "\$_ after another s/t/s: '$_'\n";
+	print "All upper case, '$_' is ", uc($_), "\n";
+
+	$pi = sprintf("%.12f", atan2(1, 1)*4);
+	print "PI = $pi\n";
+	
+	#prints:
+	#
+	#------------------- output start---
+	# 97/12 = 8
+	# Length of 'A single sentence.' = (18)
+	# Substr('A single sentence.',9,4) = sent
+	# $_ is now: 'A single sentence.'
+	# $_ after tr/st/tp/: 'A tingle tenpence.'
+	# $_ after another s/t/s: 'A single tenpence.'
+	# All upper case, 'A single tenpence.' is A SINGLE TENPENCE.
+	# PI = 3.141592653590
+	#
+	#------------------- output end  ---
+
+=head2 List Ops: push, pop, shift, unshift, sort, splice
+
+	@a = (1, 2, 3); print "A is: @a\n";
+	$last = pop @a; print "last element of A is: $last\n";
+	#
+	@sorted = sort('jack', 'jill', 'fred', 'barney');
+	print "@sorted\n";	#prints `barney fred jack jill'
+	#
+	#
+	splice @sorted, 2, 2, 'wilma', 'betty';
+	print "Spliced: @sorted\n";	#prints  `barney fred wilma betty'
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# A is: 1 2 3
+	# last element of A is: 3
+	# barney fred jack jill
+	# Spliced: barney fred wilma betty
+	#
+	#------------------- output end  ---
+
+
+=head2 Hashes: keys, values, each
+
+	%h = (
+		'linux' => 'Linus Benedict Torvalds', 
+		'perl' => 'Larry Wall',  
+		'hurd' => 'Richard M. Stallman',
+		'unix' => 'Dennis and Ken',
+		'TAOCP' => 'Don Knuth',
+		);
+	#
+	@software = keys %h;
+	@authors  = values %h;
+	#
+	while ( ($k, $v) = each %h) {
+		printf "%-10s was the brainchild of $v\n", $k;
+	}
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# perl       was the brainchild of Larry Wall
+	# TAOCP      was the brainchild of Don Knuth
+	# hurd       was the brainchild of Richard M. Stallman
+	# unix       was the brainchild of Dennis and Ken
+	# linux      was the brainchild of Linus Benedict Torvalds
+	#
+	#------------------- output end  ---
+
+=head1 Perl Expressions, Statements and Context 
+
+=head2 Expressions form Statements
+
+Everything in perl is an I<expression>. An expression is a basic unit
+of program in perl that returns a result. For example, the C<print>
+statement in perl is actually an expression that returns a value.
+
+	$result = print("this is the stament that prints 'Foo'\n");
+	print "Result of previous stmt = $result\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# this is the stament that prints 'Foo'
+	# Result of previous stmt = 1
+	#
+	#------------------- output end  ---
+
+A perl statement is merely an expression evaluated for side effects.
+
+Expressions can not only B<return> results, but can also be B<assigned to>
+under appropriate conditions.  When the return value of an expression is
+merely used to assign it to something else, it is said to be used as an
+B<rvalue>. In contrast, when you assign B<to> an expression, it is said
+to be used in an B<lvalue> context.  Some perl functions/operations can
+act as I<lvalues> which is nice.
+
+	$_ = "ABC\n";
+	$\="\n";
+	print substr($_,1,1);	#prints 'B'
+	substr($_, 1, 1) = 'C'; 
+	print;                  #prints 'ACC'
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# B
+	# ACC
+	# 
+	#
+	#------------------- output end  ---
+
+Expressions can also return different things based on the B<context> in
+which they are called! The two major types of context are described below.
+We will not discuss the I<void> context which is a special case.
+
+=head2 Scalar context
+
+A scalar context expects/returns a single scalar value. If you use an
+expression in a scalar context, the expression I<or> it's return value(s)
+are coerced into a scalar. For example:
+
+  $count = @lines;
+
+Here, @lines is an expression that returns a list of all elements contained
+in the array @lines. This expression is forced into a scalar context by the
+assignment statement. In a scalar context, this gives the number of elements
+of the array @lines. Thus, $count will really contain the I<number of
+elements> in the array @lines.
+
+=head2 List context
+
+A list context expects/returns a list of scalars. If you use an expression
+in a list context, the expression I<or> it's return value(s) is/are coerced
+into a list. For example:
+
+  @lines = <STDIN>;
+
+Here, @lines provides a list context to the expression <STDIN>. This in turn
+makes the expression <STDIN> slurp the entire STDIN (until an eof or CTRL-Z)
+and return it as a list of lines. Thus, if you were to type 10 lines in the
+terminal followed by a CTRL-D after this statement, @lines will contain 10
+elements, each of which will contain the respective line you entered.
+
+This works for lists in general, but there is a special case of a
+B<literal list> that you should be aware of: A literal list appears like a
+"C comma operator" in a scalar context. Here is an example to illustrate
+this important distinction:
+
+	@a = (12, 0, 32, -23);
+	$b = @a;
+	print "b = $b\n";
+	$c = (12, 0, 32, -23);
+	print "c = $c\n";
+	
+	#this prints:
+	#b = 4
+	#c = -23
+
+For more on context, see L<perldata>.
+
+=head1 Loops in perl: for, foreach, while
+
+Most common tasks are repetitive. Like most languages, perl allows you
+to repeat a set of statements using I<looping> constructs. The two
+most common looping constructs are I<foreach> and I<while>. 
+
+=head2 Example for `foreach'
+
+	#perl style
+	foreach my $number (1..10) {
+		print "foreach $number\n";
+	}
+
+=head2 Example loop using `for' 
+
+	#C style
+	for (my $number = 1; $number <= 10; $number++ ) {
+		print "for     $number\n";
+	}
+
+=head2 Example loop using `while'
+
+	my $number = 1;
+	while ( $number <= 10 ) {
+		print "while   $number\n";
+		$number++;
+	}
+
+The looping constructs are actualy far more versatile. For the full
+details, you should start at L<perlsyn>.
+
+For more on this, see L<perlsyn>.
+
+=head1 Perl builtin variables
+
+Perl has builtin variables that take on certain B<`sensible'> values at runtime.  
+
+As we noted before, I<statements are expressions that return value(s)>. 
+In the absence of an explicit assignment, some of the expressions take
+default arguments. 
+
+I<In some expressions, perl may return the results unto certain default 
+variables if you don't explicitly specify where they should be stored>. 
+In other cases, changing the settings of some internal variables will
+make the succeeding lines in the perl program snippet behave
+differently (like B<pragma> or I<hints>).
+
+Here are some examples without explanations:
+
+=head2  @ARGV
+
+	#!/usr/bin/perl -w
+	use strict;
+	my $arg;
+	foreach (@ARGV) {
+		$arg++;
+		print "Argument $arg: $_\n";
+	}
+
+=head2  %ENV
+
+	while (($key, $value) = each %ENV) {
+		print "$key=$value\n";
+	}
+
+=head2  @INC
+
+This is the include path for perl libraries. 
+
+	foreach (@INC) {
+		print "$_\n";
+	}
+
+	#
+	$file = 'CPAN.pm';
+	foreach (@INC) {
+		print "Found $file under $_/$file\n" if ( -f "$_/$file");
+	}
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Found CPAN.pm under /usr/lib/perl5/5.8.3/CPAN.pm
+	#
+	#------------------- output end  ---
+
+You can override this variable within your program. 
+For example, if you have installed the latest cool whiz-bang version
+of Foo::Bar under your $HOME/lib directory, here is what you
+would do:
+
+		use lib '/my/home/dir/lib';
+		use Foo::Bar;
+		{ #...whatever... }
+
+=head2 $_ = default input and pattern search space
+
+Example: 
+
+	while ( <FH> ) {
+		split;
+	}
+
+	Is the same as the more elaborate:
+
+	while ( defined($var = <FH>) ) {
+		@_ = split " ", $var;
+	}
+
+=head2 @_ = default arguments for subroutines, default destination of 'split'
+
+As explained in the example above, the default destination of a split
+is @_.
+
+In the context of a subroutine call, @_ contains all the arguments to
+the subroutine. Note that perl subroutines can have a variable number
+of arguments on I<each> invocation. @_ will automatically be sized
+accordingly.  Since B<@_> is a global variable, the I<old> value of @_
+is restored as soon as the subroutine call ends!
+
+
+=head2 $. $/ $\ : File I/O counter, record separators
+
+When you use the E<lt>E<gt> operator to read data from a file, perl
+automatically stores the I<current line number> in a variable named B<$.>.
+How does perl know where a line ends and the next one begins? Well, that
+is what the record separator variable, B<$/>, is for! As with most perl
+predefined variables, this takes on a default value and $/ defaults to
+"\n".
+
+Here is a way to read in a whole file to a single scalar, if you have
+lots of memory to burn:
+
+	$/ = '';
+	open(INPUT, 'tail -5 /var/log/messages|') 
+		|| die "/var/log/messages: $!\n";
+	$slurp = <INPUT>;
+	close INPUT;
+	print $slurp;
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# May  9 19:26:42 mithya.sarvam.com root: Test 1
+	# May  9 19:26:50 mithya.sarvam.com root: Test 2
+	# May  9 19:26:52 mithya.sarvam.com root: Test 3
+	# May  9 19:26:54 mithya.sarvam.com root: Test 4
+	# May  9 19:26:57 mithya.sarvam.com root: Test 5
+	#
+	#------------------- output end  ---
+
+Similarly, every B<print> statement will tack on the value of the builtin
+variable B< $\ > to every line/record you write. This variable is null
+by default, but if you want to, you can change this. See the B<-p>
+and <-l> variables in L<perlrun> for more usage information.
+
+
+=head2 $0, $$ : program name, PID
+
+Type the following example into a test program and run:
+
+	#!/usr/bin/perl -w
+	print "I am called as $0\n";
+	print "My PID is      $$\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# I am called as /tmp/codeliver.out
+	# My PID is      27485
+	#
+	#------------------- output end  ---
+
+=head2  $! : O/S Error string or Errno
+
+	for (1..10) {
+		$! = $_;
+		print "$_ => $!\n";
+	}
+	print STDERR "File /etc/nosuchfile: $!\n" unless -f '/etc/nosuchfile';
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# 1 => Operation not permitted
+	# 2 => No such file or directory
+	# 3 => No such process
+	# 4 => Interrupted system call
+	# 5 => Input/output error
+	# 6 => No such device or address
+	# 7 => Argument list too long
+	# 8 => Exec format error
+	# 9 => Bad file descriptor
+	# 10 => No child processes
+	# File /etc/nosuchfile: No such file or directory
+	#
+	#------------------- output end  ---
+
+=head2 $?, $@ - Errors from child/pipe/eval 
+
+Example:
+
+	`/etc/nowhere/hostname`;
+	print "\$? = $?\n";
+	eval qq{open(F, '/tmp/nosuchfile') or die "nosuchfile: $!"};
+	print "\$@ =\n$@\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# $? = -1
+	# $@ =
+	# nosuchfile: No such file or directory at (eval 1) line 1.
+	# 
+	#
+	#------------------- output end  ---
+
+
+=head2 $<, $>, $(, $) : real, effective uid/gid
+
+	print "Real: $<, Effective: $>\n";
+
+See L<perlvar> for more information.
+
+=head1 Commonly used Operators in perl
+
+=head2 Logical Operators
+
+Logical operators return true or false. Perl has all standard logical
+operators.  However, the meaning of true and false is different in
+perl, because perl considers strings and numbers
+to be the same data-type: Scalar. Here is a quick overview of truth
+as it applies to perl scalars:
+
+The empty string "" is false. Any string that evaluates to "0" is false.
+Any number that evaluates to 0 is false. Any I<undefined> value is false.
+All else is true. Sometimes, this is surprising:
+
+	print "Yes,  string '0.0' is ''\n" if ( "0.0" == '');
+	print "What, string '0.0' is 'true'??\n" if ( "0.0" );
+
+In line 1, we see that the string "0.0" is converted to 0 in the
+numeric context of the I<==> operator. The empty string on the
+right side is similarly converted into false. However, in line 2,
+the string "0.0" evaluates to I<TRUE> according to the rules. Thus,
+the print statement does get executed.
+
+Logical operators available in perl are I<&&>, I<||> and I<!>. The
+logical I<&&> and I<||> operators are I<short circuit> operators,
+like in C. This means that the second operand is evaluated only when
+it's necessary. Here are some examples:
+
+	$home = $ENV{HOME} || (getpwuid($<))[7] || die "No home directory!\n";
+
+	print "Your machine is wide open!\n" 
+		if ( $> && $< && -r "/etc/shadow");
+
+For more on this, see L<perlop>.
+
+=head2 Binding operators
+
+When you need to match a string with a pattern or make changes to it using
+a I<regular expression> match and replace, you use the I<binding>
+operator, B<=~>. To negate the logical sense of a match, you use the B<!~>
+operator. Here are some examples:
+
+	for my $host (qw(www.google.com samba.net.au)) {
+	if ( $host =~ /\./ ) {
+		print "$host seems to be fully qualified!\n";
+
+		if ($host !~ /\.(com|org|edu|mil|gov|net)$/ ) {
+			$country = $host;
+			$country =~ s#.*\.##;	#remove everything except the TLD marker
+			print "It's country of origin is: $country\n";
+		}
+		else {
+			($tld = $host) =~ s/.+\.//;
+			print "Host is a canonical TLD [.$tld]\n";
+		}
+	}
+	}
+
+=head2 Additional logical operators not found in C
+
+In addition to && and || for logical operations, perl provides B<and> and
+Some new logical operators
+
+In addition to && and || for logical operations, perl provides B<and> and
+B<or>. These behave identically to the I<&&> and I<||> except that they
+have very low precedence. I<Precedence> determines the order of evaluation
+within a single statement. Here is an example where not knowing the
+precedence might bite you (in fact, the perl and/or operators were
+designed just so that people don't make this mistake). Perl allows you to
+call functions without using parentheses around the arguments. If you need
+to open a file, here is how you'd do it I<with> parentheses around the
+arguments, without checking the return values:
+
+	open(FOO, '/etc/passwd');
+
+This can also be written conveniently as:
+
+	open FOO, '/etc/passwd';
+
+These two function calls work exactly the same way. Now, if you need to
+add some error checking of the return value of the I<open> call, you would
+do something like this:
+
+	open(FOO, 'bar') || die "bar: $!\n";
+
+The equivalent
+
+	open FOO, 'bar'  || die "bar: $!\n";
+
+parses as:
+
+	open(FOO, 'bar' || die "bar: $!\n");
+
+This is not what we want. In this situation the I<or> operator comes to the rescue:
+Thus, it is better written as:
+
+	open FOO, 'bar' or die "bar: $!\n";
+
+=head2 Variables and Quoting operators
+
+Variable names can contain B<alphabets, digits and underscores>.
+The first character should not be a digit. To store a value
+within a variable, you B<quote> the value if it is a string, or use
+a B<literal number>.
+
+In addition to the standard quoting characters, perl provides additional
+syntax to allow you to simplify creation of strings with embedded quotes.
+These are the B<q{}>, B<qq{}>, B<qx{}> and B<qr{}> operators. These
+operators are flexible in that you can use I<ANY> character as the quoting
+character. For example, instead of the curly braces, you can use the B<#>
+character as quoting character:
+
+	$something =  q#Single quoted#; 
+	$nother    = qq#Not '$something'#;
+	$crazy = 'Please don\'t use \'\' within this string';
+	$ok    = q{Please don't use '' within this string};
+	$foo = "<A HREF=\"mailto:$address\">Mail us</A>";
+	$foobetter = qq{<A HREF="mailto:$address">Mail us</A>};
+	for (qw(something nother crazy ok foo foobetter)) {
+		eval qq{print "$_ = \$$_\n";}
+	}
+	$ip_patt = qr{^\d+\.\d+\.\d+\.\d+};
+	print "127.0.0.1 matches $ip_patt!\n" if ( '127.0.0.1' =~ /$ip_patt/ );
+
+
+For more on perl operators, see L<perlop>.
+
+=head2 I/O Operations: Standard Filehandles
+
+Following the Unix convention, perl provides three default Filehandles
+that are direct analogues to C: I<STDIN>, I<STDOUT> and I<STDERR>. In
+the absence of an explicit Filehandle, the magical spaceship
+operator (E<lt>E<gt>) automatically reads from STDIN. In the absence
+of an explicit Filehandle your I<print> statements automatically
+print to STDOUT (You override this by using the L<select> function
+call in perl). Some perl functions (namely I<warn> and I<die>) will
+print automatically to STDERR with no need for a Filehandle argument
+(pun intended). You can I<close> the standard file handles if needed
+(say, a daemon process)  or redirect them I<within> perl. Here are
+some examples where these Filehandles figure, even though you don't
+see them:
+
+	print "This prints to your standard output!\n";
+	unlink("/") or warn "Can't unlink /: $!\n";
+	warn("Please run manually!\n") unless ( -t STDIN );
+
+=head2 I/O Operations: Opening and Closing files
+
+Perl's I<open> function wears many hats. 
+
+Here are some examples without commentary:
+
+  open(PASSWD, '/etc/passwd');
+  open(LOG, "> $logfile");
+  open(RCMD, "rsh $host uname -a 2>&1 |");
+  open(MAIL, "|/usr/lib/sendmail -oi -t");
+  open(RW, "+< /read/and/write/later");
+
+  close(ANYHANDLE);
+
+Filehandles can be stored in scalars also, using many of the standard perl
+modules available with the perl distribution. Here is a simple fragment
+that uses the perl module B<IO::File> (see L<perlmod>  for more
+explanation of modules, classes and objects in perl.
+
+
+  #!/usr/bin/perl -w
+  use IO::File;
+  my $fh = new IO::File;
+  $fh->open('/etc/resolv.conf');
+  print STDOUT <$fh>;
+  $fh->close;
+
+=head2 I/O Operations: magical filehandles
+
+B<There are certain file handles that perl will make available for you
+without an explicit open>. If you run a perl program with some arguments,
+perl removes all arguments it can understand, and makes the rest of them
+available to your program as I<@ARGV>. Now, if your program doesn't use
+these arguments in any way, and you use the diamond operator (<>) for
+reading in data, perl will consider each of those arguments as files to be
+opened, open them in order, and supply their contents when you use the <>
+operator! Here is a simple example that emulates the Unix I<cat> command
+in some ways:
+
+	#!/usr/bin/perl -w
+	while ( <> ) {
+		print;
+	}
+
+
+What is the name of the currently opened Filehandle? $ARGV. Here is
+how you test this:
+
+	#!/usr/bin/perl -w
+	while ( <> ) {
+		next unless eof;
+        print "File is $ARGV\n";
+	}
+
+
+There are occasions when your program needs some small amount of input
+that you'd rather have in a file, but you don't want the script to
+hard code the name of the file or you don't want to carry the file around
+with the program. The Filehandle DATA is what you need in such cases. Perl
+will read your program until it reaches the end of your program or the end
+of the file. If perl reads a line which says B<__END__> (without any
+other characters) it stops reading the program right there. Anything that
+follows is available to your program with the I<DATA> Filehandle. Here is
+an example:
+
+	#!/usr/bin/perl -w
+	print <DATA>;
+	__END__
+	This line three erros.
+	This line ends input.
+
+The I<open> and I<close> on the above Filehandles happens automatically,
+so you don't need to do that explicitly.
+
+For more on these topics, see L<perlfunc>.
+
+=head1 System Interaction and perl shortcuts
+
+=head2 Hostname
+
+	#OLD:
+	chomp( $hostname = qx{ hostname });
+	print "Host = $hostname\n";
+	#SHORTCUT:
+	use Sys::Hostname;	#need to run h2ph after install
+	print "Host = ", hostname, "\n";
+
+Benchmark results for hostname
+
+                          Rate perl_hostname_1000times    system_hostname_once
+perl_hostname_1000times 1020/s                      --                    -63%
+system_hostname_once    2778/s                    172%                      --
+
+Net speedup: B<272 times>
+
+
+=head2 Remove a file:
+
+	#OLD:
+	system("rm $file"); 
+	system("mv $file1 $file2");
+	#
+	#SHORTCUT:
+	#
+	unlink $file; 
+	rename($file1, $file2) || die "can't rename: $!\n";
+
+=head2 Daemonize
+
+A daemon is different from normal programs: it should not have a controlling
+terminal, and it should be immune to signals that the launching
+shell/program is sent. If you close all standard Filehandles, the process
+will still have a controlling terminal. It will also inherit a working
+directory which you want to set to B</>. Here is one way to do it:
+
+	use POSIX qw/:setsid/;
+	close(STDIN); close(STDOUT); close(STDIN);
+	chdir('/');
+	fork && exit;
+	setsid();
+	#reopen STDIN, STDOUT etc. if needed..
+
+The setsid call is imported from the POSIX module (may not be fully
+implemented in all O/S). C<setsid()> will make the program it's own
+process group leader. The program will also have no controlling terminal.
+For more on unix system programming, see L<References>.
+
+=head1 Some standard library shortcuts in Perl
+
+=head2 getpwnam, getpwent, getpwuid 
+
+These functions allow you to get the password file/NIS entries from within
+perl. You could get a value by specifying the key through C<getpwnam> and
+C<getpwuid>. Or you could cycle through the entire list using C<getpwent>.
+
+	$root_shell = (getpwuid(0))[7]; 
+	print "Blech!\n" unless $root_shell =~ /bash/;
+
+=head2 stat, lstat
+
+These functions allow you to get at the file meta information. These have
+similar semantics to the unix system calls of the same name.
+
+	use File::stat;
+	$s = stat("/etc/passwd");
+	print "/etc/passwd Last modified at: ", scalar(localtime $s->mtime);
+
+=head2 chown $uid, $gid, @files;
+
+Example:
+
+	chown 0, 0, '/etc/passwd', '/etc/shadow';
+	chmod 0600, '/etc/shadow';
+
+=head2 directory operations: opendir, readdir
+
+Here is an example: find all text files within current directory:
+
+	opendir(DIR, '.');
+	while (defined($file = readdir(DIR)) ) {
+		next unless -T $file;
+		print "text file: $file\n";
+	}
+	closedir(DIR);
+
+
+=head1 Regular Expression Fundamentals
+
+Regular expressions are B<mini languages> that allow us to capture
+our own custom B<grammar> to B<match/fail> specified I<patterns in
+input space>. Now that the theory is out of the way for the moment,
+here's another try:
+
+Regular expressions are powerful tools that match a pattern in inputs
+given to them. Some kinds of pattern matches allow us to extract parts
+of information that are most relevant to us within the input data, and
+also allow us to transform them into any other form we need.
+
+Perl's support for regular expressions is built into the core
+language, so it is fast and flexible. Regular expressions I<regex> are 
+abstractions of general patterns you are looking for, so they can get a
+bit terse and hairy to read. Perl's regex I<syntax> is however rich and
+supports extensions that allow you to write perfectly readable I<regex>.
+
+=head2 Perl REGEX Metacharacters
+
+The following Metacharacters allow you to match different types and amount
+of text: 
+
+	.	match ANY character (except a newline)
+	\s, \S	whitespace, non-whitespace
+	\w, \W	word, non-word character (word = a-zA-Z_0-9)
+	\d, \D	digit, non-digit
+	^, $	beginning/end of line
+	*	match zero or more of preceding expression
+	+	match one or more of preceding expression
+	?	match zero or once
+	{n,m}	match from n to m repetitions of preceding expression
+	()	grouping
+	[]	character class (eg. a thru z is [a-z])
+	|	alternation
+	$1..99	matched groups
+
+For exact descriptions see L<perlre>. For now, we will explain a few of
+these Metacharacters with examples in the following sections.
+
+=head2 Theory of regex engines: DFA, NFA
+
+When you are matching a text against some pattern, there are two
+ways to go about it:
+
+	1. Map the matching pattern into the text at every character,
+	return the longest possible match, starting at the leftmost
+	position in the text. This is simple, fast, and produces
+	answers in a definite time that can be DETERMINED. These are
+	called DFA.
+
+	2. Using the pattern as your directive, walk through the text.
+	Don't stop until you've tried all possible ways to match, and
+	report failure only otherwise. This is not-so simple, but it
+	REMEMBERs all past states it passed. However, it is not 
+	GUARANTEED to return success/failure within a known time.
+	These engines belong to the NFA class.
+
+B<DFA> is fast, but I<it does not support the ability to
+remeber sub patterns in matched test>.
+
+B<NFA> is slower, and potentially not return with an answer
+at all, but I<it is more flexible and can easily be enhanced
+to remember all matched sub-patterns to return at the end>.
+
+B<Perl is an NFA-based engine with support for backreferences,
+non-greedy matching, and lookahead>.
+
+Here are the fundamental rules of REGEX matching in perl:
+
+=head2 Simplest regex is a plain string
+
+The simplest regex is a plain string. If you use it to I<match> something,
+it will succeed only if your input data contains the exact same string as
+the regex. However, within your pattern (regex) you can use
+B<Metacharacters> to match huge amounts of data in a few characters of
+the regex. Here is a simple example of some entries in a logfile:
+
+	Jun 14 22:06:31 indus.fell.com in.ftpd[492]: connect from 146.223.45.6
+	Jul 13 12:30:07 indus.fell.com in.telnetd[570]: connect from 10.0.15.21
+
+Here is one way to find the client IP address in the second line.
+
+	/connect from 10.0.15.21/
+
+Unfortunately, this will only match connections originating from
+10.0.15.21 (actually it will also match 1000115021, but we'll see later
+how to change that). What if you want to match ANY ip address? This is where
+Metacharacters come to the rescue. The Metacharacters B<\d> signifies a
+I<digit>. The next regular expression will match any IP address:
+
+	/connect from ([\d\.]+)/
+
+The square brackets allow us to match a B<class> of characters. In our
+case, this comprises of a digit (\d) and a I<literal dot (.)> character.
+The plus (B<+>) following this character class asks the expression to
+match a digit or a literal dot I<one or more times>. Unfortunately, our
+expression not only matches valid IP addresses but spurious values as
+well (example: 345.567.890111.11)! In our case, we are sure the logfile
+will not contain such bogus matches, but in a general case, we will have
+to specify the pattern to match I<as exactly> as possible.  You also see
+the entire IP address pattern enclosed within brackets. Why?
+
+=head2 Perl regex is non-regular: supports back-references
+
+Regular expressions just match. However, in practice, you might want a
+global match out of which you need only a subset of characters for further
+processing. In such cases, I<back-references> allow you to store I<parts>
+of matches and retrieve them I<after> a match. This is what makes perl
+regexes really powerful. Perl stores each submatch enclosed within
+brackets B<()> in internal variables named I<$1>, I<$2>.. etc. 
+
+Back-references allow substitution and data reduction. In the above
+example of matching an IP address, the bracketed sub-pattern contains the
+IP address <when the whole pattern matches>! Thus, here is one way to make
+a list of all unique IP addresses that connected to your machine:
+
+  1	my($ip, %connections, $n);
+  2	
+  3	open(MESSAGES, '/var/log/secure') or die("can't open logfile: $!\n");
+  4	while ( <MESSAGES> ) {
+  5		next unless /in\.telnetd.+connect from ([\d\.]+)/;
+  6		$connections{ $1 }++;
+  7	}
+  8	close(MESSAGES);
+  9	foreach $ip ( keys %connections) {
+  10		printf("%-15s connected %5d times\n", $ip, $connections{$ip});
+  11	}
+
+
+=head2 Perl regex: tries all possibilities for match to SUCCEED
+
+The important concept with perl regular expressions is that perl tries
+I<ALL> possibilities for a match to succeed. This is done through 
+back-tracking and bumping-along which is very similar to what we do when we
+solve a maze problem: if we hit a wall, we backtrack to the last place
+where we had a choice of paths. After we backtrack to this point, we abandon 
+our failed path and continue along another. In our example, when we match
+the subexpression "in\.telnetd", perl does something like the following:
+
+The first two characters of the hostname "indus.fell.com" match the first
+two characters of our pattern. However, the next literal character B<d>
+does I<NOT> match the literal "." in our pattern B<\.>! Now perl doesn't
+declare a failure at this point! It now tries to bump along to the next
+character in the target string (which happens to be 'n') and tries the
+pattern. It fails immediately since the character I<n> does not match our
+subexpression's first character, I<i>. This happens until it reaches the
+right place "in.telnetd". At this point the first subexpression
+I<in\.telnetd> matches exactly. Now the regex match proceeds to conclusion
+because it does succeed for this line.
+
+=head2 Match stops at the FIRST/earliest successful match 
+
+Perl will not attempt to find all matches in a string. It will stop at the
+very first match. In addition, even if the pattern will match multiple
+places, perl will match at the earliest point in the target string. Here
+is an example:
+
+	Writing c-shell scripts is a sure way to go to hell!
+
+If we try to match /hell/ in this example, it would NOT match the last
+word in the example. It will match right in the middle of "c-shell",
+because that is the B<earliest> place where the match succeeds! This is an
+important issue that will help you avoid spurious matches. How do we match
+the word "hell" in the above example? The pattern /\bhell/ will do. This
+is because the B<\b> character matches a I<word-boundary> which means that
+a B<\b> will NEVER match \w. Thus, the character "s" in "c-shell" will
+fail to match \b and so the regex match algorithm will bump along until it
+finds `hell'.
+
+=head2 Matches can be GREEDY or non greedy: backtracking
+
+When you specify a B<+> to match multiple characters, perl will match I<as
+many characters as it can> in the beginning. If later parts of the pattern
+cause the match to fail, perl will B<backtrack> into the submatch by one
+character and retry the failed match from the same point. This is best
+described by an example string and pattern:
+
+	STRING: All that is gold does not grow old
+	PATTERN1: /old/
+	PATTERN2: /.+old/
+
+Pattern 1 will match the "old" within the word "gold" in the string. This
+follows from the explanation in the previous section. Pattern 2 will
+however match the sub-pattern "old" at the very last word! This is because
+the B<+> character is greedy. Thus, B<.+> gobbles up the entire string at
+the beginning. The sub-pattern "old" now fails, so perl backtracks the
+B<.+> to contain all but the last character. This fails too. Perl
+backtracks again, and fails. The next backtracking places the start of
+match before the "o" in "old". This matches with the sub-pattern "old" and
+perl reports success. In this case, the "old" in the regex matches the
+last word. 
+
+
+=head2 Results depend on context
+
+As with other things, regex match in perl returns different values
+depending on the context in which you match. Here are the general rules:
+
+	scalar context returns number of matches
+	list context returns all matches within groups
+
+When we introduce brackets in our regex, perl B<groups> the subtext that
+matched each bracketed sub-expression and stores them in internal
+variables $1, $2 etc.. However, this only happens in scalar context. In a
+list context, all the bracketed matches are returned to the list context.
+Here is an example:
+
+	$_ = 'All that is gold does not grow old';
+
+	print "SCALAR: $1\n" if /(.+)old/;
+	@foo = /(old)(.+old)/;
+	print "LIST: @foo\n";
+
+prints:
+
+	SCALAR: All that is gold does not grow 
+	LIST: old does not grow old
+
+
+=head1 Regular Expressions - Basic Examples
+
+Here are some basic examples that use some simple patterns to match
+various things you would commonly extract from input data:
+
+=head2 Match a word: \w+
+
+	if ( 'One word' =~ /\w+/ ) {
+		print "Matched $&\n";
+	}
+	#Matched One
+
+=head2 Match an integer: [-+]?\d+
+
+
+	$_ = 'One value: +23.45';
+	if ( /[-+]?\d+/ ) {
+		print "Matched $&\n";
+	}
+	#"Matched +23"
+
+=head2 Match a number that has 3 to 5 digits: \d{3,5}
+
+	if ( 12345 =~ /^\d{3,5}$/ ) {
+		print "Number within range\n";
+	}
+
+
+=head2 Match everything between foo and bar: greedy version
+
+	$_ = 'brave fools embark on travel through bare desert';
+	print $& if /foo.*bar/;
+
+	#prints "fools embark on travel through bar"
+
+=head2 Match everything between foo and bar: non greedy version
+
+	$_ = 'brave fools embark on travel through bare desert';
+	print $& if /foo.*?bar/;
+
+	#prints "fools embar"
+
+=head2 Match the host in /NFS server floozey not responding/:
+
+	/NFS server\s+(\S+)\s+not responding/
+	hostname can be retrieved as $1 (if match succeeds)
+
+=head2 Surprise 1: '*' matches ZERO or more!
+
+With greedy quantifiers in previous subexpressions, a later '*' will match 
+zero times and still report success:
+
+	$_ = 'Has a long number 12437';
+
+	if ( /(.*)(\d*)/ ) { print "String: $1, number: $2\n"; }
+	#gives  "String: Has a long number 12437, number: "
+
+=head2 Surprise 2: greediness results in backtracking
+
+Greediness, backtracking and 'first successful match' combine to produce
+non-intuitive results, if you're not careful.
+
+	$_ = 'Has a long number 12437';
+	if ( /(.*)(\d+)$/ ) { print "String: $1, number: $2\n"; }
+	#gives  "String: Has a long number 1243, number: 7" !!
+
+The above expression is better written as
+
+	 if ( /(.*?)(\d+)$/ ) { print "String: $1, number: $2\n"; }
+
+=head2 Surprise 3: greediness is the default
+
+	$_ = 'your food is in the bar under the barn';
+	if ( /foo(.*)bar/ ) { print "matched: $1\n";}
+	#gives "matched: d is in the bar under the"
+
+
+
+=head1 Perl Regular Expressions - More details
+
+
+Here is the complete specification for a perl regex match operation:
+
+	m/expr/gsimox; 
+
+You can choose to leave out the I<m> (which stands for I<match>, by the
+way) and just use /pattern/ which is what you normally do. However, perl
+allows you to use ANY character as the pattern delimiter, and allows you
+to write the regex in a more readable manner. Here are some regexes, all
+of which match the same pattern: finding the directory name of a file.
+
+	1.   /(\/[^\s]+)\/[^\/\s]+/;
+
+	2.  m,(/[^\s]+)/[^/\s]+,;
+
+	3.  m{
+		(/[^\s]+)	#a slash followed by any non space character
+		/		#start of filename part
+		[^/\s]+		#a filename (assume no spaces in the filename)
+	}x;
+
+As we see from regex 1, match patterns can be very hairy. The reason why
+we had all those leaning toothpicks(B<\/>) was due to the fact that the
+pattern was delimited by a B</>. In such cases, if you want to match a
+literal forward slash, you need to quote/escape it with the B<\>
+character. Regex 2 is clearer because it now uses comma characters to
+delimit the pattern. This, you don't have to quote the B</>. Even after
+this substantial improvement in readability, the pattern looks difficult.
+Regex 3 is probably the easiest for I<humans> to parse. We don't offer any
+explanation, as it is self-evident. See below for more details on the
+B</x> modifier. With such powerful constructs perl allows you to match
+almost any type of pattern (I<nested> patterns are one exception).
+
+However, a match is not the only reason to use a regex. Once you perform a
+match, you can actually substitute whatever you matched, with anything
+else you may want to change it to. Here is the spec for the regex 
+B<Substitution> operator:
+
+	s{expr}{replacement}egsimox;
+
+The modifiers B<e,g,i,m,o,s,x> specify different ways in which the match
+can be directed. The one additional modifier you see is the B</e>
+modifier. Here are examples that illustrate some of them:
+
+=head2 i: Case insensitive
+
+	$_ = "The path to my magic scripting language is /usr/bin/awk\n";
+
+	s{/(awk|sed|sh|csh|bash|ed)\b}{/perl};
+
+	print;
+
+This prints "The path to my magic scripting language is /usr/bin/perl".
+
+=head2 o: optimize (variables interpolated only ONCE)
+
+	$val = 'something';
+	$new = 'somthinels';
+	while ( <> ) {
+		print if s/$val/$new/o;
+	}
+
+=head2 x: use extended regular expressions (allow comments!)
+
+Perl version 5 introduced the ability to include arbitrary comments
+I<within> a regex by specifying the I<x> modifier. This allows you to
+write crystal clear regexes that you would otherwise have a hard time
+understanding on second glance. We have seen this in an example above.
+Here is another, more hairy example:
+
+	/^\w+\s+\d+\s+[\d:]+\s+.+?(in\.\w+)\[\d+\]:\s+connect\s+from\s+([\d\.]+)$/
+
+Better written as:
+
+	m{
+		^\w+\s+\d+	#Date in year
+		\s+
+		[\d:]+		#Time
+		\s+.+?		#ignore junk
+
+		(in\.\w+)	#get the service daemon that was connected to
+
+		\[\d+\]		#the PID within []
+
+		:\s+connect\s+from\s+
+
+		([\d\.]+)$	#the originating client IP..
+	}x;
+
+The clarity that you get with the /x modifier is well worth the effort of
+increasing your lines of code.
+
+
+=head2 $`, $&, $' = pre match, entire match and post-match strings
+
+Example:
+
+	if ( 'Pre match Post' =~ /\s+match\s+/ ) {
+		print "Pre  match: $`\n";
+		print "Match     : $&\n";
+		print "Post match: $'\n";
+	}
+
+=head2 e: evaluate the replacement as a PERL expression!
+
+The B</e> modifier allows you to substitute a matched pattern with the
+B<results> of perl code within the substitution string! This is very
+powerful. Here is a simple example:
+
+	$_ = '2 candies at 35 cents = ';
+	s{
+		(\d+)\D+(\d+)	#get numbers
+		.*$
+	}{
+		$& . 	#append to end
+		($1 * $2) . ' cents'
+	}ex;
+	print;	#prints "2 candies at 35 cents = 70 cents";
+
+Here is another example: if you want to change the IP address of a host,
+and you have a table of the new IP addresses for each old IP, here is a
+simple way to change it:
+
+	%new_ip = ( '10.0.0.1' => '10.1.1.1', '192.168.100.2' => '172.16.45.2');
+
+	@old = ('10.0.0.1', '10.3.14.3', '192.168.100.2', '192.168.100.3');
+	@new = @old;
+
+	foreach ( @new ) {
+		s/([\d\.]+)/$new_ip{$1} ? $new_ip{$1} . ' <--- ' : $1 /e;
+	}
+	print join("\n", @new), "\n";
+
+This code snippet prints:
+
+	10.1.1.1 <---
+	10.3.14.3
+	172.16.45.2 <---
+	192.168.100.3
+
+We have crafted the regex to add the "<--" for clarity. This makes you
+clearly see where the changes have taken place in our example. 
+
+This brief introduction to regular expressions should help you craft
+simple regular expressions. For more details, consult L<perlre> or the
+regular expressions book listed in L<"Books">.
+
+=head1 Subroutines 
+
+Perl allows you to write free form code, just like any other language.
+However, if you write large programs, or programs that I<behave> in a
+variety of ways, you would like to bunch similar tasks together, and also
+re-use same code fragments over and over again. Perl subroutines are
+designed for this type of abstraction.
+
+Subroutines are a way of dividing a perl programming task into manageable
+chunks of abstraction.  They are analogous to I<functions> in
+C. 
+
+=head2 Defining a Subroutine
+
+You declare a subroutine in perl as follows:
+
+	sub my_sub {
+		my(@arguments) = @_;
+		#statements;
+		$" = ", ";
+		print "My arguments are: @arguments\n";
+	}
+	my_sub("foo", 6.023e-3, 42);
+	#
+	#prints:
+	#
+	#'My arguments are: foo, 0.006023, 42'
+
+=head2 Subroutine Arguments 
+
+Subroutines arguments in perl are different from equivalent 
+implementations in most commonly used languages in some 
+important aspects: 
+
+B<subroutines in perl have variable number of arguments by default>
+
+B<subroutine arguments are I<NOT> named or prototyped> (I<perl 5 does have
+a mechanism for enforcing runtime checking of argument types, and the upcoming perl-6 will have type checking of parameters>).
+
+=head2 Subroutine return value, 
+
+A perl subroutine's return value is typically the values returned
+using an explicit B<return> statement.
+
+If a subroutine does not explicitly return a value, and the calling
+statement/expression uses the subroutine in a context requiring a return
+value, the subroutine's B<LAST evaluated expression> becomes the return
+value. Here is an example:
+
+	sub sum_two_numbers {
+		$_[0] + $_[1];
+	}
+	print "sum: ", sum_two_numbers(2, 3), "\n";
+	#
+	#prints:
+	#'sum: 5'
+
+=head2 Subroutine arguments are references
+
+All parameters passed to the subroutine are passed automatically
+through the B<@_> variable. However, these parameters are passed B<by
+reference>, i:e they are not copied into the subroutine's stack. Instead,
+any modifications to these values directly affect the original values
+in the calling expression's name-space.
+
+If you need to change the subroutine's argument values, and not affect
+the calling namespace, then you would B<copy the arguments> into 
+variables within your subroutine, as follows:
+
+	sub hypotenuse_bad {
+		my $sum = 0;
+		for (@_ ) {
+			$_ *= $_;
+			$sum += $_;
+		}
+		return sqrt($sum);
+	}
+	sub hypotenuse {
+		my($arg1, $arg2) = @_;
+		$arg1 *= $arg1;
+		$arg2 *= $arg2;
+		return sqrt($arg1 + $arg2);
+	}
+	my($vert, $horiz) = (5,12);
+	print "BEFORE             : Vertical = $vert, Horizontal =  $horiz\n";
+	print "\nHypotenuse 1: ", hypotenuse($vert, $horiz), "\n";
+	print "AFTER sub-with-copy: Vertical = $vert, Horizontal =  $horiz\n";
+	print "\nHypotenuse 2: ", hypotenuse_bad($vert, $horiz), "\n";
+	print "AFTER sub-mangling : Vertical = $vert, Horizontal =  $horiz\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# BEFORE             : Vertical = 5, Horizontal =  12
+	# 
+	# Hypotenuse 1: 13
+	# AFTER sub-with-copy: Vertical = 5, Horizontal =  12
+	# 
+	# Hypotenuse 2: 13
+	# AFTER sub-mangling : Vertical = 25, Horizontal =  144
+	#
+	#------------------- output end  ---
+
+=head1 Variables and Scope
+
+Variables are placeholders for values. You may want these stored
+values to be accessed in certain places throughout your program, or
+at certain times during the execution of your program. This is called
+the B<Scope> of a variable. The B<Scope> of a perl variable is 
+specified by declaring it to be a B<lexical> or B<dynamic> variable.
+
+=head2 Scope
+
+The following scopes are available in perl (as of 5.8):
+
+	1. Limited to the nearest enclosing block, subroutine, eval or file.
+	Cannot be seen in called subroutines within the current
+	scope unless passed explicitly.
+
+	2. Limited to the current block and any subroutines called
+	within this block. The old value of the variable is automatically
+	restored after exiting from current scope.
+
+	3. Limited to current block, may be visible across
+	package boundaries.
+
+=head2 Dynamically Scoped variables (local)
+
+Dynamic scoping (declared using the C<local> modifier) happens by default 
+unless you declare variables as lexical. Dynamic scoped variables are global 
+variables, accessible to the entire running program from the declaration,
+including subroutinees called within that scope.
+
+Subroutines are free to overwrite dynamic variables, causing values
+to be changed in unpredictable ways.  
+
+Example of B<local> variables:
+
+	local $person = 'King';
+	print "Person in outer block, begin: $person\n";
+	{
+		print "Person in inner block, BEFORE overwriting: $person\n";
+		local $person = 'Beggar';
+		who_isthis();
+		print "Person in inner block, after overwriting: $person\n";
+	}
+	sub who_isthis {
+		print "Inside a subroutine: $person\n";
+	}
+	print "Person in outer block, END  : $person\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Person in outer block, begin: King
+	# Person in inner block, BEFORE overwriting: King
+	# Inside a subroutine: Beggar
+	# Person in inner block, after overwriting: Beggar
+	# Person in outer block, END  : King
+	#
+	#------------------- output end  ---
+
+
+More complex example of B<local> variable:
+
+	%hash = ('apple' => 'fruit');
+	print_hash("before");
+	{
+		local $hash{'apple'} = 'red';
+		$hash{'tomato'} = 'vegetable';
+		print_hash("local ");
+	}
+	print_hash("after");
+	sub print_hash {
+		my $prefix = shift;
+		print "\n", "-" x 40, "\n";
+		for (sort keys %hash) {
+			printf "$prefix: %10s: %s\n", $_, $hash{$_};
+		}
+	}
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# 
+	# ----------------------------------------
+	# before:      apple: fruit
+	# 
+	# ----------------------------------------
+	# local :      apple: red
+	# local :     tomato: vegetable
+	# 
+	# ----------------------------------------
+	# after:      apple: fruit
+	# after:     tomato: vegetable
+	#
+	#------------------- output end  ---
+
+
+=head2 Lexically scoped variables (my)
+
+Lexical scoping is the second variety of scope as described in the
+beginning of this section. Variables declared with lexical scope are
+generated at compile time. A lexical variable is declared using the
+B<my> keyword.
+
+Example:
+
+	my $a = 'this';
+	my $c = "that";
+	{
+		my $c = "all";
+		print "inside block Scope, A=$a, C=$c\n";
+	}
+	print "inside file  Scope, A=$a, C=$c\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# inside block Scope, A=this, C=all
+	# inside file  Scope, A=this, C=that
+	#
+	#------------------- output end  ---
+
+More complete example:
+
+	my $a = 'this';
+	my $c = "that";
+	{
+		my $c = "all";
+		print "inside block Scope, A=$a, C=$c\n";
+		print_ac();
+	}
+	print "inside file  Scope, A=$a, C=$c\n";
+	print_ac();
+	sub print_ac {
+		print "Within sub, A=$a, C=$c\n";
+	}
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# inside block Scope, A=this, C=all
+	# Within sub, A=this, C=that
+	# inside file  Scope, A=this, C=that
+	# Within sub, A=this, C=that
+	#
+	#------------------- output end  ---
+
+
+I<Lexical scope increases data privacy>. When you declare a variable
+using the I<my> keyword, it creates a variable and grants it a scope of
+the closest enclosing block or file or eval or subroutine.
+
+A B<my> variable goes I<out of scope> as soon as the nearest enclosing
+scope is no longer in the execution path. No other part of your program
+can access these values directly (I<with some exceptions>).
+
+=head2 Deciding between local/my
+
+When do you use I<my> as opposed to I<local>?
+
+Almost always. There are very few situations in your code
+where declaring I<local> variables makes better sense. Try
+to use B<local> declarations in the following circumstances:
+
+=over 4
+
+=item *
+
+When you want a temporary value to be held in
+a variable that is predefined in perl ($_, @_, $/ etc.)
+
+=item *
+
+When you want temporary semantics within your
+runtime scope of the current block and all called
+subroutines:
+
+	{ local $SIG{'INT'} = \&do_something;.... }
+
+=item *
+
+When you want to alias other variables
+
+	@array = ('foo', 'bar');
+	call_it( \@array );
+	sub call_it {
+		local *a  = $_[0];
+		print "A = @a\n";
+	}
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# A = foo bar
+	#
+	#------------------- output end  ---
+
+=item *
+
+When you want your variable to be visible to every calling
+program.
+
+For example, the entire I<Module export> mechanism in
+perl is built on use of I<local> variables.
+
+=back
+
+
+For most other cases, I<my> is better than B<local>.
+
+=head1 Perl variable References 
+
+To make complex datastructures possible, perl 5 contains a mechanism
+to store B<references> to variables as values. I<This are similar 
+to pointers in C>.
+
+Perl allows two types of references: B<symbolic> references
+and B<hard> references. Symbolic references are like B<aliases>
+to other variables, or spring up whenever a B<hard reference>
+cannot be inferred.
+
+=head2 Symbolic Reference
+
+Here is an example of a symbolic reference:
+
+	$name = "foo";
+	$$name = 1;
+	print "variable \$name = $name\n";
+	print "variable \$foo  = $foo\n";
+	print "Foo is really: ", *{foo}, "\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# variable $name = foo
+	# variable $foo  = 1
+	# Foo is really: *main::foo
+	#
+	#------------------- output end  ---
+
+Hard references are available from perl 5 onwards. Hard references
+can be used to refer to other variables and values I<without a need to 
+know what the other name is>. These are very similar to hard links in
+file systems.
+
+B<use hard references only>. Soft references are powerful, but dangerous
+to code clarity.
+
+=head2 Hard references
+
+=over 4
+
+=item * Dereference an existing variable
+
+	my $bar = 'Grill';
+	my $foo = \$bar;
+	my @toys = qw(tigger pooh barnie);
+	my $animalref = \@toys;
+	print "\$foo  = $foo\n";
+	print "\$\$foo = $$foo\n";
+	$"= ", ";
+	print "\$animalref = $animalref\n";
+	print "array \$animalref = @{ $animalref }\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# $foo  = SCALAR(0x9c92158)
+	# $$foo = Grill
+	# $animalref = ARRAY(0x9c921ac)
+	# array $animalref = tigger, pooh, barnie
+	#
+	#------------------- output end  ---
+
+=item * Create an ANONYMOUS array:
+
+	$array_ref = [ 'a', 'b', 'c' ];
+	$"= ", ";
+	print "\$array_ref = $array_ref\n";
+	print "array \$array_ref = @{ $array_ref }\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# $array_ref = ARRAY(0x99e5c18)
+	# array $array_ref = a, b, c
+	#
+	#------------------- output end  ---
+
+=item * Create an ANONYMOUS hash:
+
+	use Data::Dumper;
+	#
+	$hash_ref = { 'shiva' => 'parvati', 'bitter-half' => 'better-half' };
+	#
+	$"= ", ";
+	print "\$hash_ref = $hash_ref\n";
+	print "HASH \$hash_ref = ", 
+		Data::Dumper->Dump([ $hash_ref ], [ '*hash_ref' ]), "\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# $hash_ref = HASH(0x97ecc18)
+	# HASH $hash_ref = %hash_ref = (
+	#               'bitter-half' => 'better-half',
+	#               'shiva' => 'parvati'
+	#             );
+	#------------------- output end  ---
+
+
+=item * Create an ANONYMOUS subroutine:
+
+	$sub_ref = sub { 
+		print "'anon sub says Hello!'\n";
+		for (0..$#_) {
+			print(" ->arg $_ => $_[$_]\n");
+		}
+	};
+	print "SUBroutine \$sub_ref = $sub_ref\n";
+	print "SUB executing.. output follows...\n";
+	$sub_ref->();
+	$sub_ref->("With", "some", "arguments");
+		
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# SUBroutine $sub_ref = CODE(0x88ee17c)
+	# SUB executing.. output follows...
+	# 'anon sub says Hello!'
+	# 'anon sub says Hello!'
+	#  ->arg 0 => With
+	#  ->arg 1 => some
+	#  ->arg 2 => arguments
+	#
+	#------------------- output end  ---
+
+=item * Automatic derefence (perl builtin feature):
+
+	use Data::Dumper;
+	$a = [ ];
+	$a->[3]{'foo'} = 'bar';
+	print Data::Dumper->Dump( [ $a ], [ '*a' ]);
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# @a = (
+	#        undef,
+	#        undef,
+	#        undef,
+	#        {
+	#          'foo' => 'bar'
+	#        }
+	#      );
+	#
+	#------------------- output end  ---
+
+
+=item * Calling an Object constructor.
+
+	use IO::File;
+	my $p = IO::File->new();
+	print "\$p = $p\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# $p = IO::File=GLOB(0x8ed44c4)
+	#
+	#------------------- output end  ---
+
+=back
+
+
+=head1 Complex/multi-dimensional data-structures in perl
+
+B<All perl datastructures are really 1-dimensional>. All perl
+multi-dimensional datastructures are generated with B<References>.
+As explained in L<"References in perl">, the automagical initialization
+of all complex references takes place within perl to ensure that you
+can create a set of nested references that emulate multi-dimensionality.
+
+Here are some examples of various multi-dimensional datastructures
+and their use, without much comment:
+
+=head2 Array of Arrays
+
+	use Data::Dumper;
+	@a = ( 
+		[ 'unix', 'OS', '1970'], 
+		[ 'dos', 'emulator', 1980] 
+	);
+	#
+	print "Here is an Array of Arrays:\n";
+	print Data::Dumper->Dump( [ \@a ], [ '*a' ]);
+	print "\nHere's how you would use it:\n";
+	my $code = qq{
+	for (\@a) {
+		print "\$_->[0] is an \$_->[1] which was created circa \$_->[2]\\n";
+	}
+	};
+	print "CODE: $code\bRESULT:\n";
+	eval $code;
+	
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Here is an Array of Arrays:
+	# @a = (
+	#        [
+	#          'unix',
+	#          'OS',
+	#          '1970'
+	#        ],
+	#        [
+	#          'dos',
+	#          'emulator',
+	#          1980
+	#        ]
+	#      );
+	# 
+	# Here's how you would use it:
+	# CODE: 
+	# 	for (@a) {
+	# 		print "$_->[0] is an $_->[1] which was created circa $_->[2]\n";
+	# 	}
+	# 	RESULT:
+	# unix is an OS which was created circa 1970
+	# dos is an emulator which was created circa 1980
+	#
+	#------------------- output end  ---
+
+=head2 A Hash of Arrays
+
+	use Data::Dumper;
+	open(G, '/etc/group');
+	while ( <G> ) {
+		chomp;
+		next unless /bin|daemon|lp/o;
+		my($g, @rest) = split /:/;
+		$grent{$g} = [ @rest ];
+	} 
+	close G;
+	#
+	#print Data::Dumper->Dump( [ \%grent ], [ '*grent' ]);
+	#
+	for (sort keys %grent) {
+		printf "Group: $_ has GID [%s], Members [%s]\n",
+			$grent{$_}->[1],
+			$grent{$_}->[2];
+	}
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Group: adm has GID [4], Members [root,adm,daemon]
+	# Group: bin has GID [1], Members [root,bin,daemon]
+	# Group: daemon has GID [2], Members [root,bin,daemon]
+	# Group: lp has GID [7], Members [daemon,lp]
+	# Group: sys has GID [3], Members [root,bin,adm]
+	#
+	#------------------- output end  ---
+
+
+=head2 More complex datastuctures
+
+These are limited only by your needs. Here's an example of
+a self-referential datastructure which is quite complex:
+
+
+	use Data::Dumper;
+	$Data::Dumper::purity = 0;
+	$ft{'GP'}{'name'} = 'grandpa';
+	$ft{'GM'}{'name'} = 'grandma';
+	$ft{'GP'}{'kids'} = [ \$ft{'Son'}, \$ft{'Daughter'} ];
+	$ft{'Son'}{'mom'} = \$ft{'GM'};
+	$ft{'Son'}{'name'} ='sunny';
+	$ft{'Son'}{'friends'}  = [ 'shiva', 'mark', 'qiongling'];
+	$ft{'Daughter'} = {
+		'dad' => \$ft{'GP'},
+		'dob' => '1/1/1970',
+		'name' => 'Unix :-)'
+	};
+	print Data::Dumper->Dump( [ \%ft ], [ '*family_tree' ] );
+
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# %family_tree = (
+	#      'Son' => {
+	#           'mom' => \{
+	#            'name' => 'grandma'
+	#          },
+	#           'friends' => [
+	#              'shiva',
+	#              'mark',
+	#              'qiongling'
+	#            ],
+	#           'name' => 'sunny'
+	#         },
+	#      'GM' => ${$family_tree{'Son'}{'mom'}},
+	#      'Daughter' => {
+	#          'dob' => '1/1/1970',
+	#          'dad' => \{
+	#                 'name' => 'grandpa',
+	#                 'kids' => [
+	#                 \$family_tree{'Son'},
+	#                 \$family_tree{'Daughter'}
+	#               ]
+	#               },
+	#          'name' => 'Unix :-)'
+	#        },
+	#      'GP' => ${$family_tree{'Daughter'}{'dad'}}
+	#    );
+	#
+	#------------------- output end  ---
+
+
+for more details, refer to L<perldsc>.
+
+
+=head1 Powerful perl builtins - grep
+
+Perl's B<grep> is a powerful tool to create subsets of your data.
+B<NOTE: the name grep comes from the 'ed' equivalent syntax for a general
+regular expression match-and-print>:
+
+	ed <<EOF /etc/passwd
+	g/re/p
+	EOF
+
+Perl's grep is far more powerful than the external B<grep> programs that
+you may use, in the following ways:
+
+	1. It is builtin. This means it is very fast.
+
+	2. You can utilize the full power of perl regex. Perl's regex is 
+	probably the most widely used and optimized regex engine in the 
+	world today. [It comes directly from Henry Spencer's original regex 
+	package, with a lot of feature additions and speed improvements]
+
+=head2 Perl manpage for 'grep'
+
+     grep BLOCK LIST
+     grep EXPR,LIST
+             This is similar in spirit to, but not the same as,
+             grep(1) and its relatives.  In particular, it is not
+             limited to using regular expressions.
+
+             Evaluates the BLOCK or EXPR for each element of LIST
+             (locally setting $_ to each element) and returns the
+             list value consisting of those elements for which
+             the expression evaluated to true.  In scalar
+             context, returns the number of times the expression
+             was true.
+
+                 @foo = grep(!/^#/, @bar);    # weed out comments
+
+             or equivalently,
+
+                 @foo = grep {!/^#/} @bar;    # weed out comments
+
+             Note that $_ is an alias to the list value, so it
+             can be used to modify the elements of the LIST.
+
+=head2 Example usage:
+
+	@array = ('This is a test', 'Testing times', 'Times Square');
+	@subset = grep /test/i, @array;
+	@word = grep /test\b/i, @array;
+	
+	$" = ", ";
+	print "Array           : @array\n";
+	print "'Test' anywhere : @subset\n";
+	print "'Test' as a word: @word\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Array           : This is a test, Testing times, Times Square
+	# 'Test' anywhere : This is a test, Testing times
+	# 'Test' as a word: This is a test
+	#
+	#------------------- output end  ---
+
+
+=head1 Powerful perl builtins - map
+
+B<map> is a powerful tool to create B<filters/transforms> of your data.
+
+=head2 Perl manpage for map
+
+     map BLOCK LIST
+     map EXPR,LIST
+             Evaluates the BLOCK or EXPR for each element of LIST
+             (locally setting $_ to each element) and returns the
+             list value composed of the results of each such
+             evaluation.  In scalar context, returns the total
+             number of elements so generated.  Evaluates BLOCK or
+             EXPR in list context, so each element of LIST may
+             produce zero, one, or more elements in the returned
+             value.
+
+                 @chars = map(chr, @nums);
+
+             translates a list of numbers to the corresponding
+             characters.  And
+
+                 %hash = map { getkey($_) => $_ } @array;
+
+             is just a funny way to write
+
+                 %hash = ();
+                 foreach $_ (@array) {
+                     $hash{getkey($_)} = $_;
+                 }
+
+=head2 Example for map:
+
+	#URL-ifying a username
+	(%users) = ('linus' => 'Linux', 'lwall' => 'Perl', 'rms' => 'Emacs');
+	@users = sort keys %users;	
+	@urls = map { qq{<A HREF="mailto:$_\@opensource.org">$_</A>} }
+		@users;
+	
+	for (0..$#users) {
+		print "Contact $urls[$_] if there are questions in $users{ $users[$_] }\n";
+	}
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Contact <A HREF="mailto:linus@opensource.org">linus</A> if there are questions in Linux
+	# Contact <A HREF="mailto:lwall@opensource.org">lwall</A> if there are questions in Perl
+	# Contact <A HREF="mailto:rms@opensource.org">rms</A> if there are questions in Emacs
+	#
+	#------------------- output end  ---
+
+=head1 Powerful perl builtins - sort
+
+B<sort>, as it's name implies, is the perl routine to sort a set of values. This is
+based on the system B<qsort> routine (and is revised in perl5.7 onwards to give you
+the option of using a stable mergesort>.
+
+=head2 Syntax of 'sort' function
+
+     sort SUBNAME LIST
+     sort BLOCK LIST
+     sort LIST
+             In list context, this sorts the LIST and returns the
+             sorted list value.  In scalar context, the behaviour
+             of "sort()" is undefined.
+
+=head2 Examples of sort
+
+	@alpha = ('a'..'z');
+	print "Alphabets = @alpha\n";
+	@reversed = sort { $b cmp $a } @alpha;
+	print "Reversed = @reversed\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Alphabets = a b c d e f g h i j k l m n o p q r s t u v w x y z
+	# Reversed = z y x w v u t s r q p o n m l k j i h g f e d c b a
+	#
+	#------------------- output end  ---
+
+
+	@decimals = (0..9);
+	print "Decimal digits: @decimals\n";
+	@rev = sort { $b <=> $a } @decimals;
+	print "Reversed      : @rev\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Decimal digits: 0 1 2 3 4 5 6 7 8 9
+	# Reversed      : 9 8 7 6 5 4 3 2 1 0
+	#
+	#------------------- output end  ---
+
+=head2 Advanced example, using custom subroutine
+
+	@old_ip = ('100.10.0.1', '19.168.0.1', '12.127.0.1', '172.0.0.2', '224.0.0.1');
+	sub by_ip {
+		my(@a) = split /\./, $a;
+		my(@b) = split /\./, $b;
+		$a[0] <=> $b[0] or
+		$a[1] <=> $b[1] or
+		$a[2] <=> $b[2] or
+		$a[3] <=> $b[3]
+	}
+	$, = " : ";
+	print "List of IPs          ", @old_ip, "\n";
+	print "Sorted (default order", (sort @old_ip), "\n";
+	print "\n";
+	print "Sorted (using 'by_ip'", (sort by_ip @old_ip), "\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# List of IPs           : 100.10.0.1 : 19.168.0.1 : 12.127.0.1 : 172.0.0.2 : 224.0.0.1 : 
+	# Sorted (default order : 100.10.0.1 : 12.127.0.1 : 172.0.0.2 : 19.168.0.1 : 224.0.0.1 : 
+	# 
+	# Sorted (using 'by_ip' : 12.127.0.1 : 19.168.0.1 : 100.10.0.1 : 172.0.0.2 : 224.0.0.1 : 
+	#
+	#------------------- output end  ---
+
+B<NOTE>: In any sort routine, the number I<COMPARISON> are determined
+by the number of data entries, AND the spread of the data entries.
+
+The worst case comparisons for a B<quicksort> is sometimes O(N^2) (quadratic).
+Thus, if the I<number of IP addresses> is 1000, you may potentially be doing
+anywhere between B<7000> to 500,000 calls to the B<by_ip> function.
+
+How do we eliminate this overhead? Because of the datastructures and features
+in perl, you have a few options.
+
+=head1 Fundamental perl transforms for sorting
+
+You can create powerful data transformations using the perl builtin 
+B<sort>, B<map> and B<grep> functions. The following major canonical
+transformations are essential knowledge for advanced programming tasks
+using complex sorting/grouping/filtering.
+
+=head2 The Orcish Maneuver
+
+If you use a custom B<comparison> routine that does some heavy duty
+computations to compare the keys, then I<it makes sense to reduce
+the number of times the computation is done as a first order of
+approximation>.
+
+The B<Orcish> maneuver is an easy way to optimize this part of code
+for I<any kind of comparison routine>. Here is a sequence of transforms
+that lead to an orcish maneuver:
+
+B<Step 1: Cache the computation>:
+
+	%cache = ();
+	@webpages = ('Mark', 'Seth', 'Shiva', 'Qiongling');
+	@myranks{ @webpages } = (10, 7, 5, 4);
+	
+	for (@webpages) {
+		$cache{$_} = get_pagerank($_);
+	}
+	@ranked = sort { $cache{$a} <=> $cache{$b} } @webpages;
+	print "User websites   : @webpages\n";
+	print "Websites by rank: @ranked\n";
+	#
+	sub get_pagerank { return $myranks{$_[0]} };
+	
+
+	#prints:
+	#
+	#------------------- output start---
+	# User websites   : Mark Seth Shiva Qiongling
+	# Websites by rank: Qiongling Shiva Seth Mark
+	#
+	#------------------- output end  ---
+
+B<Step 2: move the computation into the comparison routine>
+
+	%cache = ();
+	@webpages = ('Mark', 'Seth', 'Shiva', 'Qiongling');
+	@myranks{ @webpages } = (10, 7, 5, 4);
+	sub pagerank { return $myranks{$_[0]} };
+	#
+	@ranked = sort { 
+		($cached{$a} ||= pagerank($a))
+			<=> 
+		($cached{$b} ||= pagerank($b))
+	} @webpages;
+	print "User websites   : @webpages\n";
+	print "Websites by rank: @ranked\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# User websites   : Mark Seth Shiva Qiongling
+	# Websites by rank: Qiongling Shiva Seth Mark
+	#
+	#------------------- output end  ---
+
+=head2 The Scwartzian Transform (ST)
+
+The B<ST> or I<Schwartzian Transform>, is named after Randal 
+Schwartz who was the author of the first Usenet posting documenting
+this approach. 
+
+This approach can be illustrated by the following series of steps:
+
+=head3 Optimized code with temporary variables
+
+	@values = (some_values_function());
+	#
+	@transform = ();
+	for (@values) {
+		push @transform, compute($_);
+	}
+	@results_index = sort 
+		{ $transform[$a] cmp $transform[$b] }
+	0..$values;
+	for (@results_index) {
+		push @result, $values[ $_ ];
+	}
+	#
+	#
+	#now you have the result;
+
+=head3 refactoring step 1: consolidate datastructures
+
+	@values = (some_values_function());
+	#
+	for (@values) {
+		push @transform, [ $_, compute($_) ];
+	}
+	@results_index = sort 
+		{ $transform[$a]->[1] cmp $transform[$b]->[1] }
+		0..$#values;
+	for (@results_index) {
+		push @result, $transform[$_]->[0];
+	}
+
+
+=head3 refactoring step 2: Use perl builtins 
+
+	@values = (some_values_function());
+	@transform = map { [ $_, compute($_) ] } @values;
+	@result_xform = sort { $a->[1] cmp $b->[1] } @transform;
+	@result = map { $_->[0] } @result_xform;
+
+
+=head3 Final refactoring: remove all temporary stores
+
+	@result = 
+		map { $_->[0] }
+		sort { $a->[1] cmp $b->[1] }
+		map { [ $_, compute($_) ] }
+			@values;
+
+B<The above canonical form of sorting is known as the Schwartzian
+Transform>. It eliminates temporary variables, makes the code
+cleaner, and also results in minor speed improvements.
+
+=head2 GRT: Guttman-Rosler Transform
+
+B<ST> is very efficient, and improves the sort transformations to
+O(N) computation (I<the same improvement as the Orcish maneuver>)
+and in addition, eliminates intermediate variables. However, it
+still requires a B<custom sort subroutine>. 
+
+B<GRT> replaces the custom sort routine with perl's builtin sort,
+and improves the speed of execution considerably.
+
+The key to GRT is to I<find a transform that can convert the original
+value into a FIXED length ASCII value that can be padded TO the original
+value>.
+
+Here's the GRT variation of the previous B<ST> example:
+
+	#
+	$transform_bytes = get_bytes();
+	@result = 
+		map { substr($_, $transform_bytes) }
+		sort
+		map { compute($_) . $_ }
+		@values;
+
+This is very powerful, and fast. For more information, see
+L<"Web links">.
+
+=head1 Code Refactoring Example 1: Sort IP-s by subnet
+
+To illustrate the fact that B<there's more than one way to do it> in
+perl, we will take a very simple example: given some IP addresses, sort 
+them by network and host number. The approaches described here are not the
+only ones.. they were chose for their gradation in complexity of algorithm
+design and how easy it is to grow your algorithms as you go.
+
+We will use the following list as an example list:
+
+	@ip = ('223.1.3.4', '127.0.0.1', '192.168.100.1', '223.1.3.1');
+
+After sorting them in `IP address' order, the output should look like:
+
+	127.0.0.1 192.168.100.1 223.1.3.1 223.1.3.4
+
+Where do we start?
+
+The perl B<sort> function accepts an optional subroutine reference
+or BLOCK of code as argument, which it uses every time it needs to
+compare any two elements of the input array/list. The subroutine /
+BLOCK may be anything you like, except that it should assume the
+following: the comparison keys are available to your subroutine as
+the I<global> variables B<$a> and B<$b>!
+
+=head2 Using numeric sorting:
+
+This method uses the standard B<split> command to extract the individual
+numbers comprising the IP address. It then compares the respective bytes
+numerically. The short-circuit nature of the B<or> operator ensures that
+the sort terminates at the very first byte that is different.
+
+
+	sub numeric {
+		my($a1, $a2, $a3, $a4) = split /\./, $a;
+		my($b1, $b2, $b3, $b4) = split /\./, $b;
+		$a1 <=> $b1  or  $a2 <=> $b2 or $a3 <=> $b3 or $a4 <=> $b4;
+	}
+	@ip = ('223.1.3.4', '127.0.0.1', '192.168.100.1', '223.1.3.1');
+	@result = sort numeric @ip;
+	print "Sorted: @result\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Sorted: 127.0.0.1 192.168.100.1 223.1.3.1 223.1.3.4
+	#
+	#------------------- output end  ---
+
+=head2 Using pack:
+
+The B<pack> function in perl will allow you to compact values into a tight
+structure which you can unpack later for use. This allows you to conserve
+space AND also gain a measure of efficiency in passing data around.
+
+	sub packed {
+	   pack('C4', split(/\./, $a)) cmp pack('C4', split(/\./, $b));
+	}
+	@ip = ('223.1.3.4', '127.0.0.1', '192.168.100.1', '223.1.3.1');
+	@result = sort packed @ip;
+	print "Sorted: @result\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Sorted: 127.0.0.1 192.168.100.1 223.1.3.1 223.1.3.4
+	#
+	#------------------- output end  ---
+
+=head2 Using the Orchish Maneuver
+
+This is the same idea as above, but builds a I<cache> of already seen IP
+addresses. This optimization will save you I<computation> time when you
+have large sets of elements to sort.
+
+	{
+	   my %cache;
+	   sub cached {
+	      ($cache{$a} ||= pack('C4', split /\./, $a))
+	         cmp
+	      ($cache{$b} ||= pack('C4', split /\./, $b));
+	   }
+	}
+	@ip = ('223.1.3.4', '127.0.0.1', '192.168.100.1', '223.1.3.1');
+	@result = sort cached @ip;
+	print "Sorted: @result\n";
+	#
+	#prints:
+	#
+	#------------------- output start---
+	# Sorted: 127.0.0.1 192.168.100.1 223.1.3.1 223.1.3.4
+	#
+	#------------------- output end  ---
+
+
+=head2 Benchmark results for IP sorting methods
+
+Let's compare the three methods discussed so far:
+
+	1. Do in-place computation within subroutine
+	2. Use a precomputed cache
+	3. Use the Orcish maneuver
+	4. ST: Schwartzian transform
+	5. GRT: Guttman-Rosler transform
+
+=head3 Comparison of algorithms on Intel32/Redhat-7.2, 5.6Ghz/4GB
+
+	------------------------------------------------------------------
+	          Rate      Normal Pre-cache        ST    Orcish       GRT
+	------------------------------------------------------------------
+	Normal     195/s        --      -81%      -81%      -81%      -87%
+	Orcish    1010/s      418%        --       -2%       -2%      -32%
+	ST        1031/s      429%        2%        --        0%      -31%
+	Pre-cache 1031/s      429%        2%        0%        --      -31%
+	GRT       1493/s      666%       48%       45%       45%        --
+	------------------------------------------------------------------
+
+=head3 Comparison of algorithms on Intel32/Redhat-AS, 5.6Ghz/4GB
+
+	------------------------------------------------------------------
+	          Rate      Normal Pre-cache        ST    Orcish       GRT
+	------------------------------------------------------------------
+	Normal     199/s        --      -81%      -82%      -82%      -88%
+	Pre-cache 1053/s      429%        --       -5%       -6%      -36%
+	Orcish    1111/s      459%        6%        --       -1%      -32%
+	ST        1124/s      465%        7%        1%        --      -31%
+	GRT       1639/s      725%       56%       48%       46%        --
+	------------------------------------------------------------------
+
+=head3 Comparison of algorithms on Opteron/RH-AS3.0, 3.6Ghz/4GB
+
+	------------------------------------------------------------------
+	          Rate      Normal Pre-cache        ST    Orcish       GRT
+	------------------------------------------------------------------
+	Normal     204/s        --      -82%      -82%      -83%      -90%
+	ST        1136/s      456%        --       -2%       -3%      -42%
+	Pre-cache 1163/s      469%        2%        --       -1%      -41%
+	Orcish    1176/s      475%        4%        1%        --      -40%
+	GRT       1961/s      859%       73%       69%       67%        --
+	------------------------------------------------------------------
+
+=head3 Comparison of algorithms on Itanium/Linux, 1.8Ghz/8GB
+
+	------------------------------------------------------------------
+	          Rate      Normal Pre-cache        ST    Orcish       GRT
+	------------------------------------------------------------------
+	Normal    64.7/s        --      -83%      -84%      -84%      -89%
+	ST         372/s      475%        --       -6%       -8%      -38%
+	Orcish     394/s      509%        6%        --       -3%      -34%
+	Pre-cache  406/s      527%        9%        3%        --      -32%
+	GRT        596/s      821%       60%       51%       47%        --
+	------------------------------------------------------------------
+
+=head3 Comparison of algorithms on Solaris, 3.6Ghz/32GB
+
+	------------------------------------------------------------------
+	          Rate      Normal Pre-cache        ST    Orcish       GRT
+	------------------------------------------------------------------
+	Normal    51.2/s        --      -83%      -86%      -86%      -89%
+	ST         306/s      498%        --      -14%      -14%      -35%
+	Pre-cache  355/s      593%       16%        --       -1%      -25%
+	Orcish     357/s      598%       17%        1%        --      -24%
+	GRT        472/s      822%       54%       33%       32%        --
+	------------------------------------------------------------------
+
+=head1 Code refactoring Example 2: Histogram of Spreadsheet column data
+
+System information summary data has patterns of information that are
+useful for I.T/Engineering staff. For this problem, we can assume that
+the following data is available in a spreadsheet format:
+
+	Machine-name	OSname	OSversion	Patchlevel	IP-address	Network Users
+
+Here is a set of reports someone may need:
+	number of linux/solaris/other-os machines
+	number of machines per network
+	number of machines at each patch-level
+
+B<In short, this is a frequency histogram> of the data. So here are the
+specifications:
+
+	1. Input is a file of Tab-delimited columns per line
+	2. Parameter is "field number" (starting at 0)
+	3. Output required: frequency distribution by unique values in field
+
+=head2 example 2 using arrays
+
+Here is the pseudocode:
+
+	Copy contents into array
+	foreach element of array
+		split fields by TAB, find required field value
+		push this output value into an array
+	find all unique values	
+	foreach unique value
+		find total input lines matching unique value, PRINT
+
+
+Here is the code:
+
+   sub colprint_using_array {
+	
+      my(@contents) = @input;
+   
+      @devnull = ();
+   
+      foreach (@contents){
+         chomp;
+         $var = (split /\t/)[$field];
+         if ( defined $var ) {
+				push(@output, $var);
+         }
+      }
+		foreach $out (@output) {
+			$count{$out}++;
+			next if $count{$out} > 1;
+			push @unique, $out;
+		}
+		foreach $out (@unique) {
+         $num=0;
+         $num = (grep /^$out$/, @output);
+         push @devnull, "$out\t$num\n";
+      }
+   }
+
+
+=head2 example2, using hashes 
+
+The above code is a good starting point, but it does the work twice. In the
+next iteration, we would like to use the hash itself as a counter, and just
+extract the unique values from the keys.
+
+Here's the pseudocode:
+
+	foreach line
+		split fields by TAB, find required field value
+		increment value of hash with this key
+	foreach key in hash
+		print key and counter
+
+Here is the actual code:
+
+   sub hash_optimized {
+      my(@contents) = @input;
+      @devnull = ();
+      %Uniq = ();
+      foreach (@contents){
+         chomp;
+         $var = (split /\t/)[$field];
+         $Uniq{ $var }++ if defined $var;
+      }
+      for my $value (sort keys %Uniq) {
+         push @devnull, "$value\t$Uniq{$value}\n";
+      }
+   }
+
+=head2 example 2, using hash and map
+
+In the final version, we will take out a loop and replace it with map:
+
+   
+   sub perlish {
+      my(@contents) = @input;
+      @devnull = ();
+      %Uniq = ();
+      $Uniq{ (split /\t/)[$field] || '' }++ for (@contents);
+      @devnull = map { "$_\t$Uniq{$_}\n" } sort keys %Uniq;
+   }
+
+The code is more I<idiomatic> perl, and is readable easily, since we
+have eliminated the temporary variable used to store the field value.
+
+=head2 Benchmark results for example 2
+
+ 	                    Rate original_Array Hash_optimized Perl_idiomatic
+	original_Array    7.06/s             --           -89%           -89%
+	Hash_optimized    61.7/s           774%            --             -2%
+	Perl_idiomatic    63.3/s           796%             3%             --
+
+=head1 CGI.pm Examples
+
+=head2 CGI.pm hello world
+
+	use CGI::Pretty qw/:standard -no_xhtml/;
+	print start_html("Test"),
+	h1("Hello world!\n"), end_html;
+
+=head2 CGI.pm tables
+
+	use CGI::Pretty qw/:standard -no_xhtml *table/;
+	open(F, '/etc/passwd') or die "passwd: $!\n";
+	my(@rows);
+	while ( <F> ) {
+		chomp;
+		next unless /sys|root|server/i;
+		push @rows, split /:/; #really (split /:/, $_)
+	}
+
+	#just the table, no header/title
+	print start_table;
+	for (@rows) {
+		@columns =  @{ $_ };
+		print TR( 
+				td(
+					{ bgcolor=>'#99CCFF'},  
+					[ @columns ] 
+				)
+				) . "\n";
+	}
+	print end_table();
+
+=head2 CGI.pm tables with map
+
+	use CGI::Pretty qw/:standard -no_xhtml *table/;
+	open(F, '/etc/passwd') or die "passwd: $!\n";
+	print table(
+	TR( [
+		map { td( [ split /:/ ] ) }
+		grep /sys|root|server/i, <F>
+		]
+	)
+	);
+
+
+=head1 Resources
+
+As mentioned before, this document is merely a primer. If you need a
+better, deeper and thorough understanding, throw this away and turn to the 
+following resources. Give yourself atleast a year. It may save
+you decades of grunt work! It might change your career. You may end
+up saving the world!
+
+=head2 Web links
+
+Schwartzian transform: http://www.perl.com/doc/FMTEYEWTK/sort.html
+
+Perl documentation: http://www.perl.com/
+
+
+=head2 Documents
+
+	perl manual pages
+	perlfaq (perldoc perlfaq)
+	perldoc perlstyle (for style issues)
+
+=head2 Books
+
+	Programming Perl (Larry Wall, Tom Christiansen, Randal Schwartz)
+	Learning Perl (Randal Schwartz, Tom Christiansen)
+	Perl Cookbook (Tom Christiansen, Nathan Torkington)
+	Mastering Regular Expressions (Jeffrey Friedl)
+	Perl The programmer's Companion (Nigel S. Chapman)
+	Effective Perl programming (Joseph N. Hall, Randal L. Schwartz)
+	Cross Platform Perl (Eric F. Johnson)
+	Programming with CGI.pm, By Lincoln D. Stein
+	Object Oriented Perl (Prof. Damian Conway)
+	Unix Network Programming, by W. Richard Stevens
+	Advanced Perl Programming (Sriram Srinivasan)
+
+=head2 Newsgroups/mailing lists
+
+	comp.lang.perl.misc, comp.lang.perl.moderated
+
+=head2 Links
+
+	Perl home page:   http://www.perl.com/
+	CPAN multiplexer: http://www.perl.com/CPAN/
+	The Perl Journal: http://tpj.com/
+	Perl Month      : http://perlmonth.com/
+	Apache perl     : http://perl.apache.org/
+	Perl Mongers    : http://www.pm.org/
+	Perl testers    : http://testers.cpan.org/
+	Perl History    : http://history.perl.org/
+
+=head1 Author, Copyright and Credits
+
+E<copy> Ramki Balasubramanian (ramki@pinjax.com), 2004. All rights reserved.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2
+or any later version published by the Free Software Foundation;
+with L<"Author, Copyright and Credits"> section being the Invariant Sections, 
+no Front-Cover Texts, and no Back-Cover Texts.
+
+Irrespective of the copyright, all the code contained in this
+document is in the public domain. You may use it as such.
+
+=head2 Credits
+
+Thanks to: Larry Wall for perl; Tom Christiansen and Randal Schwartz for
+making perl accessible in the form of documentation, japhs and articles;
+The perl porters, CPAN maintainers, and the perl community for valuable
+information available through books, articles and CPAN modules.
+
+=head2 Disclaimer
+
+This information is offered in the hope that it may be of use, but
+is not guaranteed to be correct, up to date, or suitable for any
+particular purpose whatsoever.  I accept no liability in respect of
+the correctness of this information or its use.
+
+$Id: interperl.txt,v 1.15 2004/05/14 05:49:01 ramki Exp $

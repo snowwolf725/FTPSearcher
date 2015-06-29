@@ -1,0 +1,154 @@
+--------------------------------------------------------------------------------
+DISCONTINUED!!!
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+-- 0.9.X -----------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Win32::Printer 0.9.0 (2008-02-07)
+  1) Fixed reference to long time gone website and e-mail;
+  2) If You are desperate to find me You can try to to do it through CPAN!
+
+Win32::Printer 0.9.0 (2005-02-07)
+  1) UTF-8 support in &Write method;
+  2) &Write2	added;
+  3) &FontSpace	added;
+  4) &Fit	added;
+  5) &FontEnum	added;
+  6) &ImageSave added;
+  7) Direct module added;
+  8) &Move	updated;
+  9) &Write	updated;
+ 10) &Font	updated;
+ 11) &Unit	updated;
+ 12) &Brush	updated;
+ 13) &Pen	updated;
+ 14) &Meta	updated;
+ 15) &MetaEnd	updated;
+ 16) &Color	updated;
+
+--------------------------------------------------------------------------------
+-- 0.8.X -----------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Win32::Printer 0.8.4 (2004-11-04)
+  1) Font method fix by Sandor Patocs (sandorpatocs@netscape.net) - Thanks!
+  2) ebbl 1.1 support;
+
+Win32::Printer 0.8.3 (2004-08-11)
+  1) EBbl 1.0 (now public);
+  2) Some performance fixes;
+  3) Only "Space" method were breaking compatibility with Win9X - now ignored
+     with warning on these platforms;
+
+Win32::Printer 0.8.1 (2004-06-22)
+
+  1) Makefile.pl changed to make configuration w/o 3PLibs by default. Any
+     commandline argument will trigger the prompt;
+  2) Warning is issued if it is impossible to select desired font. See "Font"
+     method documentation in POD;
+  3) Escapement and orientation added for "Font" (NT/2k/XP/...);
+  4) Now it is official - there is no support for raster fonts;
+  5) Meta background mode set to transparent;
+  6) Color also sets EBar barcode color;
+
+Win32::Printer 0.8.0 (2004-04-21)
+
+  1) Meta and MetaEnd methods added;
+  2) Additional Next functions for Meta context;
+  3) PClip flag CR_OFF added;
+  4) Next method now returns created filename if file attribute is set;
+  5) File name suggestion corrected;
+  6) Image method returns image size if only image handle is given;
+  7) Scalar / array context optimized in Win32::Printer::Enum;
+  8) Enum's xs functions partly rewritten;
+  9) Start-end match of attribute check added;
+ 10) Image partly rewritten; Now image file extension is checked at first;
+     Image documentation updated;
+ 11) XS _SaveAs flags modified;
+ 12) Filename autoincrementation code fixed;
+
+--------------------------------------------------------------------------------
+-- 0.7.X -----------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Win32::Printer 0.7.1 (2004-04-11)
+  1) Global variables removed (caused object interference); IMPORTANT FIX!!!
+     debug parametre and Debug methods still may interfere;
+  2) Changed filename suggestion order - filename, description, "Printer";
+  3) Fixed _SaveAs;
+  3) Random seed added to temporary PostScript files when creating PDF;
+  4) Unit method corrected;
+  5) Debug method corrected;
+  6) Added few error messages and warnings;
+  7) Constructor and Next method cleaned from unnecessary Space method;
+
+Win32::Printer 0.7.0 (2003-01-07)
+  1) Now this library is distributed under terms of LESSER GPL;
+  2) Debug method added;
+  3) "debug" attribute added;
+  4) Prompt for filename attribute "prompt" added;
+  5) Win32::Printer::Enum method Drivers() returns array in {DependentFiles};
+  6) Save to file fixed and enchanced for print dialog;
+  7) Ghostscript output log to nul fixed;
+  8) Fixed bug in XS _GetWinMetaFile;
+  9) Ghostscript param set to "-dORIENT1=true" which is correct in most cases;
+ 10) Units() argument ratio fixed;
+ 11) User specific page sizes added ("height", "width" attributes);
+ 12) Document collation API and documentation was reviewed and fixed;
+ 13) PClip documentation was reviewed and fixed;
+ 14) Overall documentation reviews and fixes;
+ 15) "pdf" attribute fixed - again! Now You may use "-" as pdf STDOUT filename;
+ 13) EBar barcode support and test file added (note that EBar is not publically
+     available at the moment);
+ 14) Now DelayLoad and import libraries are used for EBar, FreeImage and
+     Ghostscript;
+ 15) Now latest FreeImage 3.0.4 may be used (added XBM, XPM);
+ 16) Makefile.PL rewritten for delayload;
+ 17) "printer" and "file" attributes now support forward-slashes;
+ 18) End(), Abort(), Close() now returns possibly modified filename if "file"
+     attribute is set;
+
+--------------------------------------------------------------------------------
+-- 0.6.X -----------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+Win32::Printer 0.6.6.1 (2003-11-03)
+  1) Bug in Win32::Printer::Enum Printers() method fixed (It didn't correctly
+     recognise flag or server as parameter);
+
+Win32::Printer 0.6.6 (2003-10-28)
+  1) Updated "pdf" attribute for different log output;
+  2) Now Image() supports original image size and also returns it in
+     array context;
+
+Win32::Printer 0.6.5 (2003-10-13)
+  1) Save to file added;
+  2) Save to PDF added. It uses GhostScript Postscript interpreter;
+  3) Test splited in to 3 tests - NATIVE, FreeImage and GhostScript;
+  4) Image may be referenced by it's path not only in Image() but also in
+     Close() method;
+
+Win32::Printer 0.6.4 (2003-09-22)
+  1) Caps() method added to Win32::Printer;
+  2) Added "dc" parameter to initialise device context without starting
+     document;
+  3) Fixed Printer::Enum::Drivers() bug. Drivers() crashed on (null) string;
+
+Win32::Printer 0.6.3.1 (2003-08-28)
+
+  1) Value of "printer" attribute is used to initialise printer in dialog;
+  2) Sub module Win32::Printer::Enum added;
+
+Win32::Printer 0.6.2 (2003-08-14)
+
+  1) Added support for printer "friendly" names;
+  2) In XS _CreatePrinter GlobalUnlock was setting LastError to 0, this
+     is fixed;
+
+--------------------------------------------------------------------------------
+-- Pre 0.6.2 -------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+N/A

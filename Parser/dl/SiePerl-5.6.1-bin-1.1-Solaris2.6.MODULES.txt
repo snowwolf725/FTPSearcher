@@ -1,0 +1,149 @@
+Module	Notes	Sun 5.6.1	Built	Build Notes
+ANSIScreen		1.2	Y	
+Archive::Tar		0.22	Y	
+Archive::Zip		0.10	Y	zip and unzip not found - some tests failed
+Array::IntSpan		1.01	Y	
+Array::PrintCols		2.1	Y	
+Array::RefElem		0.02	Y	
+Astro		0.5	Y	
+Astro::MoonPhase		0.10	Y	
+Astro::SunTime	Requires Timemodules	0.01	Y	
+Astro::Sunrise		0.04	Y	
+Carp::Assert		0.013	Y	
+Chemistry::Elements		0.9	Y	
+Class::Fields		0.11	Y	
+Compress::Zlib	requires gnu zlib 1.1.3	1.11	Y	
+Convert::Units		0.43	Y	
+Convert::SciEng		0.90	Y	
+Data::DumpXML		1.01	Y	
+Data::ShowTable		3.3	Y	
+Data::Walker		1.04	Y	
+Date::Calc		4.3	Y	
+Date::Manip		5.39	Y	
+DBI		1.14	Y	
+Devel::Dprof		19990108	Y	
+Devel::SmallProf		0.9	Y	
+Devel::PreProcessor	dev only	1999-022	Y	
+Devel::ptkdb		1.1074	Y	
+Digest::MD5		2.13	Y	
+Error		0.13	Y	
+Fraction		53b	Y	
+FreezeThaw		0.41	Y	
+File::PathConvert		0.85	Y	
+File::Spec		0.82	Y	
+Finance::Quote		1.05	Y	
+Games::WordGuess		0.20	Y	
+Games::Worms		0.61	Y	
+Geography::Countries		1.2	Y	
+GD		1.32	Y	
+GDGraph		1.33	Y	
+GDGraph3d		0.55	Y	
+GDTextUtil		0.80	Y	
+GDBarcode		1.13	Y	
+Graph		0.201	Y	
+Heap		0.50	Y	
+HTML::Mason		0.896	Y	
+HTML::Parser	Requires HTML::Tagset	3.19	Y	
+HTML::TableExtract		1.06	Y	
+HTML::Template		2.2	Y	
+HTML::Tagset		3.03	Y	
+HTML::Tree		3.11	Y	
+IO::Stringy		1.220	Y	
+IPC::Locker		1.14	Y	
+IPC::ShareLite		0.08	Y	
+IPC::Shareable		0.60	Y	
+libnet	Contains Net::FTP etc.	1.0703	Y	
+libwww-perl		5.51	Y	
+libxml-perl	Contains smaller XML packages	0.07	Y	
+Lingua::EN::AddressParse		0.03	Y	
+Lingua::EN::MatchNames		1.1	Y	
+Lingua::EN::NameCase		1.11	Y	
+Lingua::EN::NameParse		1.11	Y	
+Lingua::EN::NickName		1.1	Y	
+Lingua::EN::Squeeze		1998.1204	Y	
+Lingua::EN::Syllable		0.251	Y	
+Lingua::EN::Numbers::Ordinate		0.01	Y	
+Log::Agent	needed for Storable	0.2.6	Y	
+Locale::SubCountry 		1.08	Y	
+Mail::Bulkmail		2.05	Y	
+Mail::Sendmail		0.78	Y	
+MailTools		1.15	Y	
+MD5		1.7	Y	
+MIME::Base64		2.12	Y	
+MIME-tools		5.41	Y	
+MLDBM	"build after Data::Dumper, FreezeThaw and Storable"	2.00	Y	Tests Fail
+Net::Daemon		0.34	Y	
+Number::Format		1.42	Y	
+Number::Spell		0.04	Y	
+OLE::Storage		0.386	Y	
+PlRPC		0.2015	Y	
+Parse::RecDescent		1.80	Y	
+Parse::Yapp		1.04	Y	
+Proc-Background		1.03	Y	
+Rcs		0.09	Y	
+Roman	No Makefile.PL - created a simple one and added $VERSION= to Roman.pm	1.1	Y	copy Makefile.PL and modified Roman.pm
+RTF::Document		0.64	Y	
+RTF::Group		1.10	Y	
+RTF::Parser		1.07	Y	
+Schedule::Cron		0.03	Y	
+Sort::Fields		0.90	Y	
+Storable		1.0.7	Y	
+String::Approx		3.15	Y	
+Template-Toolkit		2.00	Y	
+Text::AutoFormat		1.04	Y	
+Text::Balanced		1.85	Y	
+Text::Metaphone		1.96	Y	
+Text::Template		1.31	Y	
+Term::ANSIColor		1.03	Y	
+Tie::IxHash		1.21	Y	
+Time::HiRes		1.20	Y	
+Time-modules		100.010301	Y	
+Tk		800.022	Y	
+Tk::Clock		0.06	Y	
+Tk::ColourChooser		1.50	Y	
+Tk-Contrib	contains other Tk modules	0.07	Y	
+Tk::Date	install after Tk-GBARR 2.01	0.34	Y	
+Tk-DKW	contains other Tk modules	0.03	Y	
+Tk::FileDialog		1.3	Y	
+Tk::FontDialog		0.06	Y	
+Tk-GBARR	contains other Tk modules	2.03	Y	
+Tk::HistEntry		0.36	Y	
+Tk::HTML	requires HTML::Tree and URI	3.002	Y	
+Tk::JPEG	Extends Tk:Photo - has local copy of jpeg	2.014	Y	
+Tk::MListBox		1.09	Y	
+Tk::MesgBox		1.12	Y	
+Tk::Month		1.2	Y	
+Tk::Multi	prerequisites: Tk::ObjScanner + Tk::Pod + Tie::IXHash	1.003	Y	
+Tk::ObjEditor	requires Storable	1.001	Y	
+Tk::ObjScanner		1.022	Y	
+Tk::Pod	prerequisites: Text::English which we have not found	0.11	Y	Built without required Text::English
+Tk::SlideShow		0.06	Y	
+Tk::TableMatrix		0.5	Y	
+Tk::TextANSIColor		0.13	Y	
+Tk::Text::SuperText		0.9.4	Y	
+Tk::TIFF	Extends Tk:Photo	0.07	Y	requires gnu tiff 3.5.5
+Tk::TreeGraph		1.023	Y	
+Tk::WaitBox		1.3	Y	
+Tk::Workspace		1.64	Y	
+Tk::XMLViewer	both 0.09 and 0.12 seem incompatable with TK 800.015 requires XML::Parser	0.12	Y	
+Unicode::Map	will be deprecated - replaced by Unicode::Map8	0.110	Y	
+Unicode::Map8	requires Unicode::String	0.10	Y	
+Unicode::String		2.06	Y	
+URI		1.11	Y	
+X11::Protocol		0.04	Y	
+XML::AutoWriter		0.37	Y	
+XML::CSV		0.09	Y	
+XML::Catalog		0.02	Y	
+XML::DOM		1.25	Y	some tests fail
+XML::Dumper		0.4	Y	
+XML::Generator		0.91	Y	
+XML::Grove		0.05	Y	
+XML::Parser	Requires expat to be installed	2.30	Y	
+XML::PYX		0.07	Y	
+XML::RSS		0.96	Y	
+XML::QL		0.07	Y	
+XML::Registry		0.02	Y	
+XML::Simple		1.05	Y	
+XML::TreeBuilder		3.08	Y	
+XML::Writer		0.4	Y	
+XML::XPath		1.07	Y	

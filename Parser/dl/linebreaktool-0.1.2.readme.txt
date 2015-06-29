@@ -1,0 +1,85 @@
+NAME
+    LineBreakTool - convert linebreaks of text files
+
+README
+    With this script you can check if a text file is of a specific type and
+    convert it to a different type.
+
+    Special feature is the ability of fixing files that were broken by wrong
+    ftp upload and download mode (ascii/bin).
+
+    Supported file types are dos, mac, unix and broken.
+
+    It also runs under DOS.
+
+SYNOPSIS
+    "linebreaktool.pl -h|--help|--version|--copying"
+
+    "linebreaktool.pl [-t|--test] [-v|--verbose] <filename> [<type>]"
+
+    "linebreaktool.pl (-c|--convert) [-v|--verbose] <filename> [<from>]
+    <to>"
+
+DESCRIPTION
+    -h | --help
+        Output usage information and exit.
+
+    --version
+        Output version information and exit.
+
+    --copying
+        Output the General Public License version 2 and exit.
+
+    -v | --verbose
+        Be verbose about what happens.
+
+    <filename>
+        The name of the file to treat.
+
+    -t | --test
+        Test the type of file.
+
+        If <type> is given it prints if the type of the file matches <type>.
+
+    <type>
+        The type of the file will be compared with <type>.
+
+    -c | --convert
+        Convert the file to the given type (<to>).
+
+    <from>
+        The file will only be converted if its type matches <from>.
+
+    <to>
+        The file will be converted to the type <to>.
+
+PREREQUISITES
+    Requires "strict", "Fcntl", "IO::Seekable" and "File::Recurse".
+
+WARRANTY
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+    Public License for more details.
+
+COPYING
+    This program is distributed under the terms of the GNU General Public
+    License.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation; either version 2 of the License, or (at your
+    option) any later version.
+
+SCRIPT CATEGORIES
+    UNIX/System_administration
+
+    Win32
+
+AUTHOR
+    GONZO <gonzo@cpan.org>
+
+    Copyright 2001 Sven Kleese, Hamburg (Germany)
+
+    $Date: 2001/11/01 14:23:00 $ $Revision: 1.17.2.11 $
+

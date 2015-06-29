@@ -1,0 +1,13 @@
+The following AI namespace designations have been proposed.
+
+
+Name           DSLIP  Description                                  Info
+-------------  -----  -------------------------------------------- -----
+AI::Mind::     idoho  Perl implementation of main AI Mind module.  MENTIFEX
+::Sensorium    idoho  Audition; other human/robot input senses.    MENTIFEX
+::Emotion      inoho  Quasi-physiological influence upon thought.  MENTIFEX
+::Think        idoho  Syntax and vocabulary of natural languages.  MENTIFEX
+::Volition     inoho  Contemplative selection of motor options.    MENTIFEX
+::Motorium     inoho  Robotic activation of motor initiatives.     MENTIFEX
+
+http://mind.sourceforge.net/perl.html has further details.

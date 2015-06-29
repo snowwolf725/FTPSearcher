@@ -1,0 +1,242 @@
+#######################################################################################
+
+
+        
+                XML Interface (XMLI) Specifications
+                -----------------------------------
+                
+
+		Draft
+                -----
+		Version: 0.01
+		Date: 5/19/2001
+
+            
+                Author(s)
+                -------
+                Ilya Sterin (isterin@ciber.com)
+                                
+                
+                Description
+                -----------
+                
+                XMLI provides a driver independent interface to XML drivers
+                (XML::CSV, XML::Excel, and many more to come).  XML drivers 
+                allow mapping of data defined by other formats to XML, 
+                therefore an independent interface is necessary to allow 
+                consistant manipulation independent of data formats.
+                
+                
+          
+#######################################################################################
+
+
+		Copyright (c) Ilya Sterin 2001
+		
+		Permission is hereby granted to make and distribute verbatim
+    		(complete and unedited) copies of this document. Permission is also
+    		granted to translate this document into other languages and formats
+    		provided that all text is included.
+
+
+
+
+---------------------------------------------------------------------------------------
+Section 1  (Purpose)
+---------------------------------------------------------------------------------------                
+
+XMLI will provide a common interface API to XML::* drivers to allow 
+conversion of various data type to XML.  XMLI will hide the real driver 
+implementation, and will act as a (thin) layer on top of them to provide
+common methods.  XMLI will not restrict the driver implementation in 
+any way, other than provide required common methods which will be used 
+by the user.
+
+
+---------------------------------------------------------------------------------------
+Section 2  (Current Implementation)
+---------------------------------------------------------------------------------------                
+
+There are currently two modules, XML::CSV and XML::Excel, available.  
+These modules convert CSV and Excel data to XML format.  They allow 
+various flexible methods for file and data manipulation as well as 
+dumping to XML, XML declaration, and doctype declaration.  The do not 
+in any way validate the XML, and are not designed to do so.  Other
+modules are more suitable for that task.
+
+
+
+---------------------------------------------------------------------------------------
+Section 3  (Guidelines)
+---------------------------------------------------------------------------------------
+
+
+o XMLi will provide a **fast**, **efficient**, and easy interface to 
+  convert data types to XML.
+
+o Speed and efficiency is very important since using XMLI within a
+  program to convert files to XML and then using other modules for
+  XML validation, processing, etc..., already provides huge overhead.
+  There should really be very little overhead in using XMLI.
+
+o XMLI itself will be very small and efficient and run on top of
+  XML::* drivers to call it's functions.
+
+o XMLI can be written in pure Perl, although if a C interface is
+  needed and is proven to work more efficently, it will be implemented.
+
+o XMLI and it's drivers will adapt to object oriented style 
+  so that it can easily be inhereted by other modules and used in an
+  object oriented fashion.
+
+o XMLI will support UTF-8/UTF-16/ISO-8859-1 character
+  sets.
+
+o XMLI will support dynamic loading of XML::* drivers
+
+o XMLI will be available under GNU or Artistic License, and 
+  will be up to the users choice.
+
+
+
+
+---------------------------------------------------------------------------------------
+Section 4  (Visual Diagram)
+---------------------------------------------------------------------------------------
+
+
+
+				 --- ______\  -------------  ______\  -------------
+				|   |  	   / |  XML::CSV   |       / |  CSV file   |
+       	 ---------------	| X |         -------------           -------------
+	|Perl program	|_____\ | M |______\  -------------  ______\  -------------
+	|using XMLI	|     /	| L |      / | XML::Excel  |       / | Excel file  |
+	 ---------------	| I |         -------------           -------------
+				|   |______\  -------------  ______\  -------------
+ 				 ---       / |   XML::*    |       / |  .* file    |
+                                              -------------           -------------
+
+
+
+
+---------------------------------------------------------------------------------------
+Section 5 (Functions)
+---------------------------------------------------------------------------------------
+
+new(driver) || new(driver, \%attr)
+
+  o  Creates a new XMLI object.
+  o  Dynamically loads the driver
+  o  Sets attributes/defaults
+
+
+parse_data(file_name, \%attr) || parse_data(\$string, \%attr) || 
+                                 parse_data(STDIN, \%attr)
+
+  o  Open the file_name for read if provided one
+  o  Read data in from a file_name, $string, or a file handle
+  o  Call a parse method of the XML::* driver, passing it the
+     reference to data, as well as reference to data structure
+     (XMLI->{column_data}), reference to tag names array
+     (XMLI->{column_headings}), to load the data into
+  o  Receive and process the data structure as needed
+  o  close the file handle
+
+declare_xml(\%attr)
+
+  o  Declares XML with version, encoding, and standalone attributes
+  o  Sets a XMLI attribute {xml_declare} to the declared string (for
+     later processing)
+
+declare_doctype(\%attr)
+
+  o  Declares XML doctype with source, location1, location2, and
+     subset attributes
+  o  Sets a XMLI attribute {doctype_declare} to the declared string
+     (for later processing)
+
+print_xml(file_name, \%attr) || print_xml(\$string, \%attr) ||
+                                print_xml(STDOUT, \%attr)
+
+  o  Open the file_name for write if provided one
+  o  Print the {xml_declare} and {doctype_declare} if applicable
+  o  Call a print method of the XML::* driver, passing it
+     the reference to the data structure and tag names created by 
+     parse_data, as well as the reference to the string or file 
+     handle, and various attributes
+  o  close the file_handle
+
+
+
+Add other methods here..........
+
+
+
+---------------------------------------------------------------------------------------
+Section 5 (Publicly accessible data)
+---------------------------------------------------------------------------------------
+
+XMLI->{column_headings} 
+
+  o  Reference to XML data
+
+XMLI->{column_data}
+
+  o  Reference to XML tag names
+
+XMLI->{xml_declare}
+
+  o  Contains XML declaration
+
+XMLI->{doctype_declare}
+
+  o  Conatains doctype declaration
+
+
+
+
+---------------------------------------------------------------------------------------
+Section 6 (XML::* driver implementation)
+---------------------------------------------------------------------------------------
+
+XMLI will define a XML::* driver implementation interface.
+The interface will be as minimal restrictive as possible, other
+than provide mandatory methods which are used as callbacks by
+XMLI itself.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
+
+

@@ -1,0 +1,59 @@
+Greetings, I think I have something to offer the world...a new Perl module
+that makes retrieving useful RSS content easier. Instead of using
+XML::Parser-based code, which chokes on the impure XML created by the
+world at large, it uses "relaxed" algorithms. Using the content cataloged
+at XMLTREE as a test case, I was able to harvest more than twice as many
+links than I could using XML::RSS.
+
+You can take a peek at the module and a sample program using it at:
+
+http://industrial-linux.org/RSSLite/
+
+I appreciate your feedback.
+---scott thomason
+
+=== Info ===
+
+Name        : Scott Thomason
+Email       : scott@industrial-linux.org
+Website     : industrial-linux.org
+UserID      : SCOTTHOM
+
+
+CPAN desc   : XML::RSSLite   bdpf   
+Extract broken XML from RSS/RDF/SN/WL format
+
+Background  : After recently reading about XML::RSS, I decided to give it a
+try. Several hours later, I was still only capable of extracting about 40%
+of the open content cataloged at xmltree.com. I realized that the
+majority of open content syndicators are not very good at writing valid RSS
+XML. 
+
+My goal is to write a module that extracts all the open content that is
+available, and be much less concerned about XML compliance. This module
+currently parses all but a handful of the XML URLs cataloged at
+xmltree.com. Rather than rely on XML::Parser, it uses heuristics and good
+old-fashioned Perl regular expressions. It stores the data in a simple
+hash structure, and "aliases" certain tags so that when done, you can
+count on having the minimal data necessary for re-constructing a valid
+RSS file. This means you get the basic title, description, and link for a
+channel and its items. Anything else present in the hash is a bonus :)
+
+This module extracts more usable links by parsing "scriptingNews" and
+"weblog" formats in addition to RDF & RSS. It also "sanitizes" the
+output for best results. The munging includes:
+
+
+- Removing html tags to leave plain text
+- Eliminating objectionable characters
+- Using <url> tags when <link> is empty
+- Using misplaced urls in <title> when <link> is empty 
+- Ripping links from <a href=...> if required   
+- Limiting content to http/ftp links
+- Joining relative urls to the site base
+
+In the near future I plan to strengthen the weblog parsing, and add a
+routine to generate valid RSS output from the result hash via XML::RSS. I
+hope to hear back from Jonathan Eisenzopf soon to get his feedback on
+integration with XML::RSS, if any.
+

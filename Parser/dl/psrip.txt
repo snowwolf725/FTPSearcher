@@ -1,0 +1,40 @@
+NAME
+    psrip - extracts images from postscript-files
+
+SYNOPSIS
+    psrip [-d *dir*] *psfile(s)*
+
+    extract images in *psfile(s)* into current directory or *dir* if
+    given.
+
+  Examples
+
+    psrip foil.ps Extract images from foil.ps into current
+    directory.
+
+    psrip -d images foil1.ps foil2.ps TeX/*.ps Extract images of
+    these ps-files into directory *images*.
+
+DESCRIPTION
+    The script saves the lines between *'%%BeginDocument: name'* and
+    *'%%EndDocument'* to a new file named *dir/name*.
+
+BUGS
+    If there is no 'BoundingBox' specified in the extracted image
+    you have to insert it by hand. E.g. for DIN-a4 size:
+    %%BoundingBox: 0 0 596 842
+
+AUTHOR
+    Christian Lackas <delta@clackas.de>, 10 December 1999.
+
+    This tool is dedicated to Nikolay 'Snake' Sturm.
+
+    Thanks to Rolf Niepraschk for his help in publishing an bug
+    reporting.
+
+LICENSE
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation; either version 2 of
+    the License, or (at your option) any later version.
+

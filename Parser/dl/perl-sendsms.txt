@@ -1,0 +1,24 @@
+#!/usr/bin/perl
+
+use HTTP::Request::Common qw(POST);
+use LWP::UserAgent;
+ 
+my $url_sendsms = "http://bulksms.funonphone.com/sendsms.asp";
+my($ua,$request,$response,%field);
+
+undef %field;
+$field{user} = "username";
+$field{password} = "password";
+$field{Sender} = "91982201234";
+$field{Text} = "This is a test message";
+$field{PhoneNumber} = "4477880099231";
+
+$ua = LWP::UserAgent->new;
+$request = POST $url_sendsms,\%field;
+$response =  $ua->request($request);
+if($response->is_success) {
+ print $response->as_string;
+}
+else {
+ print "Failed: ", $response->status_line, "\n";
+}

@@ -1,0 +1,3 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+03:59:45	9532/9532	------	404	error ('Not%20Found')	text/html	date:Tue,%2018%20Dec%202007%2019:26:53%20GMT	http://coolflame.myweb.hinet.net/robots.txt		(from )
+03:59:45	17207/17207	------	200	untouched ('OK')	text/html	date:Tue,%2018%20Dec%202007%2019:26:53%20GMT	http://coolflame.myweb.hinet.net/	C:/Documents%20and%20Settings/SnowWolf.YOSHIKUN-90298D/орн▒/crack/crack/coolflame.myweb.hinet.net/index.html	(from )

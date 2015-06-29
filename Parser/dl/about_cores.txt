@@ -1,0 +1,89 @@
+-------------------------------------------------------
+  3GP_Converter ファイル変換コアについて
+-------------------------------------------------------
+このフォルダに収録されているバイナリは、GPL等の各種ライセンスに従い
+配布されています。受領者はこれらライセンス条件に従い再配布・改変などを
+自由に行うことができます。詳しくは以下の条件をご覧ください。
+
+なお、mp3,aac,amr,dts,ac3,h264に関するコードは研究目的のためにリンクしてあるものです。
+
+●ffmpeg.exe
+・ライセンス条件
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+・GNU General Public Licence
+	http://www.gnu.org/copyleft/gpl.html
+
+・元にしたプロダクト
+	ffmpeg
+	http://ffmpeg.sourceforge.net/
+・変更部分を含めたソースコードは
+	http://www.nurs.or.jp/~calcium/3gpp/sources/
+	からダウンロードしてください
+
+
+●qtmlclient.dll
+    QuickTime for Windows SDKに付属するラインタイムDLLです。
+    http://developer.apple.com/quicktime/
+    からダウンロード可能です。
+
+
+●cygwin1.dll
+●cygz.dll
+・ライセンス条件
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+・GNU General Public Licence
+	http://www.gnu.org/copyleft/gpl.html
+・ソースリスト入手方法
+	http://cygwin.com/
+	からダウンロードしてください
+
+
+●ATOMChanger.exe, QT3GPPFlatten.exe
+    MobileHackerzオリジナルです。LGPLとして公開します。
+
+・ライセンス条件
+	This library is free software; you can redistribute it and/or
+	modify it under the terms of the GNU Lesser General Public
+	License as published by the Free Software Foundation; either
+	version 2 of the License, or (at your option) any later version.
+・GNU Lesser General Public License
+	http://www.gnu.org/copyleft/lesser.html
+・ソースリスト入手方法
+	http://www.nurs.or.jp/~calcium/3gpp/sources/
+	からダウンロードしてください
+
+
+●3GP_Converter.exe, Setup.exe, AddiTunes.exe
+    MobileHackerzオリジナルです。
+    個人で利用する分には自由に利用していただいて構いませんが、このバイナリを
+    無断で自製品に組み込んで配布することは禁じます。(上記フリーソフトウェア
+    ライセンスとは関連しません）
+
+    These are original products by MobileHackerz. 
+    It is PROHIBITED to build this binary into the own product without 
+    permission and to distribute it though it freely uses for the amount 
+    privately used and it does not care. (DO NOT RELATE to the above-mentioned 
+    free software license.)
+
+
+●AVSredirect.dll
+●avscheck.exe
+    MobileHackerzオリジナルです。GPLとして公開します。
+
+・ライセンス条件
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+・GNU General Public Licence
+	http://www.gnu.org/copyleft/gpl.html
+・ソースリスト入手方法
+	http://www.nurs.or.jp/~calcium/3gpp/sources/
+	からダウンロードしてください
+

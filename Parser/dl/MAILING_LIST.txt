@@ -1,0 +1,9 @@
+Majordomo Mailing List for ptkdb news and info available at:
+
+ptkdb-request@world.std.com
+
+Send a mail message with the following body:
+
+subscribe
+end
+

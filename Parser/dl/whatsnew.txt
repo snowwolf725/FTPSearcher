@@ -1,0 +1,20 @@
+3.122
+
+added: support for disk/rom status tag value "verified"
+added: verified rom/chd information to stats.ini
+added: history combo boxes for setinfo 'select sets' and 'from file'
+added: multiline tooltips to 'setinformation-select sets'/'rebuilder advanced destination prestring'
+       which list the supported variables
+
+misc:  usage of fallback font 'fixedsys' for stats in case of 'Courier' is not available
+misc:  setinformation's 'select sets' can enable/disable sets by their status information if at
+       least one chd/rom got the selected value: %S=v (verified), =n (nodump), =b (baddump)
+misc:  changed some default initial window sizes to avoid clipping
+
+fixed: stats counts romsets which only consist of a bios as missing
+fixed: fixmissing/fixunneeded can rarely impact each other in backupfolder (aka cps3 10/20 issue)
+fixed: 7z memory leak when using compressor->test archive option
+fixed: returned packerextension is wrong for non-archive files (however no impact found)
+fixed: rebuilder wrongly created destination file if sha1/md5 check failed due
+       to unzip error in no-recompress mode
+fixed: saving fixdat with enabled MS Windows' hide extension option can create double extensions

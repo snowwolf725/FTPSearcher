@@ -1,0 +1,780 @@
+About the MacPerl FAQ
+
+Version and Date information:
+
+This is version 2.4 which was last revised September 15, 1996. Changes since
+prior release:
+
+   * CPAN now mirrors the FAQ in the correct place.
+   * Clarified the operation of 8-bit character pattern matching.
+
+See below for locations of the current FAQ.
+
+The MacPerl FAQ is currently being edited and maintained by Bob Dalgleish
+and Bob Wilkinson. Contact them for editorial or publication information.
+The initial version of the FAQ was prepared by Hal Wine. The current outline
+and a lot of the useful words in this edition were prepared by Hal, as well.
+
+This FAQ is intended as a supplement to the main Perl FAQ , and does not
+replace it.
+
+Where to get the most recent MacPerl release:
+
+The best way to get official releases of the MacPerl application or tool or
+this FAQ is to use the Comprehensive Perl Archive Network.
+
+   * Use FTP to get the site registry and find the repository site nearest
+     you. Save this information for later use when you want to get files. It
+     saves wear and tear on the 'net and administrators everywhere.
+   * Use a Web browser to search for the file to download. This URL will
+     find a (relatively local) mirror site to get your file. This URL uses a
+     magic process to refer you to a nearby FTP site. There is also a form
+     that will identify the most recent versions of released files and give
+     you the URL without the search.
+
+Where to get the most recent FAQ:
+
+The most recent copy of the FAQ is available as 
+<http://www.perl.com/CPAN/doc/FAQs/mac/MacPerlFAQ.html> and
+<http://www.perl.com/CPAN/doc/FAQs/mac/MacPerlFAQ.txt>.
+
+They are mirrored from <http://www.sasknet.com/~dalgl/MacPerlFAQ.html> and 
+<http://www.sasknet.com/~dalgl/MacPerlFAQ.txt>, but this web-site
+has some name registration problems.
+
+Versions of the FAQ can be retrieved by e-mail. Send e-mail to
+MacPerl@dtor.com with a subject of either:
+
+    get FAQ
+
+for the text version or
+
+    get FAQ.html
+
+for the html version.
+
+What the FAQ covers:
+
+The MacPerl FAQ tries to answer simple questions that are unique to the
+various versions of MacPerl. For more complex questions, pointers to more
+detailed information may be given.
+
+The MacPerl FAQ also contains information on some unique applications of
+MacPerl. However, pointers to other information are more likely for these
+topics.
+
+Finally, the MacPerl FAQ contains information useful in porting Perl scripts
+to and from the Unix environment.
+
+What the FAQ doesn't cover:
+
+The MacPerl FAQ does not cover basic Perl questions. Nor does it cover basic
+Macintosh programming information. It certainly doesn't cover details of WWW
+CGI programming! This is handled slightly different on the Mac than on other
+platforms, and pointers are provided for detailed information.
+
+The MacPerl FAQ is also not a tutorial. Nor is it a 100% correct authority
+on anything! However, we ask your indulgence by sending comments,
+clarifications, and revisions to one or both of the editors.
+
+How the FAQ is organized:
+
+This FAQ is organized from general information through more specific
+information. A given topic is covered in the most general location possible.
+
+Both Perl version 4 and 5 have been ported to the Mac. Much of the
+information in this FAQ is not unique to the Perl version being used.
+
+Where there is a distinction or discrepancy between the versions, the
+applicable version will be mentioned. The most frequent difference is how
+package qualifications are made. In Perl4, a variable in a package was
+entered as $Package'variable. In Perl5, it is entered as $Package::variable,
+although the old form is acceptable.
+
+The major emphasis of the FAQ has moved to MacPerl 5, so the new package
+syntax will be used.
+
+Where possible, the users of MacPerl should upgrade to MacPerl5, since its
+extensibility and generality are very much enhanced. Perl4 scripts will run
+almost unimpeded under Perl5, but you can easily check for problems by
+setting the -w switch to flag common errors. The reference file
+perltraps.html in the release describes common problems.
+
+1) General Questions
+
+1.1) What's the most recent version of MacPerl?
+
+MacPerl is available in forms corresponding to Unix Perl version 4.036 and
+5.001m. Both of these are also available as either a standalone Macintosh
+application, or as a tool for the MPW (Macintosh Programmer's Workshop)
+environment.
+
+Unless you already have MPW, and know its environment, you want the
+standalone version, hereafter called the MacPerl Application.
+
+Perl5 introduced several powerful new technologies, including
+object-oriented programming to the PERL project. This allowed modules to be
+much more self-sufficient, yet extensible, as well as allowing system
+extensions. These extensions will be capitalized upon in further releases of
+MacPerl.
+
+1.1.1) Perl 5
+
+The latest version of Perl 5 is available from the CPAN archives in
+directory http://perl.com/CPAN/ports/mac/ as files:
+
+Mac_Perl_tool.bin
+     for the MacPerl tool
+Mac_Perl_appl.bin
+     for the MacPerl application
+Mac_Perl_tool.bin
+     for the MacPerl tool from Switzerland
+Mac_Perl_tool.bin
+     for the MacPerl application from Switzerland
+
+Both of these files are in MacBinary format. Other versions may also be
+available in those directories. For MacPerl 5, the version naming convention
+also refers to the Unix Perl version. For example, MacPerl version 5.0.1r1m
+can be deciphered as follows: 5 is the major Perl release, .01 is the Mac
+revision level, and 1m is the patchlevel of the Perl core.
+
+The source code for these versions is also available in the same directory.
+Consult the file Mac_Perl.info for details on which sources are needed for
+which version.
+
+1.1.2) Perl 4
+
+The last version of Perl 4 ported to the Mac is MacPerl 4.1.8, which
+corresponds to Unix Perl version 4.036 (the last release of Perl 4). While
+it is quite stable, and has a lot of users still, MacPerl4 is no longer
+being developed. Many of the newer Perl modules will not work with Perl 4.
+The latest versions (4.1.8) are available from the CPAN archives in
+directory ports/mac/ as file:
+
+http://perl.com/CPAN/ports/mac/Mac_Perl_tool
+     for the MacPerl tool
+http://perl.com/CPAN/ports/mac/Mac_Perl_appl
+     for the MacPerl application
+ftp://ftp.switch.ch/software/mac/perl/Mac_Perl_tool
+     for the MacPerl tool from Switzerland
+ftp://ftp.switch.ch/software/mac/perl/Mac_Perl_appl
+     for the MacPerl application from Switzerland
+
+Both of these files are in MacBinary format.
+
+1.2) How do I install MacPerl?
+
+No matter which version of MacPerl you need, the installation process is
+quite similar.
+
+1.2.1) Transferring the files:
+
+Be sure to transfer the files in binary mode.
+
+After decompressing the archive, be sure to read all the text files in the
+top level directory. (Or just review them if you're upgrading.)
+
+1.2.2) How do I unpack the stuff I got?
+
+In order to enable transmission of Macintosh files across the internet, they
+must be encoded in various formats. Each layer of encoding adds a suffix to
+the file. All MacPerl distribution files are StuffIt formatted archives,
+encapsulated in MacBinary. Use StuffIt Expander, or a similar utility, to
+decompress the files. See the comp.sys.mac.comm FAQ for a more complete list
+
+1.3) What Macs does MacPerl run on?
+
+MacPerl4 runs on any Macintosh, including the PowerMacs. MacPerl5 runs on
+the same Macs mainly, with the exception of 68000-based machines. A 68000
+savvy version of MacPerl5 will likely be available later in 1996.
+
+1.4) Other MacPerl resources:
+
+A primer on using MacPerl has been developed by Sandra Silcott. It's
+available for FTP as a self-extracting archive. The porter of MacPerl,
+Matthias Neeracher, maintains a question-and-answer list of his own. The
+list is mailed periodically to macperl list subscribers, and is available at
+his site.
+
+1.4.1) Is there an email list for MacPerl?
+
+Yes! To join, send mail to mac-perl-request@iis.ee.ethz.ch whose BODY (the
+Subject is ignored) is the word "subscribe" or "unsubscribe". If you send
+your subscription notice to mac-perl, you will merely annoy people.
+
+1.4.2) What other useful resources are there?
+
+     Newsgroups:
+   * comp.lang.perl.announce
+   * comp.lang.perl.misc
+   * comp.lang.perl.modules
+
+A searchable archive of the mailing list is available.
+
+2) MacPerl Differences
+
+2.1) What are the differences in functions on MacPerl?
+
+Differences
+ Routine          MacPerl4                         MacPerl5
+ alarm        Not implemented
+ chmod               Meaning of the mode of files is different
+ chown                   Meaning of ownership is different
+ chroot                           Not implemented
+
+ crypt        Not implemented        Implemented but not distributed in the
+                                                   sources.
+ dump                      Not implemented. See runtimes.
+ exec                             Not implemented
+ exit     Needs to be accompanied by MacPerl::Quit to do what you expect.
+
+ fcntl     Meaning of controls is   Meaning of controls is system specific.
+              system specific        POSIX.pm provides a useful interface.
+ fork                             Not implemented
+ getlogin
+ getpgrp
+ setpgrp
+ getppid
+ getpw*                           Not implemented
+ getgr*
+ setgr*
+ endgrent
+ endpwent
+
+ ioctl     Meaning of controls is   Meaning of controls is system specific.
+              system specific        POSIX.pm provides a useful interface.
+ kill                             Not implemented
+ link                             Not implemented
+ msg*                             Not implemented
+ open         Pipes are not supported, except with ToolServer support.
+ pipe             Not implemented, except with ToolServer support.
+ shm*                             Not implemented
+ syscall                          Not implemented
+ time                          Uses January 1, 1904.
+ utime                          Not 100% compatible
+ umask                                           Does nothing
+ wait                             Not implemented
+ waitpid                          Not implemented
+
+2.2) Compatability with Unix Perl
+
+2.2.1) Why does source preprocessing (-P) not work?
+
+Language processors on Unix have traditionally allowed arbitrary front end
+preprocessing for their input. The Mac has not.
+
+Perl5 has significantly extended the syntax and the preparation so that most
+preprocessing is not needed. The usual use of preprocessing is to provide
+manifest constants. Subroutines can be made into "bare-words", which allow
+what-look-to-be constant values, like ENOFILE, to be used in Perl code.
+
+2.2.2) How do I open a pipe both to and from a command?
+
+You don't on the Mac.
+
+2.2.3) Why do %ENV changes not pass to processes that I start?
+
+The environment variables are aspects of Unix and MSDOS command processing.
+They are supported only within single processes on the Mac for compatibility
+purposes.
+
+2.2.4) Why don't backticks work as they do on Unix?
+
+The Mac OS doesn't (really) support the notion of subprocesses. These can be
+faked from MacPerl and MPW if you have an application called "Tool Server".
+Tool Server is sold as part of various Mac development tools (such as
+Symantec C and Metroworks). Even so, there are many limitations that are not
+present under Unix.
+
+Matthias has hardcoded some strings to be processed by MacPerl itself.
+
+pwd  Current working directory.
+Directory
+     Current working directory.
+hostname
+     Hostname as returned by MacTCP or OpenTransport.
+stty -raw
+     Allow single character input from the keyboard.
+stty -cooked
+     Allow normal character input (line-oriented) from the keyboard.
+
+See the documentation file MacPerl.Specifics in your release for up-to-date
+information. (This file has been superceded in MacPerl5 by the
+pod:macperl.html file).
+
+For greater portability, there is a module called Cwd.pm which sets the
+environment variable PWD. For instance,
+
+    use Cwd;
+    chdir_init;
+    $p = $ENV{'PWD'};
+    ...
+    chdir $newdir;
+    $p = $ENV{'PWD'};
+
+2.3) MacOS file system issues
+
+2.3.1) How do I request an input or output file under MacPerl?
+
+require 'StandardFile.pl';
+
+$infilename = &StandardFile::GetFile('TEXT','ttxt','ttro' , "Default file");
+$outfilename = &StandardFile::PutFile("Output file", "Default output file");
+
+2.3.2) Why can't I detect aliases in my script?
+
+Droplets *never* see aliases in @ARGV, as the finder resolves them before
+Perl sees them.
+
+The same is true for the results of standard file calls.
+
+This is about to be fixed in MacPerl5r2.
+
+2.3.3) How do I pass environment variables to my script?
+
+The "environment" parameter must be passed as a list of strings (name/value
+pairs). Here is a snippet that works:
+
+property env : {"HOME", "Boot", "TEMP", "Boot:Temporary Items"}
+property perlScript : "Boot:Scripting:MacPerl Ä:called_by_as_test.pl"
+property opts : {"-n", "-x", "Boot:Scripting"}
+
+tell application "MacPerl"
+   try
+      Do Script ({perlScript} & opts) mode batch environment env without extract
+   on error errorMessage number errorNumber
+      return errorNumber
+   end try
+end tell
+
+2.3.4) How do I perform globbing in MacPerl?
+
+For MacPerl4, the functionality of globbing can often be achieved using the
+opendir, readdir, closedir commands. For example,
+
+        @files = <*.error>;
+
+is equivalent to:
+
+    opendir( DIR, ':' ) || die( "Can't open ':': $!\n" );
+    @files = grep( /\.error$/, readdir( DIR ) );
+    closedir( DIR );
+
+For MacPerl5, globbing is available.
+
+2.4) Application additions
+
+2.4.1) package MacPerl
+
+MacPerl comes with a builtin package of routines and variables which are
+accessed using the syntax $MacPerl::Variable and &MacPerl::Subroutine. These
+are documented in the included documentation file macperl.html.
+
+2.4.2) Macintosh Toolbox interfaces
+
+The Macintosh Toolbox interfaces are being prepared and tested. To find out
+about these interfaces, you had best join the MacPerl mailing list.
+
+2.5) How can I compare two date strings?
+
+See the FAQ.
+
+2.6) How do I get MacPerl to recognize the Mac character set?
+
+A byte can store 8 bits, however, there is only a general agreement as how
+to use the bottom 7 bits (i.e. the first 128) for representing characters.
+This standard is ASCII. (Of course, even this has opponents e.g. IBM's use
+of EBCDIC).
+
+The top 128 characters which can be stored in a byte are the extended
+characters. However, which character is represented by which bit-pattern is
+font-dependent, and especially machine-dependent. Some machines do share the
+same extended character set e.g. Unix and MS-Windows both use the ISO-lat1
+(Latin-1) character set; this is not the same as that generally used on a
+Macintosh.
+
+In regular expressions, \w can be used to match against an alphanumeric
+character, where this set of characters is [A-Za-z0-9_]. This will not match
+against å, é, ü, è, or any other accented characters which are found in the
+extended characters of the Macintosh character set (or any other extended
+characters for this matter).
+
+Portability of code (from platform to platform, and on the Macintosh from
+font to font) would not be compromised, if the extended characters were used
+within the \w, \W matches. Presently, the only way I know to do this safely
+is to build up a set of characters on an ad hoc basis, as and when they are
+needed.
+
+2.7) How do I access Mac Resources from MacPerl?
+
+You don't, if you want portable code! If you do want to access them, you
+have to use an XCMD or XFCN (see above for information on that).
+
+Recently, Matthias has released Perl extensions that allow access to the
+Macintosh toolbox for Memory, Resources, and Apple Events. Currently, this
+is PowerMac-compatible only.
+
+3) MacPerl Application
+
+3.1) How do I package my Perl scripts?
+
+3.1.1) Droplets:
+
+Droplets are mini applications that work in conjunction with MacPerl (the
+application) under System 7. They are the "recommended" way to package perl
+scripts on the Mac.
+
+To make a droplet, simply open your script in MacPerl, then choose "Save
+As". One of the "Type" options is "Droplet". The droplet is actually an
+application program that contains the text of your script, plus some code
+(about 8KB). When launched, the droplet uses Apple Events to launch MacPerl
+(if it isn't already running), and then sends it the script to execute.
+
+You can reopen and change the script of droplets from within MacPerl.
+Subsequent "Saves" will retain the droplet file type.
+
+If the user launches a droplet by dragging and dropping some files onto the
+droplet's icon in the Finder, those file names will appear as arguments to
+the script (i.e. they will be in @ARGV). This is one of the simplest ways to
+access the command line from outside of MPW.
+
+The only downside to droplets is that users must have a complete
+installation of MacPerl, including any libraries that are called by your
+script. This means that the first application you distribute this way take
+over 800K. However, future droplets only take up 8K over the size of the
+script.
+
+3.1.2) Standalone applications/Runtimes:
+
+Saving your script as a runtime version (for either system 7 or systems 6 &
+7) is another way to package a script as a double-clickable application.
+However, droplets are the preferred method.
+
+If having your users install a version of MacPerl is too onerous (required
+for droplets), then you can save them as a runtime application. However, not
+all features are supported in the runtime applications. Also, runtime
+versions take over 500KB per script!
+
+Note: runtime versions do not execute any quicker. Perl (pre version 5) is
+always interpreted every time the script is run, period.
+
+3.1.3) Which form should I use?
+
+First, let's look at what you have to distribute in order to share a perl
+script with a friend (your wiz bang lotto number picker script). We'll
+assume your friend doesn't yet have MacPerl installed and isn't familiar
+with Perl.
+
+If you just send the script as a TEXT file, your friend has to install all
+of MacPerl application and libraries. Then, they have to start up MacPerl
+with your script and run it.
+
+Runtime Modules allow your script and it's libraries to be packaged with
+perl into one application file. While this is convenient, it is quite large
+(over 500KB), and multiple scripts can't share the runtime module (2 scripts
+would take over 1MB). To save a script as a runtime module, debug your
+script, then choose "Save As". Two of the options are runtime modules: one
+for System 6, and the other for System 7.
+
+The preferred approach is to save the script as a droplet. A droplet is a
+tiny (about 8KB) application that also contains your script. When a droplet
+is executed, it uses AppleEvents to have the MacPerl standalone application
+run the script. Also, your friend can specify the files to process by simply
+dropping them onto the droplet's icon in the Finder. Your friend still needs
+all of MacPerl installed, but doesn't have to directly interact with it.
+
+Droplets are also created using the "Save As" menu option, and selecting the
+"Droplet" option. Droplets do require System 7 to work.
+
+3.1.4) What about other files to go with the package?
+
+The Perl way to do things is to have Perl modules (files ending in .pm)
+placed in the script's directory, or in the library, where they will be
+found by searching the @INC path.
+
+The Macintosh way is to package everything that is needed into a single file
+using (named) resources to differentiate components. In support of this,
+MacPerl allows you to include CODE resources (of type XCMD or XFCN), as well
+as TEXT resources containing source modules, into the droplet or runtime. To
+get access to the CODE resource, you need to use the
+MacPerl::LoadExternals() function. To get access to the source modules, the
+require primitive searches the TEXT resources of the droplet for the module
+name.
+
+3.2) Devices (printer, screen, appleevent):
+
+3.2.1) How can I get MacPERL to dial my modem?
+
+Look at CommConnect.t in the :t:mac folder. One note: currently it seems to
+be impossible to use the Apple Modem Tool successfully, so you have to rely
+on sending a line like
+
+   ATDT 1-900-MACPERL
+
+to the Serial Tool.
+
+3.2.2) How can I keep local data files in my droplet/runtime?
+
+You can access TEXT resources by name using open(STREAM,
+"Dev:Pseudo:Stream"); for some resource named Stream.
+
+3.2.3) How can I output to another window?
+
+open(CON2, ">Dev:Console:Another Window");
+
+3.2.4) How can I get/set AppleEvent data?
+
+Open Dev:AEVT:FOOB, data associated with event parameter FOOB is
+read/written.
+
+3.3) How do I develop scripts?
+
+3.3.1) Alpha Text Editor:
+
+     You may want to consider getting the shareware text editor Alpha
+     as well. Alpha offers a Perl editting mode in which keywords and
+     comments are automatically colorized, subroutines are easily
+     indexed, and the rather complete Perl man page is readily
+     available as an online help file (indexed by section and command
+     through a menubar popup menu) - ... Beyond that, Alpha is one of
+     the nicest text editors (and my favorite) on any platform.
+
+     Contact W. Thomas Pollard
+
+Check the Alpha home page for more information. The FTP site has the most
+recent version, and it is available on all Mac repositories.
+
+3.3.2) BBEdit Text Editor:
+
+BBEdit is a commercial text editor, with a free cousin called BBEdit Lite.
+The editor can recognize Perl syntax, and has syntax colouring (as of
+version 4.0).
+
+4) MacPerl MPW tool
+
+4.1) Installation of MPW MacPerl
+
+4.1.1) Use the following steps:
+
+   * Copy the Perl executable into a folder on the MPW path. e.g. the "MPW
+     Folder:Tools" folder
+   * Copy the "lib" folder which comes with the distribution to a sensible
+     place. e.g under "MPW Folder:Libraries" folder
+   * Create a UserStartup*Perl file. (The * is really the bullet character,
+     option-8 on your keyboard.)
+
+     This should be in the same folder as the MPW executable.
+
+     An example "UserStartup*Perl" is given here, which uses PerlLibs for
+     the libraries for Perl4 and Perl5libs for Perl5.
+
+     Set PERLLIB     "{MPW}libraries:PerlLibs:"
+             Export PERLLIB
+
+     Set PERL5LIB    "{MPW}libraries:Perl5Libs:"
+             Export PERL5LIB
+
+4.2) Specific differences between the MPW tool and Perl under Unix
+
+The functions which do not work in the same way are outlined in the
+differences table.
+
+5) Special Application Areas
+
+5.1) How can I extend the capabilities of MacPerl?
+
+AppleScript scripts can be compiled and executed by MacPerl. With a suitable
+collection of AppleScript Scripting Additions, many system manipulation
+functions are quite straightforward to perform. With the presence of the
+Scriptable Finder, many file manipulation operations are quite easy.
+
+The code modules (XCMD/XFCN) developed for HyperCard may often be used in
+MacPerl. While there is no external documentation for which HyperCard
+callbacks are not implemented, most widely available code module libraries
+offer safe packages. See the macperl.html file in the pod directory of
+MacPerl for how to use MacPerl::LoadExternal().
+
+5.1.1) Perl Modules
+
+See the Perl5 FAQ.
+
+5.1.2) Perl Extension System (XS) and dynamic loading of extensions.
+
+Perl 5 introduced the concept that the Perl platform was truly extensible by
+knowledgeable programmers. External code modules can be written and imported
+into the Perl application at run-time, while presenting a Perl-ish interface
+to other programs. This is often the only way to get at many operating
+systems functions.
+
+Starting with MacPerl5r2, the extension system has gotten a lot easier, and
+Matthias has written a number of modules that give access to the MacOS
+functions. These extension modules are still in beta testing, but will be
+made available for general release.
+
+5.2) How do I program for the Web?
+
+5.2.1) How do I serve Web information (CGI)?
+
+Learn the operations of doing CGI on the Macintosh. Read the first rate
+tutorial by Jon Wiederspan.
+
+5.2.2) How do I mail the contents of a filled in form?
+
+Use a package called MacSMTP.pl and a demo called MailIt that does these
+things.
+
+5.2.3) How do I create or parse HTML documents?
+
+The best package for this set of tasks is libwww-perl and libwww-perl-5, for
+MacPerl4 and MacPerl5 respectively. schinder@pjstoaster.pg.md.us (Paul
+Schinder) has converted these respective libraries to work with MacPerl. See
+the scripts directory for more information.
+
+If you want to do smaller versions of these tasks, then try Tom Christian's
+hacks for useful scripts.
+
+5.3) Portability tricks and techniques
+
+5.3.1) How do I know that this script is running under MacPerl?
+
+The basic method of determining whether the script is running under MacPerl
+or some other Perl is the test.
+
+    print "Running under MacPerl\n" if $MacPerl::Version;
+
+Under MacPerl5, there is a more portable method, sanctioned by the Perl
+development community:
+
+    use Config;
+    if ( $Config{'osname'} =~ /^macos/i ) {
+        print "Running under MacPerl\n";
+    }
+
+
+Accessing file names is different between Unix and MacOS. However, Unix,
+MacOS and MSDOS all use hierarchical file naming, and some of the
+commonality has been gathered together into Perl modules for Perl5. Learn to
+use the portability-oriented modules, such as File::Basename.pm, and
+File::Path.pm.
+
+5.3.2) How do I get input from the user of the script?
+
+The simplest method is to use the MacPerl::Ask() and MacPerl::Answer()
+methods.
+
+5.3.3) How do I pass parameters to the script?
+
+The first line of the Perl script has room for one argument. For instance,
+
+#!perl -pi.BAK
+
+will invoke MacPerl with the parameters -p (for wrapping an input loop
+around the code with autoprint), and -i.BAK (for renaming the input file
+with .BAK appended, and rewriting the file).
+
+If you also want to give the user a chance to enter command line options,
+you can use the following code fragment:
+
+   if( $MacPerl::Version =~ /Application$/ ) {
+        # we're running from the app
+        local( $cmdLine, @args );
+        $cmdLine = &MacPerl::Ask( "Enter command line options:" );
+        require "shellwords.pl";
+        @args = &shellwords( $cmdLine );
+        unshift( @ARGV, @args );
+    }
+
+If your script just needs to know file names, then you can save the script
+as a droplet and start it by dropping the desired files onto the droplet's
+icon from the Finder.
+
+In the MPW version, the command line is supplied in the same manner as on
+Unix. For the application, there are two choices, depending on whether or
+not you need just file names or also options.
+
+If the parameters you need to supply are mostly fixed, you can also put them
+after the script itself, in the data portion of the script. For instance,
+
+# Get the default parameters
+ {
+   my @parms = <DATA>;
+    chomp(@parms);
+    unshift(@ARGV, @parms);
+}
+...
+ __END__
+parm1
+parm2
+...
+
+5.4) How do I know what directory the current script is in?
+
+$0 contains the full path to the script that is executing. Here's code that
+will parse this (or any other path) under both file systems:
+
+    $dirSep = '/';  # assume Unix
+    $dirSep = ':' if $MacPerl::Version;  # change to Mac
+    ($path, $app) = $0 =~ /^(.*$dirSep)?([^$dirSep]+)$/;
+
+or, better because it uses standard facilities,
+
+    use File::Basename;
+    ($app, $path) = fileparse($0);
+
+6) Misfeatures and Bugs
+
+6.1) Misfeatures
+
+PERL was written in a Unix application environment to handle many common
+report generation problems, that required quick access to varied
+information. Its success as a general purpose programming language has
+occurred despite its provenance, and its (scary ;-) syntax. Many problems
+are encountered that baffle even the most seasoned computer programmer until
+the "correct" interpretation is pointed out to them. Here are a number of
+misfeatures and how to deal with them.
+
+6.1.1) Why does the here-is document not get read properly?
+
+More than likely one of the two following conditions is your problem:
+
+  1. there isn't a carriage return after the final HEREIS or
+  2. there is a bunch of white space after the final HEREIS
+
+To put it in Perl terms, the line that terminates the string must be exactly
+the line that would be produced by the perl code:
+
+    print "HEREIS\n";
+
+6.1.2) Why does MacPerl not work with Netscape?
+
+One release of MacPerl installed an incorrect version of ObjectSupportLib
+into the System Folder on PowerMacs.
+
+The latest version of ObjectSupportLib is 1.1.
+
+6.1.3) When I try to read a particular file, why does MacPerl complain that
+it is "out of memory"?
+
+If the file that you are trying to read is big and was prepared on a Unix
+system, and not translated to the Mac environment (for instance, FTP
+transfer in binary mode), then each line in the file will have newline
+instead of carriage-return at the end. This causes MacPerl to try to read
+the entire file at once, in an inefficient manner.
+
+Set the record separator character to "\012" using any of
+
+    use English;
+    $/ = "\012";
+    $INPUT_RECORD_SEPARATOR = "\012";
+    $RS = "\012";
+
+Alternatively, translate the file using an editor or file conversion
+program.
+
+6.2) Bugs
+
+6.2.1) I can't get my droplet to run when I drop files on it?
+
+Through some low level interactions, software used in the AppleScript system
+is needed to operate the droplet mechanism. Get the current version of
+AppleScript and install it in the Extensions Folder of your system.

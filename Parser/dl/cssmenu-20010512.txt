@@ -1,0 +1,1544 @@
+#!/usr/bin/perl -wT
+# de-tabbed at four columns per tab per perldoc perlstyle
+use strict;
+use integer;
+$| = 1;
+# require 5.004; # at least... not yet certain of minimum perl requirement
+my $VERSION = '20010512';
+use CGI qw( :standard -no_debug escapeHTML); use CGI::Carp 'fatalsToBrowser';
+
+head1 NAME
+
+CSS Menu - offer website visitors a choice of stylesheets.
+
+=head1 DESCRIPTION
+
+This script lets your website offer a menu of stylesheets.
+
+=head1 README
+
+    This script was written for theperlarchive.com as the result
+    of a discussion of their switch to a stylesheet which was less
+    than ideal for some users. The text below contains many references
+    to their site, and the HTML code ouputed by this script currently
+    resembles the perlarchive's HTML. You will quite likely want to
+    examine not only the configuration variables, but also the HTML
+    (in HEREDOC'ed strings) to modify for use with your website.
+    
+    I'm too lazy to re-write this documentation right now, or to fix
+    the HTML, so I'm putting this out as-is (plus what CPAN scripts
+    requires) in case anyone else out there may want it.
+    
+    -matt
+    
+    
+    
+    
+    This code has been released by its author Matthew Wickline
+    into the public domain April 22nd 2001.
+    ... and re-released into the public domain by the same author
+    after minor changes on the following dates:
+        April 26th 2001
+        April 30th 2001
+        May    4th 2001
+        May   12th 2001
+    
+    This code is provided with no warantees or guarantees of any
+    sort, and no claims are made as to the code's suitability or
+    merchantability for any purpose. Et cetera ad nasuem, caveat
+    emptor (even though this is free code, so there is technically
+    no "buyer"... if I knew the latin for "user", I'd have put that
+    in there instead ;)
+    
+    I'll document two things here... First is how you would install
+    the script enough to be able to test it. Second is how you would
+    proceed to implement the script in live code.
+    
+    Testing:
+        
+        First install the script. You can install it anywhere you
+        want, but this code makes an assumption that you will install
+        it within the www.perlarchive.com domain (as opposed to one
+        of the other perlarchive domains like tlc or something). If
+        you do not install it in www.perlarchive.com, then you will
+        need to pay close attention when setting $css_menu below.
+        It is important that all of this happen within one domain.
+        You'll still be able to use the stylesheets in other domains,
+        but the tag linking to the stylesheet will still reference
+        the www.perlarchive.com domain (or whichever domain you use
+        to host this script). This is because different browsers
+        handle cross-domain cookie security slightly differently, and
+        the best way to avoid compatability problems is to keep all
+        of our script interactions within the same domain.
+        
+        To see if the script installed properly, access the script
+        at its URL with ?cookie_offered=1 appended. So maybe:
+            http://www.perlarchive.com/css_menu.cgi?cookie_offered=1
+        You should get a stylesheet menu of some sort. If not, then
+        something is wrong. Verify that you can execute cgi scripts
+        in the install directory, that the script has the right
+        permissions (Unix: chmod a+x css_menu.cgi ... PC: give access
+        to the anonymous internet user). Make sure that the file has
+        the right line endings for the server's platform. Etc.
+        
+        Once you've got a menu comming up, you've got a script which
+        can stand on its own. However, the menu will not be wrapped
+        up in the perlarchive template. So, you'll want to create a
+        page that will "suck in" a stylesheet menu from this script.
+        Basically, just create a new page, as you normally would,
+        but instead of putting real content in where you would put
+        content, put the following:
+            <!--#exec cgi="/css_menu.cgi?ssi_menu=please" -->
+        
+        Save the new web page, maybe as css_menu.shtml, so it
+        would then have a URL of
+            http://www.perlarchive.com/css_menu.shtml
+        
+        In order for the exec cgi call to work, the shtml and cgi
+        files must both be served from the same domain, in this
+        case we're assuming www.perlarchive.com. If you don't see
+        the menu being rendered in the shtml page when you access
+        its URL, then ensure that
+            - double-check that the shtml file's changes were
+              saved after you put in the exec cgi tag, and that
+              you're seeing an empty-ish page, not a 404 error
+            - the script tested ok in stand-alone mode above
+            - the .cgi and .shtml are in the same domain
+              (rather than one of them in tlc. and one in www.)
+            - your server has SSI exec cgi enabled
+        
+        If exec cgi is not enabled and cannot be enabled, then
+        you'll have to use the script in stand-alone mode. That
+        means the menu won't look like your other perlarchive pages
+        (unless you add some functionality to the script). To
+        put the script in stand-alone mode, set $css_menu (below)
+        to an empty string (or other false value). Otherwise, set
+        $css_menu to the URL of the shtml page. Right now, there
+        is already a value in $css_menu which assumes that you're
+        able to follow the above example to the letter, and decided
+        to use the same file names as given in the examples. You
+        will want to ensure that the value is correct (or empty if
+        exec cgi is not an option).
+        
+        Now we need a page which will use stylesheets provided by
+        this script. You could use the menu page itself, but I think
+        that implementation will be smoother if you use some other
+        page. So, duplicate one of your existing perlarchive pages.
+        This page can be in any of the perlarchive.com subdomains,
+        at any path. Just duplicate it and give the duplicate a new
+        name so we can play with it an no users will accidentally
+        run into the test page.
+        
+        Now, I understand that much of the info in that page will
+        be filled in by SSI calls, and that one of those SSI calls
+        fills in a bunch of header information, including the link
+        to the stylesheet. We don't want to edit the included file
+        yet, as we're still testing and doing that would affect all
+        of the files in the site. So, for this test file, replace
+        the relevant SSI call with the actualy content provided by
+        that SSI call. Now we can edit the content freely, and only
+        affect this one test page. Replace the stylesheet URL with
+        the URL to this script (without any extra parameters).
+        So, maybe this:
+            http://www.perlarchive.com/css_menu.cgi
+        
+        Now, we need to have a link to the stylesheet menu. Normally
+        I imagine that this link would go in one of the side-box
+        areas. For testing purposes, though, we can just put it right
+        in the content of the test page. The link should point to the
+        cgi script with "?menu=please" appended. (Note that this is
+        not the same as the "?ssi_menu=please" used above!)
+        So, maybe this:
+            http://www.perlarchive.com/css_menu.cgi?menu=please
+        
+        Now pull up that test page in your web browser. You should
+        be able to click on the link and be taken to the shtml page.
+        The reason that you don't link directly to the shtml page
+        itself is that we want the script to have an opportunity to
+        check your browser's cookie support. You should see different
+        behavior when you turn cookies on or off. When you have cookies
+        enabled, and you select different stylesheet preferences, you
+        should see those changes taking effect in the test page which
+        calls the script to provide its stylesheet. (As the menu page
+        indicates, you may need to reload for the new stylesheet to
+        be downloaded and applied.)
+        
+        Now, we need to configure the script. The readily-configurable
+        variables are all in the first section of code below. We have
+        already talked about the first variable $css_menu. The other
+        variables are all described below. The last config variable is
+        @development_machines, so keep going until you set that one.
+        There's also a large comment after that indicating that you're
+        done. Note that this script was not designed to be highly
+        portable. If you want to use it anywhere outside of the
+        perlarchive, you'll want to search the file for occurances of
+        perlarchive and replace them as appropriate.
+        
+        Once you've verified to your satisfaction that the test settup
+        is configured as you desire, and working properly, it is time
+        to make the whole system live.
+    
+    Implementation:
+        
+        First, decide whether you're going to use the shtml menu page
+        in its current location. If so, good. If not, put it in its
+        final location, and adjust the $css_menu variable below. Also,
+        make sure that the script is in its final location. If so, good.
+        If not, move it. Be sure to put it under the same domain as the
+        .shtml page (perhaps www.perlarchive.com) and note that all of
+        the URLs you constructed above will need to be adjusted to
+        accomadate the new script location (including the exec cgi call).
+        I strongly suggest that you re-test if you decided to move stuff.
+        
+        Now that everything is in a final location, and re-tested, We
+        need to adjust the link to the stylesheet source in every page,
+        and add a link for users to change their css preferences to
+        every page. I strongly recomend that the chanegs be made in that
+        order. That way, the script will be serving them the appropriate
+        default pages before they know they have an option, and then they
+        will find an option appearing to change that behavior. If you do
+        it in the other order, they'll have an option to pick a new style,
+        but the option won't work until the link to the stylesheet source
+        is udpated on all the pages.
+        
+        So, search for all the stylesheet links in your site (maybe they're
+        in one SSI file, so you'll have less work). Replace each URL with
+        a call to the cgi script, without any additional parameters.
+        So, maybe this:
+            http://www.perlarchive.com/css_menu.cgi
+        
+        Be sure that you use the full URL, including the domain, so that
+        the script is always called from the same domain, and you won't
+        have any cookie compatability problems. Even pages in the tlc
+        subdomain should call their styelsheet from the www domain (well,
+        assuming that you decided to use the www domain for this).
+        
+        When all pages are updated, users should be receiving appropriate
+        stylesheets automatically. They don't yet have the option to pick
+        a different preference. To give them that option, add to one of
+        your SSI side-boxes a link like
+            http://www.perlarchive.com/css_menu.cgi?menu=please
+        
+        Again, be sure you use the same domain for this link as you did
+        with the $css_menu variable and in the stylesheet link above.
+        Since this link will appear in multiple perlarchive subdomains,
+        you'll probably want to specify the full URL in the link.
+        
+        At this point, you should be done. Now you can work on any new
+        stylesheets by having them set as non-public stylesheets in the
+        %css config hash below. You can polish them as much as you like,
+        and then make them public so that other folks can use them.
+        
+    
+    Enjoy!
+    
+    -matt
+    
+    
+    PS: This is now public domain, so you can do anything you want
+    with it. If you'd like you can insert it into the perlarchive's
+    script archive, but note that I'm not offering any support for
+    it, and would rather not have my email address associated with
+    the script if it is made publicly available. I'm happy to tweak
+    it for you if you run into any problems with it, but only as time
+    permits, and only for use at the perlarchive. Ironically, as I
+    typed this paragraph, it occured to me to see if the perlarchive
+    already had anything simmilar. Turns out that (CSSFile; ID #2650)
+    is quite simmilar. Well, TIMTOWTDI as they say...
+
+
+=head1 PREREQUISITES
+
+This script requires the C<CGI> module.
+
+=head1 COREQUISITES
+
+none
+
+=pod OSNAMES
+
+any
+
+=pod SCRIPT CATEGORIES
+
+Web
+CGI
+
+=cut
+
+
+
+
+
+
+# TODO
+    # quick-links feature
+        # could add an ssi call for quick links... they would appear
+        # as just a list of links, each link naming a stylesheet.
+        # User would click link, and their prefs would change. This
+        # would require defining a "short name" for each style, and
+        # we could return the list as either comma separated list of
+        # links, or as an UL element (depending on ssi call).
+        # Maybe I'll add that later, but email conversation indicated
+        # that this usage would be less attractive for the perlarchive.
+        # NOTE: if this feature is implmented, use the short name instead
+        # of the %css key to report cookie values to users. That way the
+        # %css key is no longer a user-visible item (other than in URLs).
+    # less site-specific output
+        # modify HTML output to be more generic. This would only be
+        # for my copy of the code, not for the perlarchive's version.
+
+
+my $css_menu = q{http://www.perlarchive.com/css_menu.shtml};
+    # This is the URL for the .shtml page which wraps template
+    # stuff around the stylesheet menu (which content is itself
+    # inserted into that page via server-side include)
+    ##
+    # Set this to the empty string (or undef or other false value)
+    # if you want this script to generate the entire stylesheet
+    # menu page on its own. The script will do this, but the
+    # resulting web page will not have the perlarchive look-and-feel.
+    ##########
+    # WARNING:
+    # When you give users a link to the stylesheet menu, you
+    # should *NOT* give them the above URL. See the pod above
+    # for details. We first want to check their cookie support.
+my $home = q{http://www.perlarchive.com/};
+    # We try to use referer info to send users to their
+    # last-visited page after they select a stylesheet.
+    # If their browser didn't give us that info, send
+    # them to the above URL by default.
+my $our_urls = qr{
+    # We determine whether a referer header is from our site
+    # by seeing if it matches this regex.
+    ##
+    # Anchor to start of URL to avoid false matches on things
+    # like http://some.other.com/but/www.perlarchive.com/file.html
+        ^https?://
+    # Allow optional multiple arbitrary subdomains off our main
+    # domain(s). This allows for www|guide|tlc|jobs subdomains, or
+    # no subdomain at all, or even messy things like
+    # http://tlc.abc.foo-bar-baz.perlarchive.com/
+        (?:
+            [a-z\d\-]+
+            \.
+        )*?
+    # Now for our main domain(s)...
+    # This may be a bit overly generous, but the associated
+    # risk is not really significant. Feel free to make this
+    # more presice if you want:
+        (?:the-?)?pea?rl(archives?|gurus?|forums?|heads?|guides?|jobs?)
+        \.
+        (?:com|net|org)
+}ix;
+my $convenient_source_access = 1;
+    # Set to a false value if you want to remove "view css source"
+    # links from the stylesheet menu. If this value is true, then
+    # all users will have the convenient option to view stylesheet
+    # sources from the menu page. If it is set to false, this option
+    # will only be made available to developers
+    # (who are defined by IP address in @development_machines below).
+my $verbose_developer_information = 1;
+    # leave this at a true value while you're getting acquainted
+    # with the developer options in the stylesheet menu. Once you
+    # know what everything does, set this to a false value, and
+    # the script will remove a bunch of fluff so you don't have
+    # to scroll through it all to get to the meat of the menu.
+my $record_key_order = 0; # THIS ONE IS NOT A CONFIGURABLE ITEM
+    # (It's a counter to maintain key's sort order in %css below.)
+my %css = (
+    # Hash of hashes with one entry for each of stylesheet.
+    # Define the keys in the same order you want them to appear
+    # in the menu page. Note that non-public stylesheets will
+    # only be visible to the developer (as defined by IP address
+    # below) and will be clearly marked as non-public even then.
+    ##
+    # The values used for keys below are user-visible in one place,
+    # where we tell them what their cookie contains. We also give
+    # the label for the stylesheet, so the key doesn't need to be
+    # overly-descriptive. However, you probably don't want to use
+    # anything as a key that you wouldn't want a user reading.
+    # So "std" isn't amazingly descriptive, but it's a fine %css key.
+    'std' => {
+        'public' => 1, # is this stylesheet ready for public use yet?
+        'label' => 'Default Stylesheet', # user-readable stylesheet name
+        'sort' => $record_key_order++,
+        # User will see the unescaped description in HTML. So, please
+        # use HTML tags. For ideal formating, the description HTML should
+        # be appropriate for inclusion in a list item, and should end
+        # with something indicating a break.
+        # A single paragraph element of description is probably ideal;
+        'description' => p(
+            q{This is the base stylesheet developed for the},
+            q{Perl Archive web site. It's an evolving balance},
+            q{of our design considerations and your input.},
+        ),
+        'fetch' => \&get_base_default_stylesheet, # Subref to generate css
+            # By using a subref, we avoid having to allocate memory
+            # for every single stylesheet when sometimes we don't
+            # use any of them, and othertimes we only need one. This
+            # becomes more relevant in the variations of the base
+            # stylesheet below...
+            # The referenced sub needs to return the text of the css file.
+            # It could read it from disk, or modify a stylesheet returned
+            # by some other sub (as the next two do), or have the contents
+            # in a big string (HEREDOC'ed or something) and return that.
+            # This particular ref'ed sub yanks everything from main::DATA.
+    },
+    'usr_sized' => {
+        'public' => 1,
+        'label' => 'Stylesheet Without Font-Size Modifications',
+        'sort' => $record_key_order++,
+        'description' => p(
+            q{Our default stylesheet excersizes control over},
+            q{font sizes. For those of you who may have higher},
+            q{resolution monitors, or other considerations which},
+            q{make our standard font sizes uncomfortably small,},
+            q{we offer this variation which leaves font sizes},
+            q{to the discression of your browser preferences.},
+        ),
+        'fetch' => sub {
+            return &remove_font_sizes( &get_base_default_stylesheet() );
+        },
+    },
+    'usr_sized_no_arial' => {
+        'public' => 1,
+        'label' => 'Arial-Free Stylesheet Without Font-Size Modifications',
+        'sort' => $record_key_order++,
+        'description' => p(
+            q{Our suggested stylesheet for Macintosh users},
+            q{removes font-size control and the arial font.},
+        ),
+        'fetch' => sub {
+            return &no_more_arial(
+                &remove_font_sizes( &get_base_default_stylesheet() )
+            );
+        },
+    },
+    'no_style' => {
+        'public' => 0,
+        'label' => 'Emtpy Stylesheet',
+        'sort' => $record_key_order++,
+        'description' => p(
+            q{To see what the site looks like without any},
+            q{stylesheet at all, use this empty stylesheet.},
+        ),
+        'fetch' => sub { return "\n" },
+    },
+);
+sub recomended_stylesheet {
+    # Called when user hasn't picked a style for themselves.
+    # (or they've rejected our cookie or can't use cookies)
+    # This sub needs to return a key from the above %css hash.
+    # It can pick any key you want, based on whatever criteria
+    # you want. Maybe you want to recomend different stylesheets
+    # for specific holidays, or more likely for different users'
+    # platforms.
+    # If the user manually selects a stylesheet (and has enabled
+    # cookie support in their browser) than that choice will
+    # take precedence over this subroutine.
+    return(
+        ( $ENV{'HTTP_USER_AGENT'} =~ m/Macintosh/i )
+            ? 'usr_sized_no_arial' # mac users get this by default
+            : 'std'                # other users get this by default
+    );
+}
+# list IP addresses of your development machine(s) below...
+# They will see non-public stylesheets in their menu pages
+# (be sure to remove the fake IP data I've put in the list!)
+my @development_machines = qw{
+    123.123.123.123
+    234.234.234.234
+    135.135.135.135
+};
+
+#########################################################
+# The bulk of the configuration stuff is now done.
+# There is a stylesheet at the end of this script,
+# and a few subs right above that which generate
+# modified versions of that stylesheet. Also, there
+# are snippets of HTML and stuff in the bulk of the
+# code (I've opted against a template system in order
+# to reduce module dependancy). Other than the big
+# stylesheet at the end, chances are everything you'd
+# want to configure is above this point.
+#########################################################
+
+# set some non-configurable and/or derived variables:
+my @public = ( # styles for everyone
+    sort { $css{$a}{'sort'} <=>  $css{$b}{'sort'} }
+    grep { $css{$_}{'public'} }
+    keys %css
+);
+my @private = ( # styles for the developer only
+    sort { $css{$a}{'sort'} <=>  $css{$b}{'sort'} }
+    grep { ! $css{$_}{'public'} }
+    keys %css
+);
+my %p = map {$_ => param($_)} param(); # our CGI parameters
+my $url = url(); # a usefull thing to know for building links
+# All done with initializing variables.
+# Now we begin with the script logic...
+if ( !keys %p ) {
+    # no cgi paramters... so they just want a stylesheet:
+    print header('text/css'), ( &get_appropriate_stylesheet() )[0];
+} else {
+    # There are keys in $p, meaning cgi parameters, meaning
+    # we're supposed to do something more interesting...
+    if ( $p{'clear_cookie'} ) {
+        # Developer-only trick for clearing their
+        # css-pref cookie for testing purposes:
+        print header(
+            '-cookie' => [
+            '-type' => 'text/plain',
+                cookie(
+                    '-name'    => 'user_css_prefs',
+                    '-expires' => '+1s', # cookie expires in one second
+                    '-value'   => '',    # and doesn't even have content
+                ),
+                cookie(
+                    # this cookie ensures that we don't inadvertantly
+                    # make the client appear to no-longer support cookies
+                    '-name'    => 'crumb',
+                    '-expires' => '+1d',
+                    '-value'   => 'temp',
+                ),
+            ],
+            # Ideally, we'd send 204 No Content, but unfortunately,
+            # some browsers will ignore any cookies sent with that
+            # status header associated. So, instead, we use 202,
+            # which means that the user has to use their back arrow
+            # instead of just staying put. Oh well.
+            '-status' => '202 Accepted',
+        ), join( "\n",
+            'Your cookie has been eaten. Use your back button to return',
+            'to the developer stylesheet menu. You may want to then hit',
+            'reload to refresh the text based on your newly absent cookie.',
+        );
+    } elsif ( $p{'see_current_css'} ) {
+        # Developer-only trick for viewing the stylesheet
+        # we'd return to the developer's client machine
+        # given their current cookie setting and user-agent
+        # string and whatnot:
+        print header('text/plain'), ( &get_appropriate_stylesheet() )[0];
+    } elsif (
+        exists $p{'set'} and defined $p{'set'}
+        and exists $css{ $p{'set'} }
+    ) {
+        # user just chose their favorite stylesheet:
+        &set_prefs_and_return_to_website_content();
+    } elsif (
+        exists $p{'get'} and defined $p{'get'}
+        and exists $css{ $p{'get'} }
+    ) {
+        # user wants to look at the source of a stylesheet:
+        # spew file as text/plain for user to view
+        print header('text/plain'), &{ $css{ $p{'get'} }{'fetch'}  };
+        exit(1);
+    } elsif ( !exists $p{'cookie_offered'} ) {
+        # we have not yet tested the user's cookie support:
+        &test_client_cookie_support();
+    } else {
+        # we've already tested their cookie support.
+        # Now it's time to give them a stylesheet menu.
+        # First, note where to send them after they decide:
+        if (
+            defined $p{'return'}
+                and $p{'return'} =~ m{$our_urls}
+        ) {
+            $home = $p{'return'};
+        } elsif (
+            defined cookie('return')
+                and cookie('return') =~ m{$our_urls}
+        ) {
+            $home = cookie('return');
+        } elsif (
+            defined $ENV{'HTTP_REFERER'}
+                and $ENV{'HTTP_REFERER'} =~ m{$our_urls}
+        ) {
+            $home = $ENV{'HTTP_REFERER'};
+        }
+        # now generate a stylesheet menu
+        if ( $p{'ssi_menu'} ) {
+            # this is the documented signature for ssi inclusion
+            # so we return just the menu itself
+            print header(), &style_menu;
+        } else {
+            # No ssi inclusion signature, so assume that
+            # we need to send an entire web page w/ menu.
+            # We also clear out the return cookie.
+            print(
+                header(
+                    '-type' => 'text/html',
+                    '-cookie' => cookie(
+                        '-name'    => 'return',
+                        '-expires' => '+1s', # cleared-out, and short-lived
+                        '-value'   => ' ',
+                    ),
+                ),
+                start_html('Stylesheet Menu'),
+                &style_menu,
+                end_html(),
+            );
+        }
+    }
+}
+exit(1);
+
+#########################################################
+# The overall script logic is now finished.
+# Below are the subroutines which were called above...
+#########################################################
+
+sub style_menu {
+    # This sub returns the menu of stylesheets, either for inclusion
+    # via SSI, or for inclusion in a script-generated web page.
+    # I'll try to use HTML similar to that found in existing PA pages.
+    # My personal preference would be for sytactically valid HTML, but
+    # since I won't be maintaining this on an ongoing basis, that
+    # preference is not so relevant.
+    my $menu;
+    my $developer = grep { $_ eq $ENV{'REMOTE_ADDR'} }  @development_machines;
+    my $instruction = <<"    END_OF_HEREDOC";
+        <p>
+            The links below describe our available stylesheets
+            and how to select your prefered stylesheet.
+            Your browser may have cached your previouly-selected
+            stylesheet, so if you do not see your preferences taking
+            affect immediatly, try using the 'reload' function in your
+            web browser.
+        </p>
+    END_OF_HEREDOC
+    if (  (!@public and !$developer)  or  ($developer and !keys %css)  ) {
+        # Hey! Where'd all the stylesheets go?
+        $menu = <<"        END_OF_HEREDOC";
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr><td valign="TOP">
+                    <p class="navtitle">
+                        Temporarily Out Of Stock
+                    </p>
+                </td></tr>
+                <tr><td bgcolor="#FFCC66" height="3">
+                    <table border="0" cellpadding="1" cellspacing="0" width="100%">
+                        <tr><td bgcolor="#FFCC66"> </td></tr>
+                    </table>
+                </td></tr>
+            </table>
+            <br>
+            <blockquote>
+                <p>
+                    We apologize, but due to popular demand, we have run out
+                    of stylesheets. Our tailors are working hard to produce
+                    new stock and we will remedy this situation just as soon
+                    as we possibly can.
+                </p>
+                <p>
+                    Thank you for your patience.
+                </p>
+            </blockquote>
+            <br><br>
+        END_OF_HEREDOC
+    } else {
+        # We've got a menu... start gabbing:
+        unless (
+            grep { defined cookie($_) } qw(user_css_prefs return crumb)
+        ) {
+            # No cookies here... remind user to turn them on:
+            $menu .= <<"            END_OF_HEREDOC";
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr><td valign="TOP">
+                        <p class="navtitle">
+                            This Feature Requires Cookies
+                        </p>
+                    </td></tr>
+                    <tr><td bgcolor="#FFCC66" height="3">
+                        <table border="0" cellpadding="1" cellspacing="0" width="100%">
+                            <tr><td bgcolor="#FFCC66"> </td></tr>
+                        </table>
+                    </td></tr>
+                </table>
+                <br>
+                <blockquote>
+                    <p>
+                        In order for us to offer you a choice of stylesheets,
+                        you must accept a cookie from our webserver. This cookie
+                        will contain only the name of your selected stylesheet,
+                        and will be used only to return that stylesheet each
+                        time you return to our site.
+                    </p>
+                    <p>
+                        If your browser is configured to prompt you when cookies
+                        are offered, you will need to accept the cookie offered
+                        when you select a stylesheet. If your browser is configured
+                        to reject all cookies, you will need to adjust your
+                        preferences before selecting a stylesheet, or your selection
+                        will not be recorded.
+                    </p>
+                </blockquote>
+                <br><br>
+            END_OF_HEREDOC
+        }
+        my $cookie = cookie('user_css_prefs');
+        $cookie = '(no cookie set)' unless (defined $cookie and length $cookie);
+        my $cur = ( &get_appropriate_stylesheet() )[1];
+        my $cur_label = (
+            ( defined $cur and exists $css{$cur} )
+                ? $css{$cur}{'label'}
+                : 'an empty stylesheet'
+        );
+        my $rec = &recomended_stylesheet();
+        my $rec_label = (exists $css{$rec} ? $css{$rec}{'label'} : $rec);
+        my $rec_alert = '';
+        if ( exists $css{$rec} ) {
+            unless ( $css{$rec}{'public'} ) {
+                # recomending private stylesheets
+                if ( $developer ) {
+                    # developer gets a warning
+                    $rec_alert = join( ' ',
+                        'The script is currently recomending a non-public stylesheet!',
+                        'Users will get this stylesheet, even if they are not developers.',
+                        'Either adjust the recomended_stylesheet sub, or if this stylesheet',
+                        'is actually ready for public consuption, then mark it public.',
+                    );
+                } else {
+                    # non-developer gets an explanation
+                    $rec_alert = join( ' ',
+                        'Do to an unusual combination of configuration settings,',
+                        'the script is currently recomending a developmental stylesheet.',
+                        'Acordingly, you will not see this stylsheet in the menu below.',
+                        'This is probably a temporary condition which will be fixed',
+                        'in the near future as the stylesheet is either removed',
+                        'from the pool of recomended stylesheets, or is added to the',
+                        'list of stylesheets available in the menu.',
+                    );
+                }
+            }
+        } elsif ( $developer ) {
+            # non-existant recomendation, developer gets a warning:
+            $rec_alert = join( ' ',
+                'The script is currently recomending a non-existant stylesheet!',
+                'We will try to compensate by offering the first-listed public',
+                'stylesheet, but you should fix the recomended_stylesheet sub.',
+                'If no public stylesheets are available, then the user will',
+                'either get an empty one (the default behavior), or the first',
+                'available private stylesheet (if someone adjusted the script).',
+            );
+        } else {
+            # non-existant recomendation, non-developer gets a cover-up:
+            $rec_label = 'an empty stylesheet';
+        }
+        my $esc_url = escapeHTML($url);
+        my $view_cur_links = ( $convenient_source_access||$developer
+            ? join( "\n",
+                'You can view this stylesheet in',
+                qq{<a href="$esc_url?see_current_css=please">this window</a>},
+                'or in a',
+                qq{<a href="$esc_url?see_current_css=please" target="_blank">new window</a>.},
+            )
+            : '' # non-developers may not have convenient src access
+        );
+        my $style_selection_info = <<"        END_OF_HEREDOC";
+            <p>
+                With your current style preferences cookie value of
+                <strong>$cookie</strong>, this script would serve you
+                <strong>$cur_label</strong>.
+                $view_cur_links
+            </p>
+            <p>
+                This script would currently serve the
+                <strong>$rec_label</strong> stylesheet
+                to someone with this browser who had
+                <strong>not</strong> explicitly set a preference.
+                <font color="#FF0000"><big><strong>$rec_alert</strong></big></font>
+            </p>
+        END_OF_HEREDOC
+        if ( $developer ) {
+            # We've got a developer. Explain what's happening in case
+            # some non-developer stumbled onto the features, and also
+            # throw in the features for the developer. These will include
+            # a couple of extra links and access to non-public stylesheets.
+            $convenient_source_access = 1;
+                # just in case this was turned off for normal users,
+                # we ensure that it's always turned on for developers
+            my $developer_gab;
+            if ( $verbose_developer_information ) {
+                $developer_gab = <<"                END_OF_HEREDOC";
+                    <p>
+                        Your IP address ($ENV{'REMOTE_ADDR'}) was found within our
+                        list of known development machine IP addresses. If you are
+                        not a developer, then perhaps you're using the same proxy
+                        server as one of our developers, or have been assigned a
+                        dynamic IP address recently used by one of our developers.
+                        If that it the case, you will see some extra features here
+                        which will allow you to preview unfinished stylesheets. You
+                        won't be able to edit anything, but you may be able to see
+                        what our website looks like with a half-finished stylesheet.
+                    </p>
+                    $style_selection_info
+                    <p>
+                        To clear your current stylesheet preference cookie, use
+                        <a href="esc_url?clear_cookie=please">this link</a>.
+                    </p>
+                    <p>
+                        Tip: If you want to ensure that you're returned to this
+                        menu page after you select a new stylesheet, click
+                        <a href="@{[escapeHTML(
+                            $css_menu || $url.'?'.join( '&',
+                                      'menu='.uri_escape( $p{'ssi_menu'} ),
+                            'cookie_offered=1',
+                            )
+                        )]}">this link</a>
+                        first. That way, your referer header will show that you
+                        came from here before selecting your stylesheet, so
+                        you'll be returned here afterwards. (Your browser must
+                        send a refer header for this to work.)
+                    </p>
+                END_OF_HEREDOC
+            } else {
+                $developer_gab = <<"                END_OF_HEREDOC";
+                    <p>
+                        Your IP address ($ENV{'REMOTE_ADDR'}) was found within our
+                        list of known development machine IP addresses.
+                        To clear your current stylesheet preference cookie, use
+                        <a href="esc_url?clear_cookie=please">this link</a>.
+                        To return to this page after selecting stylesheets, click
+                        <a href="@{[escapeHTML(
+                            $css_menu || $url.'?'.join( '&',
+                                      'menu='.uri_escape( $p{'ssi_menu'} ),
+                            'cookie_offered=1',
+                            )
+                        )]}">this link</a>
+                    </p>
+                    $style_selection_info
+                END_OF_HEREDOC
+            } 
+            $menu .= <<"            END_OF_HEREDOC";
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr><td valign="TOP">
+                        <p class="navtitle">
+                            Greetings Developer!
+                        </p>
+                    </td></tr>
+                    <tr><td bgcolor="#FFCC66" height="3">
+                        <table border="0" cellpadding="1" cellspacing="0" width="100%">
+                            <tr><td bgcolor="#FFCC66"> </td></tr>
+                        </table>
+                    </td></tr>
+                </table>
+                <br>
+                <blockquote>
+                    $developer_gab
+                </blockquote>
+                <br><br>
+            END_OF_HEREDOC
+            $style_selection_info = ''; # don't repeat again in public stylesheet area
+            if ( !@public ) {
+                $menu .= <<"                END_OF_HEREDOC";
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr><td valign="TOP">
+                            <p class="navtitle">
+                                No Public Stylesheets
+                            </p>
+                        </td></tr>
+                        <tr><td bgcolor="#FFCC66" height="3">
+                            <table border="0" cellpadding="1" cellspacing="0" width="100%">
+                                <tr><td bgcolor="#FFCC66"> </td></tr>
+                            </table>
+                        </td></tr>
+                    </table>
+                    <br>
+                    <blockquote>
+                        <p>
+                            There are currently no public stylesheets available.
+                            This situation should be fixed (and quickly, if this
+                            stylesheet script is currently live).
+                        </p>
+                    </blockquote>
+                    <br><br>
+                END_OF_HEREDOC
+            }
+            if ( !@private ) {
+                $menu .= <<"                END_OF_HEREDOC";
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr><td valign="TOP">
+                            <p class="navtitle">
+                                No Private Stylesheets
+                            </p>
+                        </td></tr>
+                        <tr><td bgcolor="#FFCC66" height="3">
+                            <table border="0" cellpadding="1" cellspacing="0" width="100%">
+                                <tr><td bgcolor="#FFCC66"> </td></tr>
+                            </table>
+                        </td></tr>
+                    </table>
+                    <br>
+                    <blockquote>
+                        <p>
+                            All stylesheet entries are for public stylesheets.
+                            This is perfectly fine. In the future, you may find
+                            it convenient to create a couple of private stylesheets
+                            in order to tinker with developmental versions.
+                        </p>
+                    </blockquote>
+                    <br><br>
+                END_OF_HEREDOC
+            } else {
+                # We have private stylesheets:
+                my $menu_list = ul(li([
+                    map { &menu_item($_) } @private
+                ]));
+                if ( $verbose_developer_information ) {
+                    $developer_gab = <<"                    END_OF_HEREDOC";
+                        <p>
+                            Private stylesheets are not listed in the menu page
+                            when non-developers (as determined by IP address)
+                            access that menu page. However, no great pains are
+                            taken to prevent those users from selecting a non-public
+                            stylesheet as their prefered stylesheet. This is a good
+                            thing. It means that if you want someone to provide feedback
+                            on a stylesheet currently under development, you can copy
+                            the URLs used in the links below to give them access.
+                            You can allow them to view the source of the stylesheet,
+                            and to set the stylesheet as their preference.
+                        </p>
+                        $instruction
+                    END_OF_HEREDOC
+                } else {
+                    $developer_gab = <<"                    END_OF_HEREDOC";
+                        <p>
+                            Here are the private stylesheets...
+                        </p>
+                    END_OF_HEREDOC
+                }
+                $menu .= <<"                END_OF_HEREDOC";
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr><td valign="TOP">
+                            <p class="navtitle">
+                                Private Stylesheets
+                            </p>
+                        </td></tr>
+                        <tr><td bgcolor="#FFCC66" height="3">
+                            <table border="0" cellpadding="1" cellspacing="0" width="100%">
+                                <tr><td bgcolor="#FFCC66"> </td></tr>
+                            </table>
+                        </td></tr>
+                    </table>
+                    <br>
+                    <blockquote>
+                        $developer_gab
+                        $menu_list
+                    </blockquote>
+                    <br><br>
+                END_OF_HEREDOC
+                # Modify instructions so developer won't read them twice
+                $instruction = p('... and here are the public stylesheets:');
+            }
+        }
+        if ( @public ) {
+            # We have public stylesheets:
+            my $menu_list = ul(li([
+                map { &menu_item($_) } @public
+            ]));
+            $menu .= <<"            END_OF_HEREDOC";
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr><td valign="TOP">
+                        <p class="navtitle">
+                            Stylesheet Menu
+                        </p>
+                    </td></tr>
+                    <tr><td bgcolor="#FFCC66" height="3">
+                        <table border="0" cellpadding="1" cellspacing="0" width="100%">
+                            <tr><td bgcolor="#FFCC66"> </td></tr>
+                        </table>
+                    </td></tr>
+                </table>
+                <br>
+                <blockquote>
+                    $style_selection_info
+                    $instruction
+                    $menu_list
+                </blockquote>
+                <br><br>
+            END_OF_HEREDOC
+        }
+    }
+    return $menu;
+}
+
+sub menu_item {
+    # Takes name of a key in %css as only argument.
+    # Returns HTML-formated chunk of text with
+    # label (note if  private) (note if selected), description,
+    # links to select, and sometimes to view src
+        # (obeys a $convenient_source_access config var)
+    my $style = shift;
+    my $priv_note = $css{$style}{'public'} ? '' : '<small>(private)</small>';
+    my $select_url = escapeHTML( join( '',
+        $url,
+        '?set=',
+        uri_escape( $style ),
+        '&return=',
+        uri_escape( $home ),
+    ));
+    my $view_src_url = escapeHTML( join( '',
+        $url,
+        '?get=',
+        uri_escape( $style ),
+    ));
+    my $label = escapeHTML( $css{$style}{'label'} );
+    my $select_note = (
+        cookie('user_css_prefs') eq $style
+            ? 'This is your currently-selected stylesheet.<br>'
+            : 'To select this stylesheet, '
+              . qq{<a href="$select_url">click here</a>.<br>}
+    );
+    my $view_note = ( $convenient_source_access
+        ? join( "\n",
+            'You may view the CSS source in',
+            qq{<a href="$view_src_url">this window</a>},
+            'or',
+            qq{<a href="$view_src_url" target="_blank">a new window</a>.},
+        )
+        : ''
+    );
+    return <<"    END_OF_HEREDOC";
+        <strong>$label</strong> $priv_note<br>
+        $select_note
+        $view_note
+        $css{$style}{'description'}
+        <br>
+    END_OF_HEREDOC
+}
+
+sub set_prefs_and_return_to_website_content {
+    $home = $p{'return'} if ( $p{'return'} =~ m{$our_urls} );
+    print(
+        header(
+            '-type' => 'text/plain',
+            '-cookie' => cookie(
+                '-name'    => 'user_css_prefs',
+                '-expires' => '+1y', # cookie good for one year
+                '-value'   => $p{'set'},
+            ),
+            '-location' => $home,
+        ),
+        # The location header tells the browser to redirect, so
+        # the user will likely never read the contents of the
+        # document we send with that header. There's no reason
+        # not to send *something* though, just in case something
+        # goes wrong and they get stuck w/o a redirect (maybe
+        # their modem connection failed right after they got
+        # the redirect request or something).
+        join( "\n",
+            q{This script is requesting to set a cookie with},
+            q{your indicated stylesheet preference and redirect},
+            q{your browser to},
+            qq{  $home},
+            q{You should be taken there automatically. If you do},
+            q{not see your stylesheet preferences taking affect,},
+            q{you may need to enable cookie acceptance in your},
+            q{local web browser preferences.},
+        ),
+    );
+}
+
+sub test_client_cookie_support {
+    # We haven't yet tested whether or not they accept cookies
+    # ...we need to know this, so lets find out...
+    # We do this by sending a cookie and a redirect to the
+    # menu page. If they get to the menu page with a cookie,
+    # then cool. Otherwise, the menu page will include some
+    # verbage asking them to enable cookies.
+    ##
+    # As long as we're sending a cookie, why not put something
+    # usefull in there. We'll grab the referer header so we
+    # know what page they were on when they clicked the menu
+    # link. That way (if they support cookies) we'll have the
+    # info available to return them there after they pick a
+    # stylesheet. If they don't support cookies, then we may
+    # not be able to send them back to that same page. We'll
+    # repeat the referer in a cgi parameter, so $css_menu is
+    # false, then we'll have it available. If it's true, then
+    # we'll be sending them to the shtml page, where we won't
+    # have access to cgi parameters, so if the refere wasn't
+    # in the cookie we'll loose track of it. In this worst case,
+    # the user will have to use their back button. Oh, and if
+    # their browser is configured to not send a referer header,
+    # then they'll be in the same boat. Of course, we'll be
+    # dumping them at the website root, and they may have been
+    # done with their previous page anyhow, so the worst case
+    # won't always be so bad for those users. Actually, many
+    # browsers will maintain the same referer header across a
+    # redirect, so we'll have three places to look for that
+    # info: referer header, return cgi param, and cookie data!
+    ##
+    # Enough nit picking... here's some code:
+    if ( $ENV{'HTTP_REFERER'} =~ m{$our_urls} ) {
+        # stash referer so we can send them back later
+        $home = $ENV{'HTTP_REFERER'};
+    }
+    print(
+        header(
+            '-type' => 'text/plain',
+            '-cookie' => cookie(
+                '-name'    => 'return',
+                '-expires' => '+2m', # plenty long enough for a redirect!
+                '-value'   => $home,
+            ),
+            '-location'
+                # $css_menu is the shtml page.
+                # If that's empty, then the script will do it
+                # solo (but w/o the PA look-and-feel).
+                => $css_menu || $url.'?'.join( '&',
+                              'menu='.uri_escape( $p{'ssi_menu'} ),
+                            'return='.uri_escape( $home ),
+                    'cookie_offered=1',
+                ),
+        ),
+        # Again, the user will probably redirect instantly,
+        # and never see this message, but why not give them
+        # something just in case.
+        join( "\n",
+            q{This script is requesting to set a cookie in order},
+            q{to see if your browser accepts them. You will then},
+            q{be automatically re-directed to a menu of stylesheet},
+            q{options.},
+        ),
+    );
+}
+
+sub get_appropriate_stylesheet {
+    # Figures out what stylesheet to return to any given client.
+    # Returns the stylesheet itself, followed by the %css key
+    # for that stylesheet. In (hopefully) rare cases where there
+    # are no suitable keys in %css, it will return an empty
+    # stylesheet, and undef as the %css key for that stylesheet.
+    my $style; # name of stylesheet (key in %css above)
+    my $stylesheet = "\n\n"; # content of stylesheet
+        # Default stylesheet content is an empty stylesheet.
+    # Now try to set $style from cookie or defaults,
+    # then fill in $stylesheet as indicated by $style...
+    if (
+        ( # Try to give them the stylesheet they request:
+            defined( $style = cookie('user_css_prefs') )
+            and exists $css{$style}
+        ) or ( # Or try to give them a good recomendation:
+            defined( $style = &recomended_stylesheet() )
+            and exists $css{$style}
+        )
+    ) {
+        # Fill in $stylesheet as appropriate for $style
+        $stylesheet = join( "\n",
+            "/* you're being served: $css{$style}{'label'} */",
+            &{ $css{$style}{'fetch'} },
+        );
+    } elsif ( @public ) {
+        # Looks like the recomendation sub returned bad %css key!
+        # This is a configuration error. We'll be relatively
+        # forgiving and just put a comment in the stylesheet.
+        # Hopefully the developer is debugging by viewing the
+        # stylesheets from the menu page, and will see the
+        # comment.
+        ##
+        # Since the recomendation sub returned a bad %css key,
+        # we've got a bit of a problem. We don't know what
+        # stylesheet to return! How about we just grab the
+        # first one in @public list, eh?
+        $style = $private[0];
+        $stylesheet = join( "\n",
+            '/*',
+            "    recomended_stylesheet() was $style, but $style was",
+            '    not found in menu....',
+            "    We're using $css{$style}{'label'} instead.",
+            '*/',
+            &{ $css{$style}{'fetch'} },
+        );
+    } elsif ( 0 and @private ) {
+        # Good grief! There are no public stylesheets!
+        # We won't by default give a private one, as it is
+        # presumably still in testing and not ready for public
+        # consumption at this time. If you want to change that
+        # behavior, and allow us to send a private stylesheet
+        # when all else fails (instead of an empty stylesheet)
+        # then change ( 0 and @private ) to ( @private ) above
+        $style = $private[0];
+        $stylesheet = join( "\n",
+            '/*',
+            "    recomended_stylesheet() was $style, but $style was",
+            '    not found in menu... nor were any public styles defined....',
+            "    We're using $css{$style}{'label'} instead.",
+            '*/',
+            &{ $css{$style}{'fetch'} },
+        );
+    }
+    # Best case, $stylesheet is just what the user requested.
+    # Second best is that we've recomended a suitable stylesheet.
+    # Third best is that we gave the first public stylesheet.
+    # (Forth best is disabled by default: first private styelsheet.)
+    # Worst case, $stylesheet is still an empty stylesheet.
+    return $stylesheet, $style;
+}
+
+sub uri_escape {
+    # Not as efficient as URI::Escape, but good enough for this use,
+    # and removes a dependancy on a non-standard module.
+    my $text = shift; return '' unless defined $text;
+    $text =~ s/([^;\/?:@&=+\$,A-Za-z0-9\-_.!~*'()])/sprintf("%%%02X", ord($1))/ge;
+    return $text;
+}
+
+sub no_more_arial {
+    # Takes a string containing a stylesheet as only argument.
+    # Modifies to remove arial font and returns modified stylesheet
+    my $css = shift;
+    $css =~ s/arial,?[^\S\n]*//gi;
+        # [^\S\n]* means...
+        # zero or more of
+        # any character which is not non-whitespace or newline
+        # aka... zero or more non-newline whitespace characters
+        # this character class is used below as well...
+    return $css;
+}
+sub remove_font_sizes {
+    # Takes a string containing a stylesheet as only argument.
+    # Removes any font-size lines and returns modified stylesheet
+    my $css = shift;
+    $css =~ s/[^\S\n]*font-size\s*:\s*[^;]*;[^\S\n]*\n?//gi;
+    return $css;
+}
+sub get_base_default_stylesheet {
+    # This is the standard stylesheet. Hopefully you can
+    # maintain only this copy and move any customizations
+    # into subroutines like the couple immediately above.
+    return join( '',  (<main::DATA>) );
+}
+
+__DATA__
+.code {
+    background:     white;
+    font-family:        courier, mono;
+    color:          darkred;
+}
+
+.output {
+    background:     wheat;
+    font-family:        courier new, courier, mono;
+    color:          navy;
+}
+
+.legend {
+    font-style:     italic;
+    font-family:        arial, helvetica, sans-serif;
+    font-size:      x-small;
+}
+
+.nl {
+    font-family:        arial, helvetica, sans-serif;
+    font-size:      x-small;
+}
+
+A:link {
+    font-family: arial, helvetica, sans-serif;
+    color: #990066;
+}
+
+A:visited {
+    font-family: arial, helvetica, sans-serif;
+    color: #336699;
+}
+
+
+
+A:hover{
+    font-family: arial, helvetica, sans-serif;
+    background:#000000;
+    color:#FDB900; 
+    text-decoration:overline
+}
+
+span.tpg{
+    background:#FFCC66;
+    color:#BF0010;
+    font-weight: bold;
+}
+
+P.guideborder{
+    padding:    .0375 in;
+    border-width:   1px;
+    border-style:   outset;
+    border-side:    #FFCC66;
+    background: white;
+}
+
+
+dl {
+    font-family: arial, helvetica, sans-serif;
+    font-size: x-small;
+}
+
+small.menu {
+    font-size: small;
+    font-family: arial, helvetica, sans-serif;
+}
+
+ul {
+    list-style: disc;
+    color: #000000;
+    font-family: arial, helvetica, sans-serif;
+}
+
+li {
+    font-family: arial, helvetica, sans-serif;
+    font-size:  x-small;
+}
+
+sup.new {
+    font-size: x-small;
+    color: #FFFFFF;
+    background: #ffcc66;
+    font-weight: bold;
+    font-family: arial, helvetica, sans-serif;
+}
+
+sup.pop {
+    font-size: x-small;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-family: arial, helvetica, sans-serif;
+}
+
+small.date {
+    font-size: x-small;
+    color: #666666;
+    background: #FFFFFF;
+    font-family: arial, helvetica, sans-serif;
+}
+
+small.numlinks {
+    font-size: x-small;
+    color: #666666;
+    font-family: arial, helvetica, sans-serif;
+}
+
+strong.search {
+    color: #000000;
+    font-weight: bold;
+    font-family: arial, helvetica, sans-serif;
+}
+
+small.more {
+    font-size: small;
+    color: #000000;
+    font-weight: normal;
+    font-family: arial, helvetica, sans-serif;
+}
+
+h1,h3,h3,h4,h5,h6 {
+    font-weight: bold;
+    font-family: arial, helvetica, sans-serif;
+}
+
+
+strong.error {
+    color: #FFFFFF;
+    background: #FF3300;
+    font-weight: bold;
+    font-family: arial, helvetica, sans-serif;
+}
+
+P,TABLE,TD,TH,TR {   
+    font-family: arial,helvetica,sans-serif;
+    font-size: x-small;
+}
+
+body {
+    background:             #F7ECDD;
+
+    scrollbar-face-color:       #FFCC66;
+    scrollbar-shadow-color:     #FF6600; 
+    scrollbar-highlight-color:  #FFCC66; 
+    scrollbar-3dlight-color:    #FFFFFF; 
+    scrollbar-darkshadow-color:     #000000; 
+    scrollbar-track-color:      #E2DAD1; 
+    scrollbar-arrow-color:      #000000;
+    font-family: arial,helvetica,sans-serif;
+    font-size: x-small;
+}
+
+.navtitle {
+    font-style: small-caps;
+    background:     #FFCC66;
+    color:      #BF001F;
+    font-size:  small;
+    font-weight:    bold;
+}
+
+.navcontent {
+    font-size:  x-small;
+}
+
+
+hr.light {
+    size:       2pt;
+    color:      #ffcc66;
+}
+
+.link {
+    font-family: arial,helvetica,sans-serif;
+}
+
+PRE {
+    font-family: courier,mono;
+}
+
+.tableborders {
+    background: black;
+}
+
+.tdheader {
+    font-weight: bold;
+    background:  #ffcc66;
+    font-family: arial,helvetica,sans-serif;
+}
+.menubar{
+    background: #ffcc66;
+}
+
+.new {
+    font-size: x-small;
+    color: red;
+}
+
+.catandforum {
+    font-size: x-small;
+}
+
+.posttime {
+    font-size: x-small;
+    text-align: center;
+    background: #ffffff;
+}
+
+.threadtotal {
+    font-size: x-small;
+    background: #ffffff;
+}
+
+.posttotal {
+    background: #e6e6e6;
+    font-size: x-small;
+}
+
+.small {
+    font-size:   x-small;
+    font-family: arial,helvetica,sans-serif;
+}
+
+.standouttext {
+    color: blue;
+}
+
+.welcome {
+    font-family: sans-serif;
+}
+
+.forumtitle {
+    font-weight: bold;
+}
+
+.forumdescript {
+    font-size: 9pt;
+}
+
+.lighttable {
+    background: WHITE;
+}
+
+.darktable {
+    background: #E6E6E6;
+}
+
+.cleartable {
+    background: white;
+}
+
+.alternatetable {
+    background: #FFFFEE;
+}
+
+.subjecttable {
+    background: #ffffff;
+}
+.footertable {
+    background: #ffffff;
+}
+.formboxes{
+    font-family:        arial, helvetica,sans-serif;
+    background-color:   #F7ECDD;
+    font-size:      9pt;
+}
+
+.formboxes2{
+    font-family:        arial, helvetica,sans-serif;
+    background-color:   #ffcc66;
+    font-size:      9pt;
+    font-weight:        bold;
+}
+
+.buttons {
+    font-family:        geneva, arial, sans-serif;
+    font-weight:        bold;
+    color:          black;
+    background-color:   #F7ECDD;
+    font-size:      9pt;
+}
+
+.guidecatheader {
+    font-style:     small-caps;
+    font-size:      15pt;
+    letter-spacing:     .5pt;
+    font-family:        geneva, arial, sans-serif;
+    font-weight:        bold;
+}
+
+.guidenextprev {
+    font-size:      x-small;
+    text-align:     right;
+}
+
+.guidelistingtitle {
+    border-width:       1px;
+    border-style:       outset;
+    background:         white;
+}
+
+.guidelistname {
+    font-style:     small-caps;
+}
+
+.guidelistdesc {
+    background:         #F7ECDD;
+}
+
+P.dropcap:first-letter {
+    font-size:      20pt;
+    float:          left;
+}
+
+.guidelistdetail {
+/*  border-width:       1px; */
+/*  border-style:       inset;*/
+    background:     white   ;
+    font-size:      9pt;
+}
+
+.listingtitle {
+    font-size:      12pt;
+    letter-spacing:     .2pt;
+    font-weight:        bold;
+}
+
+.imglinkwhite {
+    background:     white;
+}
+

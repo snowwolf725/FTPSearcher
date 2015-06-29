@@ -1,0 +1,202 @@
+Module	Win32 5.8.8	Built	Build Notes
+**INFO**			Build Date 19/07/2006
+MAIN PERL	5.8.8	Y	Built with VC++ 6.0 under WinXP
+ANSIScreen	1.42	Y	
+Archive::Tar	1.29	Y	
+Archive::Zip	1.17_02	Y	
+Array::IntSpan	2.001	Y	
+Array::PrintCols	2.1	Y	
+Array::RefElem	1.00	Y	
+Benchmark	-std-	na	
+Bit::Vector	6.4	Y	
+Carp	-std-	na	
+Carp::Assert	0.18	Y	
+CGI	-std-	na	
+CGI-Lite	1.8	Y	
+Class::Fields	0.201	Y	
+Compress::Zlib	1.41	Y	Let module build zlib
+Config	-std-	na	
+Convert::SciEng	0.91	Y	
+Convert::Units	0.43	Y	
+Cwd	-std-	na	
+Data::Dumper	-std-	na	
+Data::DumpXML	1.06	Y	Requires XML::Parser
+Data::ShowTable	3.3	Y	all tests fail
+Data::Walker	1.05	Y	
+Date::Calc	5.4	Y	
+Date::Manip	5.44	Y	
+DB_File	-std-	na	
+DBD::CSV	0.22	Y	
+DBD::ODBC	1.13	Y	Skipped DBI_DSN tests
+DBD::ADO	2.95	Y	
+DBI	1.51	Y	
+DBIx::XML_RDB	0.05	Y	
+Devel::Dprof	19990108	na	
+Devel::Peek	-std-	na	
+Devel::PreProcessor	2003.1128	Y	
+Devel::SmallProf	1.15	Y	
+Digest::MD5	-std-	na	
+English	-std-	na	
+Env	-std-	na	
+Error	0.15		
+Extutils::MakeMaker	6.30_01		
+File::Basename	-std-	na	
+File::PathConvert	0.9	Y	Depracated - use Cwd or File::Spec in core perl instead
+File::Spec	-std-	na	
+FileHandle	-std-	na	
+Fraction	53b	Y	
+FreezeThaw	0.43	Y	
+Frontier::RPC	0.07b4	Y	
+Geography::Countries	1.4	Y	
+Getopt::Long	-std-	na	
+Getopt::Std	-std-	na	
+Graph	0.75	Y	
+Heap	0.71	Y	
+HTML::Parser	3.54	Y	
+HTML::Tagset	3.10	Y	
+HTML::Template	2.8	Y	
+HTML::Tree	3.20	Y	
+HTML::TreeBuilder	-nr-	na	
+IO	-std-	na	
+IO::Socket	-std-	na	
+IO::String	1.08	Y	
+IO::Stringy	2.110	Y	
+IO::Zlib	1.04	Y	
+IPC::Locker	-nr-	na	
+IPC::Shareable	-nr-	na	
+IPC::ShareLite	-nr-	na	
+libnet	-std-	na	
+libwin32	0.26	Y	
+libwww-perl	5.805	Y	Needs MD5 and (probably) Digest::MD5
+libxml-perl	0.08	Y	Requires XML::Parser
+Lingua::EN::AddressParse	1.14	Y	
+Lingua::EN::MatchNames	1.12	Y	
+Lingua::EN::NameCase	1.13	Y	
+Lingua::EN::NameParse	1.22	Y	
+Lingua::EN::NickName	1.14	Y	
+Lingua::EN::Numbers::Ordinate	1.02	Y	
+Lingua::EN::Squeeze	2005.0216	Y	
+Lingua::EN::Syllable	0.251	Y	
+List::Util	-na-	na	
+Locale::SubCountry 	1.37	Y	
+Log::Agent	0.307	Y	some tests fail
+MailTools	1.74	Y	
+Math::Fraction	-na-	na	
+Math-BigInt	1.66	na	
+MD5	1.7	Y	
+MIME::Base64	3.07	na	
+MIME::Types 	1.16	Y	
+MIME-tools	5.420	Y	
+MLDBM	2.01	Y	
+Net::Daemon	0.39	Y	
+Net::FTP	-na-	na	
+Net::Ping	-std-	na	
+Number::Format	1.51	Y	some tests fail
+Number::Spell	0.04	Y	
+OLE::Storage	0.386	Y	
+OLE::Storage_Lite	0.14	Y	
+Parse::RecDescent	1.94	Y	
+Parse::Yapp	1.05	Y	
+PDF 	111	Y	
+PDF::Create	0.01	Y	
+PlRPC	0.2018	Y	
+Pod::Functions	-std-	na	
+Pod::Html	-std-	na	
+POSIX	-std-	na	
+Proc-Background	1.08	Y	
+Rcs	1.05	Y	
+RTF::Document	0.64	Y	
+RTF::Group	1.10	Y	
+RTF::Parser	1.09	Y	
+RTF::Tokenizer	1.08	Y	
+Scalar::Util	-na-	na	
+Scalar-List-Utils	-std-	na	
+Schedule::Cron	-nr-		
+Sort::Fields	0.90	Y	
+SQL::Statement	1.15	Y	
+Storable	1.0.7	na	
+String::Approx	3.26	Y	
+Symbol	-std-	na	
+Sys::Hostname	-std-	na	
+Template-Toolkit	2.10	Y	Requires XML::Parser
+Term::ANSIColor	-std	na	
+TermReadKey	2.30	Y	
+Test	1.24	na	
+Test-Harness	2.62	na	
+Test-Simple	0.62	Y	
+Text::Autoformat	1.13	Y	
+Text::Balanced	1.98	Y	
+Text::CSV_XS	0.23	Y	
+Text::Metaphone	1.96	Y	
+Text::Reform	1.11	Y	
+Text::Soundex	-std-	na	
+Text::Diff	0.35	Y	
+Text::Tabs	-std-	na	
+Text::Template	1.44	Y	
+Text::Wrap	-std-	na	
+Tie::Cache	0.17	Y	
+Tie::IxHash	1.21	Y	
+Time::HiRes	1.87	Y	
+Time::Local	-std-	na	
+Time::ParseDate	-na-	na	
+Time-modules	2003.1126	Y	
+Unicode::Map	0.112	Y	
+Unicode::Map8	0.12	Y	Mods required to Map8.xs and Map8.h
+Unicode::String	2.09	Y	
+UNIVERSAL	-std-	na	
+URI	1.35	Y	
+WDDX	1.02	Y	
+WeakRef	0.01	Y	
+Win32::ChangeNotify	1.02	na	
+Win32::Clipboard	0.51	na	
+Win32::Console	0.031	na	
+Win32::EventLog	0.07	na	
+Win32::File	0.05	na	
+Win32::FileSecurity	1.04	na	
+Win32::Internet	0.081	na	
+Win32::IPC	1.02	na	
+Win32::Mutex	1.02	na	
+Win32::NetAdmin	0.07	na	
+Win32::NetResource	0.05	na	
+Win32::ODBC	0.032	na	
+Win32::OLE	0.13	Y	Only required if version is greater than libwin32 version of this modules
+Win32::PerfLib	0.05	na	
+Win32::Pipe	0.022	na	
+Win32::Process	0.07	na	
+Win32::Registry	0.07	na	
+Win32::Semaphore	1.02	na	
+Win32::Service	0.05	na	
+Win32::Shortcut	0.03	na	
+Win32::Sound	0.47	na	
+Win32::TieRegistry	0.23	na	Only required if version is greater than libwin32 version of this modules
+Win32::WinError	0.02	na	
+Win32-API	0.41	na	
+Win32API::File	-nr-	na	
+Win32API::Net	-nr-	na	
+Win32API::Registry	-nr-	na	
+Wx	0.27	Y	
+XML::AutoWriter	0.39	Y	
+XML::Catalog	0.02	Y	
+XML::CSV	0.15	Y	
+XML::DOM	1.44	Y	
+XML::Dumper	0.81	Y	
+XML::Element	-nr-	na	
+XML::Generator	0.99	Y	
+XML::Grove	0.46alpha	Y	
+XML::LibXML	1.58_1		
+XML::LibXML-Common	0.13		Requires LibXML
+XML::NamespaceSupport	1.09	Y	
+XML::Parser	2.34	Y	Get Expat 1.95.5 binaries and put into perl bin/lib path
+XML::PPD	-nr-	na	
+XML::PYX	0.07	Y	
+XML::QL	0.07	Y	
+XML::Registry	0.02	Y	
+XML::Sax	0.14	Y	
+XML::Simple	1.08	Y	
+XML::TreeBuilder	3.09	Y	
+XML::Twig	3.22	Y	
+XML::Writer	0.600	Y	
+XML::XPath	1.13	Y	
+XML::XQL	0.68	Y	
+XML::XSLT	0.48	Y	
+			

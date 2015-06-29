@@ -1,0 +1,82 @@
+NAME
+    LineBreakTool - convert linebreaks of text files
+
+SYNOPSIS
+    linebreaktool -h|--help|--version
+
+    linebreaktool [-t|--test] [-v|--verbose] FILE [TYPE]
+
+    linebreaktool (-c|--convert) [-v|--verbose] FILE [TYPE] TYPE
+
+README
+    With this script you can check if a text file is of a specific type and
+    convert it to a different type.
+
+    Special feature is the ability of fixing files that were broken by wrong
+    ftp upload and download mode (ascii/bin).
+
+    Supported file types are dos, mac, unix and broken.
+
+    It also runs under DOS.
+
+    (unix2dos dos2unix fixeol newline linebreak)
+
+DESCRIPTION
+    -h, --help
+        Output usage information and exit.
+
+    --version
+        Output version information and exit.
+
+    -v, --verbose
+        Be verbose about what happens.
+
+    FILE
+        The name of the file or directory to treat.
+
+        If you give a directory name all files will recursively be treated.
+
+    -t, --test
+        Test the type of file.
+
+        If TYPE is given it prints if the type of the file matches TYPE.
+
+    TYPE
+        The type of the file will be compared with TYPE.
+
+    -c, --convert
+        Convert the file to the given type (<to>).
+
+    TYPE
+        The file will only be converted if its type matches <from>.
+
+    TYPE
+        The file will be converted to the type <to>.
+
+SCRIPT CATEGORIES
+    UNIX/System_administration
+
+    Win32
+
+WARRANTY
+    This program is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+    Public License for more details.
+
+COPYING
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation; either version 2 of the License, or (at your
+    option) any later version.
+
+CREDITS
+    Jeffrey E.F. Friedl inspired me to implement the regex myself.
+
+AUTHOR
+    Copyright (C) 2001 2002 2003 Sven Kleese, Hamburg (Germany)
+
+    GONZO <gonzo@cpan.org>
+
+    $Name: v0-2pre1 $ $Date: 2003/02/19 13:29:53 $
+

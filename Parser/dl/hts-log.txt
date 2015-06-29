@@ -1,0 +1,456 @@
+HTTrack3.41-3+htsswf+htsjava launched on Wed, 19 Dec 2007 04:01:15 at http://coolflame.myweb.hinet.net/ +*.* +*.gif +*.jpg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qir5%e0C2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2007], %s -->" -%l "ct, en, *" http://coolflame.myweb.hinet.net/ -O1 "C:\Documents and Settings\SnowWolf.YOSHIKUN-90298D\桌面\crack\crack" +*.* +*.gif +*.jpg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+04:01:16	Info: 	engine: transfer-status: link updated: coolflame.myweb.hinet.net/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/index.html
+04:01:17	Info: 	engine: transfer-status: link added: www.w3.org/robots.txt -> 
+04:01:18	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/Dll_LoadEx.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/Dll_LoadEx.rar
+04:02:10	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/PEiD.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/PEiD.rar
+04:02:36	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/LordPE-DLX.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/LordPE-DLX.rar
+04:03:52	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/Ollydbg%20scripts%20CHT.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/Ollydbg scripts CHT.rar
+04:03:56	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/AspackDie141.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/AspackDie141.rar
+04:03:59	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/waspack.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/waspack.rar
+04:04:47	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/stripper_v207ht.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/stripper_v207ht.rar
+04:05:10	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/stripper211.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/stripper211.rar
+04:05:43	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/stripper_v213b9.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/stripper_v213b9.rar
+04:05:50	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/unfsg0.9.zip -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/unfsg0.9.zip
+04:05:51	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/UnMEW.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/UnMEW.rar
+04:05:58	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/unpecompact2_02.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/unpecompact2_02.rar
+04:06:09	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/wupack0.3x.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/wupack0.3x.rar
+04:06:50	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/upx200w.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/upx200w.rar
+04:07:13	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/upxfix.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/upxfix.rar
+04:08:44	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/ResHack.zip -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/ResHack.zip
+04:09:48	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/PEiD%20v0.94-0510.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/PEiD v0.94-0510.rar
+04:09:59	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/odbg110.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/odbg110.rar
+04:10:00	Warning: 	link is probably looping, type unknown, aborting: coolflame.myweb.hinet.net/tools/freeRes.zip
+04:10:38	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/FixRes.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/FixRes.rar
+04:11:00	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/FreeRes0.94.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/FreeRes0.94.rar
+04:11:11	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/LISTDLLS.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/LISTDLLS.exe
+04:11:16	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/eXeScope%206.50.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/eXeScope 6.50.rar
+04:12:47	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/RegSnap%205.5.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/RegSnap 5.5.rar
+04:12:52	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/regshot172.zip -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/regshot172.zip
+04:13:10	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/Tcpview.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/Tcpview.exe
+04:13:16	Info: 	engine: transfer-status: link added: hazardwu.myweb.hinet.net/CurrProcess.zip -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/hazardwu.myweb.hinet.net/CurrProcess.zip
+04:14:14	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/autoruns.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/autoruns.exe
+04:15:10	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/ProcessExplorerNt.zip -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/ProcessExplorerNt.zip
+04:15:28	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/keymake.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/keymake.rar
+04:15:31	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/CloneAdmin.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/CloneAdmin.exe
+04:15:45	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/dup213.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/dup213.rar
+04:16:05	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/OllyDbg.Full.TC.Ver.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/OllyDbg.Full.TC.Ver.rar
+04:16:06	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/IceSword1.18en.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/IceSword1.18en.rar
+04:16:15	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/nc.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/nc.exe
+04:16:54	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/DialPass2.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/DialPass2.exe
+04:17:00	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/FindPass.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/FindPass.exe
+04:17:09	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/pulist.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/pulist.exe
+04:17:15	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/PStore.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/PStore.exe
+04:17:37	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/DelFileExDlg.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/DelFileExDlg.exe
+04:17:37	Info: 	engine: transfer-status: link added: hiad.myweb.hinet.net/myweb_popAD.js -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/hiad.myweb.hinet.net/myweb_popAD.js
+04:17:37	Info: 	Note: due to www.w3.org remote robots.txt rules, links begining with these path will be forbidden: /2004/ontaria/basic, /Team, /Project, /Web, /Systems, /History, /Out-Of-Date, /2002/02/mid, /mid/, /2004/08/W3CTalks, /2007/11/Talks/search, /People/all/, /RDF/Validator/ARPServlet, /2003/03/Translations/byLanguage, /2003/03/Translations/byTechnology, /2005/11/Translations/Query, /2003/glossary/subglossary/, /2000/06/webdata/xslt, /2000/09/webdata/xslt, /2005/08/online_xslt/xslt, /Bugs/, /Search/Mail/Public/, /2006/02/chartergen (see in the options to disable this)
+04:17:38	Info: 	engine: transfer-status: link added: www.w3.org/1999/xhtml/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/1999/xhtml/index.html
+04:17:38	Info: 	engine: transfer-status: link added: www.w3.org/StyleSheets/TR/base -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/StyleSheets/TR/base.css
+04:17:39	Info: 	engine: transfer-status: link added: www.w3.org/Icons/w3c_home -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/w3c_home.png
+04:18:24	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/MySQLFast.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/MySQLFast.exe
+04:18:24	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/DLL2Lib.rar -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/DLL2Lib.rar
+04:18:30	Info: 	engine: transfer-status: link added: coolflame.myweb.hinet.net/tools/PortMapper.exe -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/coolflame.myweb.hinet.net/tools/PortMapper.exe
+04:18:30	Info: 	engine: transfer-status: link added: hiad.myweb.hinet.net/280x300.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/hiad.myweb.hinet.net/280x300.html
+04:18:32	Info: 	engine: transfer-status: link added: www.w3.org/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/index.html
+04:18:32	Info: 	engine: transfer-status: link added: www.w3.org/Overview-about.rdf -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Overview-about.rdf
+04:18:33	Info: 	engine: transfer-status: link added: www.w3.org/StyleSheets/home.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/StyleSheets/home.css
+04:18:33	Info: 	engine: transfer-status: link added: www.w3.org/2000/08/w3c-synd/home.rss -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2000/08/w3c-synd/home.xml
+04:18:34	Info: 	engine: transfer-status: link added: www.w3.org/Icons/w3c_main -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/w3c_main.png
+04:18:36	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/activities -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/activities.html
+04:18:36	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/new-to-w3c -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/new-to-w3c.html
+04:18:37	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/siteindex -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/siteindex.html
+04:18:37	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/join -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/join.html
+04:18:38	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/contact -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/contact.html
+04:18:38	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/Consortium/membership
+04:18:40	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/sup -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/sup.html
+04:18:40	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/Consortium/Recruitment/Fellows
+04:18:40	Info: 	engine: transfer-status: link added: www.csail.mit.edu/contact/jobs/00003003.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.csail.mit.edu/contact/jobs/00003003.html
+04:18:40	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2007/01/comm-fellow1
+04:18:41	Info: 	engine: transfer-status: link added: www.csail.mit.edu/robots.txt -> 
+04:18:41	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2007/01/comm-fellow2
+04:18:42	Info: 	engine: transfer-status: link added: www.w3.org/2007/01/SysteamFellowsPosition -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/01/SysteamFellowsPosition.html
+04:18:42	Info: 	engine: transfer-status: link added: www.w3.org/2002/mmi/ink -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/mmi/ink.html
+04:18:42	Info: 	engine: transfer-status: link added: jigsaw.w3.org/robots.txt -> 
+04:18:43	Info: 	engine: transfer-status: link added: validator.w3.org/robots.txt -> 
+04:18:43	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/XML/Query
+04:18:44	Info: 	engine: transfer-status: link added: www.w3.org/XML/Linking -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/XML/Linking.html
+04:18:47	Info: 	engine: transfer-status: link added: www.w3.org/XML/Schema -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/XML/Schema.html
+04:18:49	Info: 	engine: transfer-status: link added: www.w3.org/Icons/right -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/right.png
+04:18:51	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2007/08/video/papers.html
+04:18:52	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2007/08/video/agenda.html
+04:18:54	Info: 	engine: transfer-status: link added: www.w3.org/News/2007 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/News/2007.html
+04:18:54	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/WAI/intro/wcag
+04:18:54	Info: 	engine: transfer-status: link added: www.w3.org/2007/08/video/papers.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/08/video/papers.html
+04:18:56	Info: 	engine: transfer-status: link added: lists.w3.org/Archives/Public/w3c-wai-ig/2007OctDec/0060.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/lists.w3.org/Archives/Public/w3c-wai-ig/2007OctDec/0060.html
+04:18:56	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2004/08/TalkFiles/Talks.rss
+04:18:56	Info: 	engine: transfer-status: link added: lists.w3.org/robots.txt -> 
+04:18:58	Info: 	engine: transfer-status: link added: www.iir.es/robots.txt -> 
+04:18:59	Info: 	engine: transfer-status: link added: www.iir.es/Evento/eventonew_clean.asp?idConvocatoria=3721&idEvento=3782 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.iir.es/Evento/eventonew_clean35a9.html
+04:18:59	Info: 	engine: transfer-status: link added: marciana.venezia.sbn.it/evoluzione.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/marciana.venezia.sbn.it/evoluzione.html
+04:19:00	Info: 	engine: transfer-status: link added: www.w3.org/2006/01/Steve_Bratt.jpeg -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2006/01/Steve_Bratt.jpeg
+04:19:00	Info: 	engine: transfer-status: link added: www.webvideosummit.com/index.php -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.webvideosummit.com/index.html
+04:19:03	Info: 	engine: transfer-status: link added: www.w3c.it/robots.txt -> 
+04:19:05	Info: 	engine: transfer-status: link added: www.bsw.gov.cn/v/showNews_sjj_1_en.jsp?NewsID=107631 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.bsw.gov.cn/v/showNews_sjj_1_enbe30.html
+04:19:05	Info: 	engine: transfer-status: link added: www.w3.org/People/all -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/People/all.html
+04:19:07	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/Forms/wiki/Preliminary_XForms_1.1_Implementations -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/Forms/wiki/Preliminary_XForms_1.html
+04:19:10	Info: 	engine: transfer-status: link added: www.w3.org/2007/08/mmi-arch/minutes.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/08/mmi-arch/minutes.html
+04:19:12	Info: 	engine: transfer-status: link added: www.w3.org/2007/11/mmiws.jpg -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/11/mmiws.jpg
+04:19:12	Info: 	engine: transfer-status: link added: www.w3.org/2007/08/mmi-arch/summary.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/08/mmi-arch/summary.html
+04:19:13	Info: 	engine: transfer-status: link added: www.w3.org/2007/08/mmi-arch/cfp.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/08/mmi-arch/cfp.html
+04:19:13	Info: 	engine: transfer-status: link added: www.w3.org/2007/08/mmi-arch/topics.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/08/mmi-arch/topics.html
+04:19:14	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/Activity -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/Activity.html
+04:19:15	Info: 	engine: transfer-status: link added: www.w3.org/Icons/Logo_25wht.gif -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/Logo_25wht.gif
+04:19:15	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/Member/Testimonial/Logo/1136 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/Member/Testimonial/Logo/1136.png
+04:19:18	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/Member/Testimonial/List -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/Member/Testimonial/List.html
+04:19:18	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/Consortium/Member/List
+04:19:19	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/meetings -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/meetings.html
+04:19:20	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/Recruitment/Fellows -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/Recruitment/Fellows.html
+04:19:20	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/membership-benefits -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/membership-benefits.html
+04:19:21	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/membership -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/membership.html
+04:19:25	Info: 	engine: transfer-status: link added: www.w3.org/2001/11/StdLiaison -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2001/11/StdLiaison.html
+04:19:26	Info: 	engine: transfer-status: link added: www.w3.org/Status -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Status.html
+04:19:27	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/org -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/org.html
+04:19:27	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/faq -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/faq.html
+04:19:28	Info: 	engine: transfer-status: link added: www.w3.org/2002/03/tutorials -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/03/tutorials.html
+04:19:29	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/new-to-w3c.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/new-to-w3c-2.html
+04:19:35	Info: 	engine: transfer-status: link added: www.w3.org/Press/Articles-2007.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Press/Articles-2007.html
+04:19:35	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2007/IntlRel.html
+04:19:37	Info: 	engine: transfer-status: link added: www.w3c.nl/index.shtml.nl -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3c.nl/index.shtml.html
+04:19:38	Info: 	engine: transfer-status: link added: www.w3c.nl/index.shtml.fr -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3c.nl/index.shtml-2.html
+04:19:40	Info: 	engine: transfer-status: link added: www.w3c.org.il/indexh.php -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3c.org.il/indexh.html
+04:19:41	Info: 	engine: transfer-status: link added: www.w3.org/2003/08/system-status -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2003/08/system-status.html
+04:19:41	Info: 	engine: transfer-status: link added: www.google.com/robots.txt -> 
+04:19:42	Info: 	engine: transfer-status: link added: www.w3.org/2002/11/homepage -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/11/homepage.html
+04:19:44	Info: 	engine: transfer-status: link added: www.w3.org/Help/Webmaster -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Help/Webmaster.html
+04:19:46	Info: 	engine: transfer-status: link added: validator.w3.org/check?uri=http%3A%2F%2Fwww.w3.org%2F1999%2Fxhtml%2F -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/validator.w3.org/checkd3ea.html
+04:19:47	Info: 	engine: transfer-status: link added: www.w3.org/Icons/valid-xhtml10 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/valid-xhtml10.png
+04:19:48	Info: 	engine: transfer-status: link added: www.w3.org/Icons/valid-css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/valid-css.png
+04:19:49	Info: 	engine: transfer-status: link added: www.w3.org/WAI/WCAG1AA-Conformance -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/WCAG1AA-Conformance.html
+04:19:49	Info: 	engine: transfer-status: link added: www.w3.org/WAI/wcag1AA -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/wcag1AA.png
+04:19:51	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/Legal/2002/ipr-notice-20021231 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/Legal/2002/ipr-notice-20021231.html
+04:19:51	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/Legal/2002/copyright-documents-20021231 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/Legal/2002/copyright-documents-20021231.html
+04:19:52	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/Legal/2002/copyright-software-20021231 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/Legal/2002/copyright-software-20021231.html
+04:19:55	Info: 	engine: transfer-status: link added: www.seekxl.de/robots.txt -> 
+04:19:56	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/Legal/privacy-statement-20000612 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/Legal/privacy-statement-20000612.html
+04:19:59	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/index.html
+04:19:59	Info: 	engine: transfer-status: link added: www.w3c.org.au/robots.txt -> 
+04:20:00	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/xhtml.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/xhtml.css
+04:20:01	Info: 	engine: transfer-status: link added: www.w3.org/StyleSheets/TR/W3C-REC.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/StyleSheets/TR/W3C-REC.css
+04:20:07	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/xhtml1-diff.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/xhtml1-diff.html
+04:20:07	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2002/08/REC-xhtml1-20020801-errata
+04:20:08	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/translations -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/translations.html
+04:20:09	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/Cover.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/Cover.html
+04:20:45	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/xhtml1.ps -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/xhtml1.ps
+04:21:05	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/xhtml1.pdf -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/xhtml1.pdf
+04:21:21	Info: 	engine: transfer-status: link added: www.w3.org/2007/Talks/1128-sb-W3CemergingTech/Bratt-W3CemergingTechp.pdf -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/Talks/1128-sb-W3CemergingTech/Bratt-W3CemergingTechp.pdf
+04:21:47	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/xhtml1.zip -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/xhtml1.zip
+04:21:48	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/Legal/ipr-notice-20000612 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/Legal/ipr-notice-20000612.html
+04:21:48	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/Legal/copyright-documents-19990405 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/Legal/copyright-documents-19990405.html
+04:21:49	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/Legal/copyright-software-19980720 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/Legal/copyright-software-19980720.html
+04:21:52	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/2000/Charter -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/2000/Charter.html
+04:21:52	Info: 	engine: transfer-status: link added: www.w3.org/2002/07/HTML-IPR -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/07/HTML-IPR.html
+04:21:53	Info: 	engine: transfer-status: link added: www.w3c.gr/robots.txt -> 
+04:21:58	Info: 	engine: transfer-status: link added: www.w3.org/TR/REC-DOM-Level-1/level-one-core.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/REC-DOM-Level-1/level-one-core.html
+04:22:00	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/Overview.html
+04:22:01	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd
+04:22:09	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/dtds.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/dtds.html
+04:22:09	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd
+04:22:11	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/xhtml1.tgz -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/xhtml1.gz
+04:22:13	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/DTD/xhtml-lat1.pdb
+04:22:15	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/DTD/xhtml-special.ent -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/DTD/xhtml-special.pdb
+04:22:15	Info: 	engine: transfer-status: link added: www.w3.org/2007/Talks/1130-sb-W3CNowAndFuture/Bratt-W3CNowAndFuturep.pdf -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/Talks/1130-sb-W3CNowAndFuture/Bratt-W3CNowAndFuturep.pdf
+04:22:15	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd
+04:22:15	Info: 	engine: transfer-status: link added: www.w3c.or.kr/robots.txt -> 
+04:22:16	Info: 	engine: transfer-status: link added: www.w3.org/2007/Talks/1128-Bratt-BeijingStdsConf/Bratt-BeijingStdsConfp.pdf -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/Talks/1128-Bratt-BeijingStdsConf/Bratt-BeijingStdsConfp.pdf
+04:22:16	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1/DTD/xhtml-symbol.ent -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1/DTD/xhtml-symbol.pdb
+04:22:17	Info: 	engine: transfer-status: link added: www.w3.org/TR/html4/types.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/html4/types.html
+04:22:18	Info: 	engine: transfer-status: link added: purl.org/robots.txt -> 
+04:22:18	Info: 	engine: transfer-status: link added: www.ercim.org/robots.txt -> 
+04:22:20	Info: 	engine: transfer-status: link added: cgi.w3.org/robots.txt -> 
+04:22:20	Info: 	engine: transfer-status: link added: www.inria.fr/robots.txt -> 
+04:22:26	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/TR/REC-DOM-Level-1
+04:22:42	Info: 	engine: transfer-status: link added: www.ietf.org/rfc/rfc2119.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.ietf.org/rfc/rfc2119.txt
+04:22:47	Info: 	engine: transfer-status: link added: www.ietf.org/rfc/rfc2376.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.ietf.org/rfc/rfc2376.txt
+04:22:48	Info: 	engine: transfer-status: link added: www.ietf.org/rfc/rfc2045.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.ietf.org/rfc/rfc2045.txt
+04:22:49	Info: 	engine: transfer-status: link added: www.ietf.org/rfc/rfc2854.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.ietf.org/rfc/rfc2854.txt
+04:22:54	Info: 	engine: transfer-status: link added: www.ietf.org/rfc/rfc3066.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.ietf.org/rfc/rfc3066.txt
+04:22:55	Info: 	engine: transfer-status: link added: www.ietf.org/rfc/rfc2046.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.ietf.org/rfc/rfc2046.txt
+04:22:56	Info: 	engine: transfer-status: link added: www.ietf.org/rfc/rfc2396.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.ietf.org/rfc/rfc2396.txt
+04:22:57	Info: 	engine: transfer-status: link added: www.ietf.org/rfc/rfc3236.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.ietf.org/rfc/rfc3236.txt
+04:23:04	Info: 	engine: transfer-status: link added: www.w3.org/TR/2000/REC-xml-20001006 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/2000/REC-xml-20001006.html
+04:23:04	Info: 	engine: transfer-status: link added: www.w3.org/TR/2001/REC-xml-c14n-20010315 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/2001/REC-xml-c14n-20010315.html
+04:23:05	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/TR/xml-c14n
+04:23:05	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/WAI/WCAG1AAA-Conformance
+04:23:06	Info: 	engine: transfer-status: link added: www.ietf.org/rfc/rfc3023.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.ietf.org/rfc/rfc3023.txt
+04:23:06	Info: 	engine: transfer-status: link added: www.w3.org/WAI/wcag1AAA.png -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/wcag1AAA.png
+04:23:08	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/index.html
+04:23:08	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/xhtml.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/xhtml.css
+04:23:09	Info: 	engine: transfer-status: link added: www.w3.org/StyleSheets/TR/W3C-WD.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/StyleSheets/TR/W3C-WD.css
+04:23:09	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/introduction.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/introduction.html
+04:23:34	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/xhtml-modularization-diff.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/xhtml-modularization-diff.html
+04:23:36	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/xhtml-modularization-rec-diff.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/xhtml-modularization-rec-diff.html
+04:23:37	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/xhtml-modularization.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/xhtml-modularization.html
+04:23:38	Info: 	engine: transfer-status: link added: www.sun.com/robots.txt -> 
+04:23:44	Info: 	engine: transfer-status: link added: www.ibm.com/robots.txt -> 
+04:24:13	Info: 	engine: transfer-status: link added: www.w3.org/TR/2001/REC-MathML2-20010221/dtd/xhtml-math11-f.dtd -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/2001/REC-MathML2-20010221/dtd/xhtml-math11-f.dtd
+04:25:36	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/xhtml-modularization.pdf -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/xhtml-modularization.pdf
+04:25:38	Info: 	engine: transfer-status: link added: www.w3.org/2005/10/Process-20051014/tr.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2005/10/Process-20051014/tr.html
+04:25:39	Info: 	engine: transfer-status: link added: www.aptest.com/robots.txt -> 
+04:25:40	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/2006/m12n-11-implementation.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/2006/m12n-11-implementation.html
+04:25:41	Info: 	engine: transfer-status: link added: www.openwave.com/robots.txt -> 
+04:25:43	Info: 	engine: transfer-status: link added: www.w3.org/2002/05/html/charter -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/05/html/charter.html
+04:25:44	Info: 	engine: transfer-status: link added: www.w3.org/TR/2002/NOTE-patent-practice-20020124 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/2002/NOTE-patent-practice-20020124.html
+04:25:45	Info: 	engine: transfer-status: link added: www.w3.org/2004/02/05-pp-transition -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2004/02/05-pp-transition.html
+04:25:45	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/2002/Disclosures -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/2002/Disclosures.html
+04:25:45	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/terms.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/terms.html
+04:25:46	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/conformance.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/conformance.html
+04:25:47	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/abstraction.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/abstraction.html
+04:25:48	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/abstract_modules.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/abstract_modules.html
+04:25:50	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/schema_module_rules.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/schema_module_rules.html
+04:25:52	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/schema_developing.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/schema_developing.html
+04:25:52	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/TR/xhtml-modularization/schema_module_defs.html
+04:25:54	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/dtd_module_rules.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/dtd_module_rules.html
+04:25:56	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/dtd_developing.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/dtd_developing.html
+04:26:02	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/dtd_module_defs.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/dtd_module_defs.html
+04:26:04	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/TR/xhtml-modularization/references.html
+04:26:05	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/goals.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/goals.html
+04:26:05	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/acknowledgements.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/acknowledgements.html
+04:26:05	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/changes.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/changes.html
+04:26:11	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/schema_module_defs.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/schema_module_defs.html
+04:26:12	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/TR/xhtml-modularization/references.html
+04:26:13	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/references.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/references.html
+04:26:14	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/index.html
+04:26:14	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/xhtml.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/xhtml.css
+04:26:15	Info: 	engine: transfer-status: link added: www.w3.org/StyleSheets/TR/W3C-WD -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/StyleSheets/TR/W3C-WD-2.css
+04:26:15	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/introduction.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/introduction.html
+04:26:20	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/xhtml11-diff.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/xhtml11-diff.html
+04:26:20	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/TR/xhtml11/xhtml11.zip
+04:26:36	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/xhtml11.pdf -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/xhtml11.pdf
+04:26:36	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/references.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/references.html
+04:26:37	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/conformance.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/conformance.html
+04:26:37	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/doctype.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/doctype.html
+04:26:38	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/changes.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/changes.html
+04:26:39	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/xhtml11_dtd.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/xhtml11_dtd.html
+04:26:41	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/xhtml11_schema.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/xhtml11_schema.html
+04:26:41	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/acknowledgements.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/acknowledgements.html
+04:26:44	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-basic/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-basic/index.html
+04:26:45	Info: 	engine: transfer-status: link added: www.w3.org/StyleSheets/TR/W3C-CR.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/StyleSheets/TR/W3C-CR.css
+04:26:45	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-basic/xhtml-basic.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-basic/xhtml-basic.css
+04:26:49	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-basic/xhtml-basic-diff.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-basic/xhtml-basic-diff.html
+04:26:53	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-basic/xhtml-basic-rec-diff.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-basic/xhtml-basic-rec-diff.html
+04:26:53	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/TR/xhtml-basic/xhtml-basic.ps
+04:27:03	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/xhtml11.tgz -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/xhtml11.gz
+04:27:03	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml11/xhtml11.ps -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml11/xhtml11.ps
+04:27:09	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-basic/xhtml-basic.pdf -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-basic/xhtml-basic.pdf
+04:27:10	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/2006/xhtml-basic11-lc-doc -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/2006/xhtml-basic11-lc-doc.html
+04:27:10	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/2007/xhtmlbasic11implementation.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/2007/xhtmlbasic11implementation.html
+04:27:12	Info: 	engine: transfer-status: link added: www.w3.org/2004/01/pp-impl/32107/status -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2004/01/pp-impl/32107/status.html
+04:27:18	Info: 	engine: transfer-status: link added: java.sun.com/j2se/1.4.2/docs/api/java/lang/Character.UnicodeBlock.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/java.sun.com/j2se/1.4.2/docs/api/java/lang/Character.UnicodeBlock.html
+04:27:19	Info: 	engine: transfer-status: link added: java.sun.com/robots.txt -> 
+04:27:20	Info: 	engine: transfer-status: link added: www.unicode.org/robots.txt -> 
+04:27:22	Info: 	engine: transfer-status: link added: www.openmobilealliance.org/tech/affiliates/wap/wapindex.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.openmobilealliance.org/tech/affiliates/wap/wapindex.html
+04:27:24	Info: 	engine: transfer-status: link added: www.w3.org/2006/07/SWD/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2006/07/SWD/index.html
+04:27:25	Info: 	engine: transfer-status: link added: www.w3.org/Guide/guide2006.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Guide/guide2006.css
+04:27:26	Info: 	engine: transfer-status: link added: www.w3.org/Icons/WWW/w3c_home_nb -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/WWW/w3c_home_nb.png
+04:27:27	Info: 	engine: transfer-status: link added: www.timeanddate.com/library/abbreviations/timezones/eu/gmt.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.timeanddate.com/library/abbreviations/timezones/eu/gmt.html
+04:27:27	Warning: 	link is probably looping, type unknown, aborting: lists.w3.org/Archives/Member/chairs/2005JulSep/0078
+04:27:28	Info: 	engine: transfer-status: link added: www.timeanddate.com/robots.txt -> 
+04:27:28	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/Member/Eventscal
+04:27:31	Info: 	engine: transfer-status: link added: www.w3.org/2006/07/SWD/wiki/Deliverables -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2006/07/SWD/wiki/Deliverables.html
+04:27:32	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2006/07/SWD/Scribing.html
+04:27:33	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-basic/xhtml-basic.zip -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-basic/xhtml-basic.zip
+04:27:33	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-basic/xhtml-basic.tgz -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-basic/xhtml-basic.gz
+04:27:35	Info: 	engine: transfer-status: link added: www.w3.org/TR/2006/WD-xhtml2-20060726/mod-meta.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/2006/WD-xhtml2-20060726/mod-meta.html
+04:27:35	Info: 	engine: transfer-status: link added: www.w3.org/TR/2006/WD-xhtml2-20060726/mod-metaAttributes.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/2006/WD-xhtml2-20060726/mod-metaAttributes.html
+04:27:36	Info: 	engine: transfer-status: link added: www.w3.org/2006/07/swdwg-charter -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2006/07/swdwg-charter.html
+04:27:36	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2000/09/dbwg/details?group=39408
+04:27:36	Info: 	engine: transfer-status: link added: www.w3.org/2004/08/invexp.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2004/08/invexp.html
+04:27:37	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2005/rules/wg/wiki/UsingZakim
+04:27:37	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2005/rules/wg/wiki/TeleconEtiquette
+04:27:37	Info: 	engine: transfer-status: link added: lists.w3.org/Archives/Public/public-swd-wg/2006Nov/0015.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/lists.w3.org/Archives/Public/public-swd-wg/2006Nov/0015.html
+04:27:37	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/Member/Mail/Overview.html
+04:27:39	Info: 	engine: transfer-status: link added: www.w3.org/WAI/PF/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/PF/index.html
+04:27:39	Info: 	engine: transfer-status: link added: www.w3.org/2004/01/pp-impl/39408/status -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2004/01/pp-impl/39408/status.html
+04:27:40	Info: 	engine: transfer-status: link added: www.w3.org/WAI/wai-main.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/wai-main.css
+04:27:40	Info: 	engine: transfer-status: link added: www.w3.org/Icons/downinpage.png -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/downinpage.png
+04:27:41	Info: 	engine: transfer-status: link added: www.w3.org/WAI/changedesign.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/changedesign.html
+04:27:41	Info: 	engine: transfer-status: link added: www.w3.org/WAI/gettingstarted/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/gettingstarted/Overview.html
+04:27:42	Info: 	engine: transfer-status: link added: www.w3.org/WAI/images/wai-temp -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/images/wai-temp.png
+04:27:42	Info: 	engine: transfer-status: link added: www.w3.org/WAI/managing.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/managing.html
+04:27:42	Info: 	engine: transfer-status: link added: www.w3.org/WAI/guid-tech.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/guid-tech.html
+04:27:43	Info: 	engine: transfer-status: link added: www.w3.org/WAI/eval/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/eval/Overview.html
+04:27:43	Info: 	engine: transfer-status: link added: www.w3.org/WAI/groups.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/groups.html
+04:27:44	Info: 	engine: transfer-status: link added: www.w3.org/WAI/AU/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/AU/Overview.html
+04:27:45	Info: 	engine: transfer-status: link added: www.w3.org/WAI/EO/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/EO/Overview.html
+04:27:45	Info: 	engine: transfer-status: link added: www.w3.org/WAI/ER/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/ER/Overview.html
+04:27:46	Info: 	engine: transfer-status: link added: www.w3.org/WAI/PF/participation.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/PF/participation.html
+04:27:46	Info: 	engine: transfer-status: link added: www.w3.org/WAI/PF/charter200612 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/PF/charter200612.html
+04:27:47	Info: 	engine: transfer-status: link added: www.w3.org/WAI/RD/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/RD/Overview.html
+04:27:47	Info: 	engine: transfer-status: link added: www.w3.org/Icons/tr.png -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/tr.png
+04:27:48	Info: 	engine: transfer-status: link added: www.w3.org/WAI/UA/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/UA/Overview.html
+04:27:48	Info: 	engine: transfer-status: link added: www.w3.org/WAI/IG/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/IG/Overview.html
+04:27:49	Info: 	engine: transfer-status: link added: www.w3.org/WAI/GL/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/GL/Overview.html
+04:27:50	Info: 	engine: transfer-status: link added: www.w3.org/WAI/about-links.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/about-links.html
+04:27:51	Info: 	engine: transfer-status: link added: www.w3.org/WAI/sitemap.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/sitemap.html
+04:27:51	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/WAI/wai-translations.html
+04:27:52	Info: 	engine: transfer-status: link added: www.w3.org/WAI/sitehelp.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/sitehelp.html
+04:27:52	Info: 	engine: transfer-status: link added: www.w3.org/WAI/images/translations-small-1.png -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/images/translations-small-1.png
+04:27:52	Info: 	engine: transfer-status: link added: www.w3.org/WAI/highlights/about-rss.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/highlights/about-rss.html
+04:27:52	Info: 	engine: transfer-status: link added: www.w3.org/Icons/rss1.gif -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/rss1.gif
+04:27:52	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-modularization/xhtml-modularization.tgz -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-modularization/xhtml-modularization.gz
+04:27:53	Info: 	engine: transfer-status: link added: www.w3.org/WAI/search.php -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/search.html
+04:27:53	Info: 	engine: transfer-status: link added: www.w3.org/WAI/images/search-icon.png -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/images/search-icon.png
+04:27:54	Info: 	engine: transfer-status: link added: www.w3.org/WAI/PF/natural-lang-20030326.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/PF/natural-lang-20030326.html
+04:27:55	Info: 	engine: transfer-status: link added: www.w3.org/WAI/PF/XML/about -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/PF/XML/about.html
+04:27:56	Warning: 	link is probably looping, type unknown, aborting: en.wikipedia.org/wiki/AJAX_(programming)
+04:27:56	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/WAI/References/HTML4-access
+04:27:57	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/WAI/EO/NOTE-css-access-19990309
+04:27:59	Info: 	engine: transfer-status: link added: www.w3.org/WAI/EO/SMIL-access.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/WAI/EO/SMIL-access.html
+04:28:01	Info: 	engine: transfer-status: link added: www.w3.org/TR/xag -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xag.html
+04:28:01	Warning: 	link is probably looping, type unknown, aborting: lists.w3.org/Archives/Member/w3c-wai-pf
+04:28:01	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2004/01/pp-impl/32212/status
+04:28:01	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/WAI/contacts
+04:28:04	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/index.html
+04:28:05	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/markup.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/markup.css
+04:28:05	Info: 	engine: transfer-status: link added: www.w3.org/StyleSheets/public.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/StyleSheets/public.css
+04:28:05	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/style/handheld.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/style/handheld.css
+04:28:05	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/style/print.css -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/style/print.css
+04:28:06	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/2004/xhtml-faq -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/2004/xhtml-faq.html
+04:28:07	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/historical -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/historical.html
+04:28:07	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/modularization -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/modularization.html
+04:28:09	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/Articles -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/Articles.html
+04:28:09	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/news -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/news.html
+04:28:09	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/Consortium/siteindex.html
+04:28:10	Info: 	engine: transfer-status: link added: www.w3.org/2001/12/Glossary -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2001/12/Glossary.html
+04:28:10	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/MarkUp/,xhtml
+04:28:12	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/,html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/,html.html
+04:28:12	Info: 	engine: transfer-status: link added: www.w3.org/Icons/interaction -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/interaction.png
+04:28:13	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2007/03/XHTML2-WG-charter
+04:28:13	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2000/09/dbwg/details?group=32107
+04:28:14	Info: 	engine: transfer-status: link added: www.w3.org/2007/03/XHTML2-WG-charter -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/03/XHTML2-WG-charter.html
+04:28:14	Info: 	engine: transfer-status: link added: www.w3.org/2004/01/pp-impl/32107/instructions -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2004/01/pp-impl/32107/instructions.html
+04:28:15	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/TR/2006/WD-xhtml2-20060726/introduction.html
+04:28:15	Info: 	engine: transfer-status: link added: www.pwg.org/robots.txt -> 
+04:28:18	Info: 	engine: transfer-status: link added: www.pwg.org/xhtml-print/HTML-Version/XHTML-Print.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.pwg.org/xhtml-print/HTML-Version/XHTML-Print.html
+04:28:19	Info: 	engine: transfer-status: link added: www.linux.com/robots.txt -> 
+04:28:19	Info: 	engine: transfer-status: link added: www.linux.com/articles/51670 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.linux.com/articles/51670.html
+04:28:20	Info: 	engine: transfer-status: link added: www.w3.org/2004/02/Process-20040205/tr -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2004/02/Process-20040205/tr.html
+04:28:22	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml1,translations -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml1,translations.html
+04:28:22	Info: 	engine: transfer-status: link added: www.w3.org/TR/xhtml-basic,translations -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/xhtml-basic,translations.html
+04:28:27	Info: 	engine: transfer-status: link added: www.w3.org/TR/MathML2/appendixa.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/MathML2/appendixa.html
+04:28:30	Info: 	engine: transfer-status: link added: www.w3.org/TR/REC-html32 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/REC-html32.html
+04:28:32	Info: 	engine: transfer-status: link added: www.rfc-editor.org/rfc/rfc2854.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.rfc-editor.org/rfc/rfc2854.txt
+04:28:39	Info: 	engine: transfer-status: link added: https://www.cs.tcd.ie/15445/15445.HTML -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.cs.tcd.ie/15445/15445.HTML
+04:28:54	Info: 	engine: transfer-status: link added: https://www.cs.tcd.ie/15445/UG.HTML -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.cs.tcd.ie/15445/UG.HTML
+04:28:54	Info: 	engine: transfer-status: link added: htmlwg.mn.aptest.com/robots.txt -> 
+04:28:58	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/Guide/Advanced -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/Guide/Advanced.html
+04:28:58	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/Guide/Style -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/Guide/Style.html
+04:28:59	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/2004/xmlevents-for-html-authors -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/2004/xmlevents-for-html-authors.html
+04:28:59	Info: 	engine: transfer-status: link added: www.w3.org/Talks/1999/05/www8-html/slide1.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Talks/1999/05/www8-html/slide1.html
+04:29:00	Info: 	engine: transfer-status: link added: www.w3.org/Talks/1999/12/XHTML-XML99/slide1.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Talks/1999/12/XHTML-XML99/slide1.html
+04:29:01	Info: 	engine: transfer-status: link added: www.w3.org/Talks/2002/04/11-pemberton -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Talks/2002/04/11-pemberton.html
+04:29:01	Info: 	engine: transfer-status: link added: www8.org/robots.txt -> 
+04:29:01	Info: 	engine: transfer-status: link added: www.rfc-editor.org/rfc/rfc1866.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.rfc-editor.org/rfc/rfc1866.txt
+04:29:02	Info: 	engine: transfer-status: link added: www.w3c.de/Events/Cross-Media-Publishing.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3c.de/Events/Cross-Media-Publishing.html
+04:29:02	Info: 	engine: transfer-status: link added: www2002.org/w3ctrack.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www2002.org/w3ctrack.html
+04:29:03	Info: 	engine: transfer-status: link added: www.gca.org/robots.txt -> 
+04:29:03	Info: 	engine: transfer-status: link added: www.w3.org/2002/Talks/www2002-xhtml/Overview.xhtml -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/Talks/www2002-xhtml/Overview.xhtml
+04:29:04	Info: 	engine: transfer-status: link added: www.w3.org/2002/Talks/www2002-xhtml/Overview.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/Talks/www2002-xhtml/Overview.html
+04:29:05	Info: 	engine: transfer-status: link added: www.w3.org/2003/03/w3c-track03.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2003/03/w3c-track03.html
+04:29:06	Info: 	engine: transfer-status: link added: www.w3c.de/Events/2005/HTMLtut.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3c.de/Events/2005/HTMLtut.html
+04:29:06	Info: 	engine: transfer-status: link added: 2007.xtech.org/robots.txt -> 
+04:29:07	Info: 	engine: transfer-status: link added: tidy.sourceforge.net/robots.txt -> 
+04:29:08	Info: 	engine: transfer-status: link added: www.w3.org/2007/03/XHTML2-WG-charter.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/03/XHTML2-WG-charter-2.html
+04:29:08	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2002/09/Lists2RSS?ml=www-html&realm=Public
+04:29:09	Info: 	engine: transfer-status: link added: www.w3.org/Mail/Request -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Mail/Request.html
+04:29:09	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2002/09/Lists2RSS?ml=www-html-editor&realm=Public
+04:29:09	Info: 	engine: transfer-status: link added: lists.w3.org/Archives/Public/public-xhtml2/feed.rss -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/lists.w3.org/Archives/Public/public-xhtml2/feed.rss
+04:29:09	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2002/09/Lists2RSS?ml=w3c-translators&realm=Public
+04:29:10	Info: 	engine: transfer-status: link added: www.boutell.com/robots.txt -> 
+04:29:11	Info: 	engine: transfer-status: link added: www.ietf.org/robots.txt -> 
+04:29:12	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2000/09/dbwg/details?group=32107
+04:29:14	Info: 	engine: transfer-status: link added: www.w3.org/TR/REC-xml-names/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/TR/REC-xml-names/index.html
+04:29:15	Info: 	engine: transfer-status: link added: www.w3.org/XML/2006/xml-names-errata -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/XML/2006/xml-names-errata.html
+04:29:16	Info: 	engine: transfer-status: link added: www.w3.org/XML/Activity.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/XML/Activity.html
+04:29:16	Info: 	engine: transfer-status: link added: www.w3.org/XML/2002/12/xml-names11-implementation.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/XML/2002/12/xml-names11-implementation.html
+04:29:17	Info: 	engine: transfer-status: link added: www.w3.org/2002/08/xmlcore-IPR-statements -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/08/xmlcore-IPR-statements.html
+04:29:18	Info: 	engine: transfer-status: link added: www.rfc-editor.org/rfc/rfc2119.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.rfc-editor.org/rfc/rfc2119.txt
+04:29:19	Info: 	engine: transfer-status: link added: www.rfc-editor.org/rfc/rfc2557.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.rfc-editor.org/rfc/rfc2557.txt
+04:29:19	Info: 	engine: transfer-status: link added: www.rfc-editor.org/rfc/rfc2141.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.rfc-editor.org/rfc/rfc2141.txt
+04:29:20	Info: 	engine: transfer-status: link added: www.w3.org/XML/xml-names-19990114-errata -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/XML/xml-names-19990114-errata.html
+04:29:21	Info: 	engine: transfer-status: link added: www.w3.org/2000/09/xppa -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2000/09/xppa.html
+04:29:22	Info: 	engine: transfer-status: link added: www.w3.org/People/Connolly/ -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/People/Connolly/index.html
+04:29:23	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2002/12/cal/cardcaletc%20http:/purl.org/NET/erdf/profile
+04:29:24	Info: 	engine: transfer-status: link added: www.w3.org/2002/07/owl -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/07/owlhtml.html
+04:29:25	Info: 	engine: transfer-status: link added: www.rfc-editor.org/rfc/rfc3629.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.rfc-editor.org/rfc/rfc3629.txt
+04:29:26	Info: 	engine: transfer-status: link added: www.w3.org/2000/01/rdf-schema -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2000/01/rdf-schemahtml.html
+04:29:26	Info: 	engine: transfer-status: link added: www.w3.org/2003/01/geo/wgs84_pos -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2003/01/geo/wgs84_poshtml.html
+04:29:28	Info: 	engine: transfer-status: link added: pip.verisignlabs.com/server -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/pip.verisignlabs.com/server.html
+04:29:29	Warning: 	link is probably looping, type unknown, aborting: en.wikipedia.org/wiki/Oxford
+04:29:29	Info: 	engine: transfer-status: link added: pip.verisignlabs.com/robots.txt -> 
+04:29:30	Info: 	engine: transfer-status: link added: www.w3.org/2002/12/cal/glean-hcal.xsl -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/12/cal/glean-hcal.xml
+04:29:30	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2007/07dc-lhr/mf-xmlsum
+04:29:30	Info: 	engine: transfer-status: link added: www.xmlsummerschool.com/curriculum/trendsandtransients.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.xmlsummerschool.com/curriculum/trendsandtransients.html
+04:29:32	Info: 	engine: transfer-status: link added: connolly.pip.verisignlabs.com/robots.txt -> 
+04:29:33	Info: 	engine: transfer-status: link added: del.icio.us/connolly/Oxford -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/del.icio.us/connolly/Oxford.html
+04:29:34	Info: 	engine: transfer-status: link added: feeds.technorati.com/robots.txt -> 
+04:29:35	Info: 	engine: transfer-status: link added: del.icio.us/connolly/LHR -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/del.icio.us/connolly/LHR.html
+04:29:37	Info: 	engine: transfer-status: link added: del.icio.us/connolly/microformats -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/del.icio.us/connolly/microformats.html
+04:29:38	Info: 	engine: transfer-status: link added: www.xmlsummerschool.com/robots.txt -> 
+04:29:39	Info: 	engine: transfer-status: link added: del.icio.us/connolly/semantic+web -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/del.icio.us/connolly/semantic+web.html
+04:29:40	Info: 	engine: transfer-status: link added: www.laurenwood.org/robots.txt -> 
+04:29:40	Info: 	engine: transfer-status: link added: del.icio.us/connolly/grddl -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/del.icio.us/connolly/grddl.html
+04:29:42	Info: 	engine: transfer-status: link added: del.icio.us/connolly/xml -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/del.icio.us/connolly/xml.html
+04:29:42	Info: 	engine: transfer-status: link added: del.icio.us/robots.txt -> 
+04:29:45	Info: 	engine: transfer-status: link added: del.icio.us/connolly/web+architecture -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/del.icio.us/connolly/web+architecture.html
+04:29:45	Info: 	engine: transfer-status: link added: www.w3.org/2007/07dc-lhr/aa-lhr -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/07dc-lhr/aa-lhrhtml.html
+04:29:47	Warning: 	link is probably looping, type unknown, aborting: en.wikipedia.org/wiki/Chicago
+04:29:47	Warning: 	link is probably looping, type unknown, aborting: www.w3.org/2007/08dc-ord/ord-itin7
+04:29:48	Warning: 	link is probably looping, type unknown, aborting: en.wikipedia.org/wiki/Southampton
+04:29:49	Info: 	engine: transfer-status: link added: www.rfc-editor.org/rfc/rfc3986.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.rfc-editor.org/rfc/rfc3986.txt
+04:29:49	Info: 	engine: transfer-status: link added: www.w3.org/2007/09dc-sou/sou19 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/09dc-sou/sou19html.html
+04:29:49	Info: 	engine: transfer-status: link added: www.w3.org/2007/11dc-bos/bos10 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2007/11dc-bos/bos10html.html
+04:29:51	Warning: 	link is probably looping, type unknown, aborting: en.wikipedia.org/wiki/Vancouver
+04:29:52	Info: 	engine: transfer-status: link added: www.w3.org/2001/sw/grddl-wg/tut7/gtut -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2001/sw/grddl-wg/tut7/gtut.html
+04:29:56	Info: 	engine: transfer-status: link added: dig.csail.mit.edu/breadcrumbs/node/194 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/dig.csail.mit.edu/breadcrumbs/node/194.html
+04:29:57	Info: 	engine: transfer-status: link added: www.w3.org/Icons/w3c_home.png -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Icons/w3c_home-2.png
+04:29:58	Info: 	engine: transfer-status: link added: www.w3.org/People/Connolly/9704/dan_c_thumb.jpg -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/People/Connolly/9704/dan_c_thumb.jpg
+04:29:58	Info: 	engine: transfer-status: link added: maps.google.com/maps?f=q&hl=en&geocode=&q=32+Vassar+Street,+02139&sll=37.0625,-95.677068&sspn=76.725149,106.523438&ie=UTF8&z=16&iwloc=addr&om=1&output=html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/maps.google.com/maps219f.html
+04:29:59	Info: 	engine: transfer-status: link added: www.mit.edu/robots.txt -> 
+04:30:00	Info: 	engine: transfer-status: link added: www.w3.org/2003/g/data-view -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2003/g/data-view.html
+04:30:01	Info: 	engine: transfer-status: link added: www.w3.org/MarkUp/html-spec/index.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/MarkUp/html-spec/index-2.html
+04:30:03	Info: 	engine: transfer-status: link added: www.csail.mit.edu/resources/maps/5G/G506.gif -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.csail.mit.edu/resources/maps/5G/G506.gif
+04:30:07	Info: 	engine: transfer-status: link added: maps.google.com/robots.txt -> 
+04:30:09	Info: 	engine: transfer-status: link added: esw.w3.org/topic/DanConnolly -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/esw.w3.org/topic/DanConnolly.html
+04:30:11	Info: 	engine: transfer-status: link added: www.w3.org/2000/10/swap/doc/cwm -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2000/10/swap/doc/cwm.html
+04:30:11	Info: 	engine: transfer-status: link added: dig.csail.mit.edu/breadcrumbs/blog/2 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/dig.csail.mit.edu/breadcrumbs/blog/2.html
+04:30:12	Info: 	engine: transfer-status: link added: technorati.com/robots.txt -> 
+04:30:12	Info: 	engine: transfer-status: link added: www.w3.org/DesignIssues/Notation3 -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/DesignIssues/Notation3.html
+04:30:13	Info: 	engine: transfer-status: link added: dig.csail.mit.edu/2005/ajar/ajaw/Help -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/dig.csail.mit.edu/2005/ajar/ajaw/Help.html
+04:30:14	Info: 	engine: transfer-status: link added: www.advogato.org/person/connolly/foaf.rdf -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.advogato.org/person/connolly/foaf.rdf
+04:30:15	Info: 	engine: transfer-status: link added: dm93.org/z2001/VolleyBallInKC -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/dm93.org/z2001/VolleyBallInKC.html
+04:30:17	Info: 	engine: transfer-status: link added: dm93.org/z2001/ThreeChordsAndTheTruth -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/dm93.org/z2001/ThreeChordsAndTheTruth.html
+04:30:18	Warning: 	link is probably looping, type unknown, aborting: en.wikipedia.org/wiki/Convex_Computer
+04:30:18	Info: 	engine: transfer-status: link added: www.advogato.org/robots.txt -> 
+04:30:19	Warning: 	link is probably looping, type unknown, aborting: en.wikipedia.org/wiki/Hal_Computer_Systems
+04:30:20	Info: 	engine: transfer-status: link added: www.utexas.edu/robots.txt -> 
+04:30:20	Info: 	engine: transfer-status: link added: www.w3.org/People/Connolly/misc/vita -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/People/Connolly/misc/vita.html
+04:30:21	Info: 	engine: transfer-status: link added: www.w3.org/Consortium/contact.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/Consortium/contact-2.html
+04:30:22	Warning: 	link is probably looping, type unknown, aborting: en.wikipedia.org/wiki/Kansas_City_International_Airport
+04:30:23	Info: 	engine: transfer-status: link added: www.w3.org/2002/03/email_attachment_formats.html -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.w3.org/2002/03/email_attachment_formats.html
+04:30:27	Info: 	engine: transfer-status: link added: del.icio.us/connolly/w3c -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/del.icio.us/connolly/w3c.html
+04:30:27	Info: 	engine: transfer-status: link added: esw.w3.org/topic/InternetRelayChat -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/esw.w3.org/topic/InternetRelayChat.html
+04:30:28	Info: 	engine: transfer-status: link added: freenode.net/robots.txt -> 
+04:30:29	Info: 	engine: transfer-status: link added: esw.w3.org/topic/DigitalSignatureDeployment -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/esw.w3.org/topic/DigitalSignatureDeployment.html
+04:30:30	Info: 	engine: transfer-status: link added: www.ietf.org/iesg/1rfc_index.txt -> C:/Documents and Settings/SnowWolf.YOSHIKUN-90298D/桌面/crack/crack/www.ietf.org/iesg/1rfc_index.txt
+04:30:50	Info: 	Exit requested by shell or user
+* * MIRROR ABORTED! * *
+The current temporary cache is required for any update operation and only contains data downloaded during the present aborted session.
+The former cache might contain more complete information; if you do not want to lose that information, you have to restore it and delete the current cache.
+This can easily be done here by erasing the hts-cache/new.* files]

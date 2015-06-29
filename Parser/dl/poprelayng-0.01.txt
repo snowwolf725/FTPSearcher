@@ -1,0 +1,337 @@
+#!/usr/local/bin/perl5
+#
+#  poprelayd NG #2 - update /etc/mail/popip based on POP logins
+#
+#  This code was written by Curt Sampson <cjs@cynic.net> and placed into
+#  the public domain in 1998 by Western Internet Portal Services, Inc.
+#  $Id: poprelayd,v 1.1.1.1 2000/07/27 03:10:31 cjs Exp $
+#
+#  Updated by J. Briggs, james@ActiveMessage.com on 2000 10 18:
+#
+# - added support for both UW imap-2000 Login and Authenticated log entries
+# - added UW imap-2000 Logout support
+# - code cleanup, more error handling
+# - safer signal handling
+# - moved alternative imap log parsers into program as comments
+#
+#  Updated by J. Briggs, james@ActiveMessage.com on 2000 10 28:
+#
+# - added UW imap-2000 AutoLogout support
+#
+#  Usage:
+#	poprelayd -d
+#	poprelayd -p
+#	poprelayd -a <ip>
+#	poprelayd -r <ip>
+#
+#  With the -d option this program goes into daemon mode. It will
+#  monitor /var/log/maillog (following rollovers by newsyslog)
+#  for successful POP3 logins. When it sees one, it will
+#  look up the IP address the login came from and add this to the
+#  popip sendmail map (the address as the key, the current time in
+#  seconds since the epoch as the datum). Every five minutes or so it
+#  will also remove any addresses older than a certain time from that
+#  file.
+#
+#  If given the -p option, the program will not go into daemon mode,
+#  but will instead dump the current database, printing each IP address
+#  and its age.
+#
+#  The -a option will add the IP address given. The -r option will delete
+#  the IP address given.
+#
+
+#
+#  Configuration settings.
+#
+
+use strict;
+use diagnostics;
+
+use vars qw / $opt_a $opt_d $opt_r $opt_p $opt_t /;
+
+my $logfile = "/var/log/maillog";		# POP3 daemon log.
+my $pidfile = "/var/run/poprelayd.pid";	# Where we put our PID.
+my $dbfile = "/etc/mail/popip.db";		# Sendmail map to update.
+my $dbtype = "";				# obsolete
+my $timeout_minutes = 15;			# Minutes an entry lasts.
+my $log_wait_interval = 5;			# Number of seconds between checks
+						# of the log file.
+
+#
+#  Modules
+#
+
+use Getopt::Std;
+use Fcntl;
+use DB_File;
+use POSIX;
+
+# You may need to uncomment this if your fcntl.ph doesn't export it.
+#{ local $^W = 0; eval "sub O_EXLOCK { 0x20 };"; }
+
+#
+#  Variables
+#
+
+my $pid;				# Process ID.
+my %db;					# Hash into database file.
+my $lffd;				# $logfile file descriptor.
+my $lfino;				# Inode of $logfile when we opened it.
+my $lfbuf;				# Buffer for data from $lffd.
+my @addrs_add;				# List of IP addresses to add.
+my @addrs_del;				# List of IP addresses to delete.
+my $lasttimeout;			# Last time we did a timeout.
+my $flag_signal;			# Time to die from a signal.
+
+#
+#  Subroutines
+#
+
+sub opendb_read {
+    tie(%db, "DB_File", $dbfile, O_RDONLY, 0, $DB_HASH) ||
+	die "Can't open $dbfile for reading: $!";
+}
+
+sub opendb_write {
+    tie(%db, "DB_File", $dbfile, O_RDWR|O_EXLOCK, 0, $DB_HASH) ||
+	die "Can't open $dbfile for writing: $!";
+}
+
+sub closedb {
+    untie %db;
+}
+
+sub adddb {
+    my ($addr) = @_;
+    $db{$addr} = time;
+}
+
+sub removedb {
+    my ($addr) = @_;
+    delete $db{$addr};
+}
+
+# timeoutdb(secs)
+#
+# Remove all entries from %db more than secs seconds old.
+#
+sub timeoutdb {
+    # Convert timeout in secs to a time_t before which we delete.
+    my $to = time - $_[0];
+
+    my $key;
+    foreach $key (keys %db) {
+	if ($db{$key} < $to) {
+	    delete $db{$key};
+	}
+    }
+}
+
+# getlogline()
+#
+# Return the next line from $logfile, or undef if one isn't currently ready.
+#
+# XXX Note that there's a bug in this routine that causes it to ignore
+# blank lines. I kinda like this behaviour, so I've not fixed it.
+#
+sub getlogline {
+    my $ino;
+    my $foundeof = 0;
+    my $buf;
+    my $count;
+
+    # The first time we're called; open the logfile, skip to the end,
+    # and remember the inode we opened.
+    if (!defined($lffd)) {
+	$lffd = POSIX::open($logfile, O_RDONLY|O_NONBLOCK, 0);
+	if (!defined($lffd)) {
+	    die "Can't open $logfile: $!\n";
+	}
+	if (POSIX::lseek($lffd, 0, &POSIX::SEEK_END) == -1) {
+	    die "Can't seek to end of $logfile: $!\n";
+	}
+	(undef, $lfino, undef) = POSIX::fstat($lffd);
+    }
+
+    # Append new data, if available, to our buffer.
+    $count = POSIX::read($lffd, $buf, 1024);
+    if ($count) {
+	$lfbuf = $lfbuf . $buf;
+    }
+
+    # Return a line, if we have one.
+    if ($lfbuf =~ m/\n/m) {
+	($buf, $lfbuf) = split(/\n/m, $lfbuf, 2);
+	return $buf;
+    }
+
+    # Check the inode number of $logfile; if it's not the saved one,
+    # the logfile has been rotated and we need to reopen.
+    (undef, $ino, undef) = POSIX::stat($logfile);
+    if ($ino != $lfino) {
+	POSIX::close($lffd);
+	undef($lffd);
+	$lffd = POSIX::open($logfile, O_RDONLY|O_NONBLOCK, 0);
+	if (!defined($lffd)) {
+	    die "Can't open $logfile: $!\n";
+	}
+	(undef, $lfino, undef) = POSIX::fstat($lffd);
+    }
+
+    return undef;
+}
+
+# scanaddr($line)
+#
+# Scan $line to see if it's a log of a successful POP3 authentication.
+# Return an array of the addresses that authenticated.
+#
+# What would be really nice is a way to extend the session based on activity,
+# instead of timing out the session blindly a fixed interval after login!
+sub scanaddr {
+    my ($s) = @_;
+
+# untested qpopper 2.53 parser:
+#    if ($s =~ /(popper).*?POP (login).*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/o) {
+# untested Cubic Circle POP3 daemon (cucipop) parser:
+#    if ($s =~ /(cucipop)\[\d+\]:\s+(\w+)\s+(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/o) {
+
+# tested UW imap parser:
+    if ($s =~ /i(pop2|pop3|map)d\[[0-9]+\]: (Authenticated|Login|Logout) user=.*?\[([^]]*)\]$/io) {
+        if (lc($2) eq 'logout') { # could be Logout or Autologout
+	   return('',$3)
+        }
+        else {
+	   return($3,'')
+        }
+    }
+    return ('','');
+}
+
+#  cleanup
+#
+#  Clean up and exit; executed on receipt of a sighup.
+#
+sub cleanup {
+    $flag_signal = 1;
+}
+
+
+#
+#  Main Program
+#
+
+my $help_opts = "Usage: poprelayd [-p] [-a <ip>] [-r <ip>] [-d]\n";
+my $countopts = 0;
+
+getopts('a:dpr:t:') ||
+    die $help_opts;
+
+# Add an address.
+if ($opt_a) {
+    $countopts++;
+    opendb_write();
+    adddb($opt_a);
+    closedb;
+}
+
+# Remove an address.
+if ($opt_r) {
+    $countopts++;
+    opendb_write();
+    removedb($opt_r);
+    closedb();
+}
+
+# Timeout entries.
+if ($opt_t) {
+    $countopts++;
+    die "Invalid timeout value: $opt_t.\n" unless $opt_t > 0;
+    opendb_write();
+    timeoutdb($opt_t);
+    closedb();
+}
+
+# Print address list.
+if ($opt_p) {
+    $countopts++;
+    opendb_read();
+    my $key;
+    foreach $key (sort(keys(%db))) {
+	print "$key\t", time - $db{$key}, "\n";
+    }
+    closedb();
+}
+
+# Daemon mode.
+if ($opt_d) {
+    # Check to see we can read/write the files we need.
+    die "Can't read $logfile: $!\n" if ! -r $logfile;
+    die "Can't write $dbfile: $!\n" if ! -w $dbfile;
+
+    # Become a daemon: fork, detach, cd /, set creation mode to 0.
+    if ($pid = fork) {
+	exit 0;				# Parent.
+    } elsif (defined($pid)) {
+	$pid = getpid;			# Child.
+    } else {
+	die "Can't fork: $!\n";
+    }
+    # Catch signals and set $flag_signal for later cleanup since
+    #    Perl5 does not have safe signal handling
+    $SIG{INT} = \&cleanup;
+    $SIG{TERM} = \&cleanup;
+    $SIG{HUP} = \&cleanup;
+
+    # Write PID file.
+    open(PIDFILE, ">$pidfile") || die "Can't open PID file: $!\n";
+    print PIDFILE "$pid\n";
+    close(PIDFILE) or die "Can't close file $pidfile: $!\n";
+    chmod(0644, $pidfile) or warn "Can't chmod file $pidfile: $!";
+
+    # Detach from terminal, etc.
+    setpgrp(0, 0);
+    close(STDIN); close(STDOUT); close(STDERR);
+    chdir("/");
+
+    # Main loop.
+    $lasttimeout = 0;
+    my $line = '';
+
+    while (1) {
+        if ($flag_signal) {
+           unlink $pidfile or die "Can't unlink file $pidfile: $!\n";
+           exit 0;
+        }
+
+	# Build list of addresses of recent authentications.
+	while ($line = getlogline()) {
+	    if (my ($add, $del) = scanaddr($line)) {
+		push(@addrs_add, $add) if $add ne '';
+		push(@addrs_del, $del) if $del ne '';
+	    }
+	}
+
+	# Add or delete this list from current set.
+	opendb_write();
+        my $addr;
+	while ($addr = pop @addrs_add) {
+	    adddb($addr);
+	}
+	while ($addr = pop @addrs_del) {
+	    removedb($addr);
+	}
+
+	# Timeout entries if we haven't for a minute.
+	if ((time - $lasttimeout) > 60) {
+	    $lasttimeout = time;
+	    timeoutdb(60 * $timeout_minutes);
+	}
+	closedb();
+	sleep $log_wait_interval;
+    }
+}
+
+die $help_opts if !$countopts;
+

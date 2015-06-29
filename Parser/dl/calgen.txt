@@ -1,0 +1,296 @@
+#!/usr/bin/perl
+#########################################################################
+# calgen - calender generator
+# 14 November 2001, Arthur Keys
+# Modified December2002
+# Purpose: automate schedule generation for rotating shift
+#########################################################################
+
+# Default Variables
+@monthconv = qw(. January Febuary March April May June July August September October November December);
+@crew = qw(andy bob tom);
+$beginday = "28";    # \
+$beginmonth = "2";   #-- Date to count from
+$beginyear = "2002"; # / 
+$rotate = "3"; # Day That Begins New Shift, 0 = sunday
+
+# Default Values
+$debug = "0"; # print bug catches
+$hash = "0";  # print data hash
+$plain = "0"; # print plain text schedule
+$html = "1";  # print html schedule
+get_date(); #$month = "4"; $year = "2002";
+
+# Read Options
+@args = @ARGV;
+ 
+# Hash of options
+$option{'-h'} = opt_help;
+$option{'-help'} = opt_help;
+$option{'-H'} = opt_header;
+$option{'-F'} = opt_footer;
+$option{'-p'} = opt_plain;
+$option{'-w'} = opt_html; 
+  
+# Options Subroutines
+sub opt_help
+{  
+ print<<EOH;
+ calendar generator
+ calgen [month] [year] {options}
+
+ flag:  option: description: 
+ -h     -help   help*
+ -H     -header print header file
+ -F     -footer print footer file
+ -w     -html   print output in html format*+
+ -o     -file   specify an output file
+ -m     -month  specify calendar month*+
+ -y     -year   specify calendar year*+
+ -f     -future number of future months to generate
+ -p     -plain  print plain text output*
+
+*currently implemented options
++default options
+ 
+ Configuration file:
+ /opt/local/etc/calgen.conf
+ 
+EOH
+ $print_output = "0";
+ no_out();
+}
+
+sub opt_header
+{
+ print "opt header\n";
+}
+ 
+sub no_out
+{
+ $html = 0;
+ $plain = 0;
+ $hash = 0; 
+}
+
+sub opt_plain
+{
+$plain = 1;
+$html = 0;
+}
+
+sub opt_html
+{
+$html = 1;
+$plain = 0;
+}
+
+# Run arguments against options for match
+for $argcount (0 .. $#ARGV){
+  if (exists($option{$ARGV[$argcount]})){
+   $sub =  $option{$ARGV[$argcount]};
+   &$sub;
+  }
+}  
+
+# Parse Args
+@arg = @ARGV;
+if ($arg[0] =~ /\d/){
+  $month = @arg[0];
+  $year = @arg[1];
+}
+
+# Groom Input
+if ($month > 12){$month = 12};
+if ($year < $beginyear){$year = $beginyear};
+if ($year > 4000){$year = 4000};
+
+# Get current month and year
+sub get_date
+{
+  @cal = `cal`;
+  @a = split (/\s/,$cal[0]);    
+  $year = $a[4];
+  for $i (0 .. $#monthconv){
+    if ($a[3] eq $monthconv[$i]){$month = $i;}
+  }
+  if ($debug == "1"){print "\n\nCurrent Month-Year -$month-$year-\n\n";}
+}
+
+# Generate Calender Data
+@monthdata = `cal $date[$datecount]`;
+  
+# Calculate Offset
+$offsetyear = $year - $beginyear;
+$offsetmonth = $month - $beginmonth;
+
+# Count Switch Days
+$crewcount = 0; 
+
+for $yearcount($beginyear .. $year){
+  if ($debug == 1){print "$yearcount\n";}
+  $frommonth = 1;
+  if ($yearcount == $beginyear) {$frommonth = $beginmonth;} 
+  #$frommonth = $yearcount == $beginyear ? $month :$beginmonth;
+  if ($yearcount == $year) {$tomonth = $month;}
+  for $monthcount($frommonth .. $tomonth){
+    if ($debug == 1){print "    $monthcount\n";}
+    @current = `cal $monthcount $yearcount`; 
+    if ($monthcount == $beginmonth){ $fromweek = $beginweek; }
+    for $weekcount(1 .. 6){ # 2-7
+      if ($debug == 1){print "          $weekcount\n";}
+      parse_day();
+    } 
+  }
+}
+
+sub parse_day{
+#$cday = substr($current[$week], ($rotate - 1)*3,3); # get date *3
+#chop $cday;
+#if ($monthcount == $beginmonth and $daycount == $beginday){$firstswitch = 1;}
+for $daycount(0 .. 6){
+  $date = substr($current[$weekcount+1], $daycount * 3,3);
+  chop $date;
+  #$tru = 0;
+  #if ($date =~ /\d/){$tru = 1};
+  if ($debug == 1){print "                       $daycount date:$date $crewcount\n"};
+  if ($monthcount == $beginmonth and $date == $beginday){$firstswitch = 1;}
+  if ($firstswitch == 1 and $date=~ /\d/){
+      if ($daycount == $rotate){
+      $crewcount++;
+      if ($crewcount == $#crew + 1){$crewcount = 0};
+    }
+    $datelist{$yearcount}{$monthcount}{$weekcount}{$daycount} = $date;
+    $crewlist{$yearcount}{$monthcount}{$weekcount}{$daycount} = $crew[$crewcount];
+  }
+}
+#if ($cday =~ /\d/ and $firstswitch == 1){
+#  $friday[$day] = $cday;   
+#  $pin = $crew[$crewcount];   
+#  for $wc ( 0 .. 6){
+#    print "                    $wc\n";
+#    $crewset[$monthcount][$friday[$day]+$wc] = $pin;
+#    $crewset[$monthcount+1][$wc] = $pin;
+#    if($monthcount == 12){$crewset[1][$wc] = $pin};#debug
+#  }
+#  $crewcount++;
+#  if ($crewcount == $#crew+1){
+#  $crewcount = 0;
+#  }
+#  $day++;
+#}
+}
+
+# Output
+#@current = `cal $month $year`;
+#for $week (2 .. 7){
+  #print "\n\n Week " . ($week-1) . "\n";
+  #print "\n";
+#  for $daycount (0 .. 6){
+#    $day = substr($current[$week], $daycount*3,3); #
+#    chop $day;
+#    if ($day =~ /\d/){
+#      #print "$day $crewset[$month][$day] ";  
+#      $daydata[$day] = $crewset[$month][$day];
+#      $weekdata[$week-2][$daycount] = $crewset[$month][$day];
+#      $weekdays[$week-2][$daycount] = $day;
+#    } 
+#  }
+#}
+
+
+
+# Print Data Hash
+if ($hash == 1){
+for $keya (keys %datelist){
+  print "$keya\n";
+  for $keyb (keys %{$datelist{$keya}}){
+    print "     $keyb\n";
+    for $keyc (keys %{$datelist{$keya}{$keyb}}){
+      print "           $keyc\n";
+      for $keyd (keys %{$datelist{$keya}{$keyb}{$keyc}}){
+        print "                 $keyd";
+        print " $datelist{$keya}{$keyb}{$keyc}{$keyd}";
+        print " $crewlist{$keya}{$keyb}{$keyc}{$keyd}\n";
+      }
+    }
+  }
+}
+print "\n";
+}
+
+# Convert output: weekdays, weekdata
+for $weekcount(0 .. 6){
+  for $daycount(0 .. 6){
+    $weekdays[$weekcount][$daycount] = $datelist{$year}{$month}{$weekcount}{$daycount};
+    $weekdata[$weekcount][$daycount] = $crewlist{$year}{$month}{$weekcount}{$daycount};
+  }
+}
+
+# Plain Text Output
+if ($plain == 1){
+ $wei = "5";
+if ($weekdays[5][0] == ""){$wei = "4"};
+  for $n(1 .. $wei){
+    print "Week $n\n";
+    for $n2(0 .. 6){
+      print "$n2: $weekdays[$n][$n2]";
+      print " $weekdata[$n][$n2]\n";
+      
+    }
+    print "\n";
+  } 
+}
+
+
+# HTML Output
+if ($html == 1){
+print<<EOF;
+<html>
+<head><title>Scheduled Center: Oncall Schedule</title></head>
+<base href="http:///">
+<body bgcolor="#002200" text="#EEEEEE" link="#FFFF99" vlink="#FFFF99" alink="#FFFF99">
+<font size=+2><b>Oncall Schedule</b></font><p>
+<font size=+1>Oncall Cell Phone: xxx.xxx.xxxx</font><br>
+<font size=-1>Rotation changes at 9am</font>
+<p>
+
+<table border=1>
+EOF
+
+print "  <tr><td colspan=7>$monthconv[$month]</td></tr>";
+
+print<<EOF;
+  <tr>
+    <th width=60>Sun</th>
+    <th width=60>Mon</th>
+    <th width=60>Tue</th>
+    <th width=60>Wed</th>
+    <th width=60>Thu</th>
+    <th width=60>Fri</th>
+    <th width=60>Sat</th>
+  </tr>
+
+EOF
+
+$wei = "5";
+if ($weekdays[5][0] == ""){$wei = "4"};
+  for $n(1 .. $wei){
+    print "  <tr>";
+    for $n2(0 .. 6){ 
+      print '    <td>';
+      print $weekdays[$n][$n2];
+      print '<br>';
+      print $weekdata[$n][$n2];
+      print '</td>';
+      print "\n";
+    }
+    print '  </tr>';
+    print "\n";
+  }
+
+print<<EOF;
+</table>
+</body></html>
+EOF
+} # End of HTML Output

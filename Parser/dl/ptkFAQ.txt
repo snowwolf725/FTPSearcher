@@ -1,0 +1,65 @@
+Perl Documentation
+
+   Note that the old documentation, often advertised as www.perl.com/doc
+   or www.perl.com/CPAN/doc, has been removed from CPAN as of November
+   2001 because it had not been updated for several years, and many
+   people complained about this. Please use the below links for much more
+   current information, the closest counterpart to the old material would
+   be the Perl core documentation site, http://www.perldoc.com/
+   If you have Perl documentation bookmarks pointing to cpan.org or
+   perl.org, consider updating your bookmarks. Note that the removal
+   was made only in CPAN, which is NOT affiliated with perl.com.
+   The perl.com/doc is still there ( http://www.perl.com/doc/ ),
+   if you absolutely insist on vintage documentation.
+   Also, the perhaps still most useful bits of the old documentation,
+   Tom Christiansen's FMTEYEWTK and tips are still available:
+   http://www.cpan.org/misc/olddoc/FMTEYEWTK.tgz
+   http://www.cpan.org/misc/olddoc/tips.tgz
+   
+                                   Searching
+                                       
+     * Perl core and CPAN modules documentation (Randy Kobes)
+
+	http://kobesearch.cpan.org/
+
+     * Perl core documentation (Carlos Ramirez)
+
+	http://www.perldoc.com/
+
+     * CPAN modules, distributions, and authors (search.cpan.org)
+
+	http://search.cpan.org/
+
+     * Perl FAQs
+
+	http://perlfaq.cpan.org/
+
+     * CPAN modules documentation (Ulrich Pfeifer)
+       
+	http://wait.cpan.org/
+
+                                    FAQ etc
+                                       
+     * CPAN Frequently Asked Questions
+
+	http://www.cpan.org/misc/cpan-faq.html
+
+     * Perl Mailing Lists
+
+	http://lists.cpan.org/
+
+     * Perl Bookmarks
+       
+	http://bookmarks.cpan.org/
+
+   Corrections? Additions? Suggestions? Please contact [9]cpan@perl.org.
+   Other questions? See the CPAN FAQ.
+   
+	http://www.cpan.org/misc/cpan-faq.html
+
+   Copyright Jarkko Hietaniemi <jhi@iki.fi> 1998-2001 All Rights
+   Reserved.
+   
+   CPAN master site hosted by FUNET 
+
+	http://www.csc.fi/suomi/funet/verkko.html.en/
